@@ -3,575 +3,888 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digify Soft Solutions™ | B2B Outbound Lead Engine & Pipeline</title>
+  <title>Digify Soft Solutions™ | B2B Outbound Lead Engine</title>
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
-  
+
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
-          },
-          colors: {
-            digify: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-              orange: '#e06930',
-              accent: '#f97316',
-            }
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
-    /* Custom Scrollbars & Utilities */
+    /* ─────────────────────────────────────────────────────────────
+       WHITE & COLORFUL ENTERPRISE DESIGN SYSTEM (DS)
+    ───────────────────────────────────────────────────────────── */
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-raised: #ffffff;
+      --surface-border: #e2e8f0;
+      --surface-border-subtle: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-tertiary: #94a3b8;
+      --text-mono: 'JetBrains Mono', 'Fira Code', 'Menlo', monospace;
+      
+      --accent-primary: #2563eb;       /* Digify Blue */
+      --accent-primary-bg: rgba(37, 99, 235, 0.08);
+      --accent-primary-border: rgba(37, 99, 235, 0.25);
+      
+      --accent-amber: #d97706;
+      --accent-amber-bg: rgba(217, 119, 6, 0.08);
+      --accent-amber-border: rgba(217, 119, 6, 0.22);
+      
+      --accent-green: #16a34a;
+      --accent-green-bg: rgba(22, 163, 74, 0.08);
+      --accent-green-border: rgba(22, 163, 74, 0.22);
+      
+      --accent-purple: #9333ea;
+      --accent-purple-bg: rgba(147, 51, 234, 0.08);
+      --accent-purple-border: rgba(147, 51, 234, 0.22);
+      
+      --accent-red: #dc2626;
+      --accent-red-bg: rgba(220, 38, 38, 0.08);
+      --accent-red-border: rgba(220, 38, 38, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbars */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-    .glass-card {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .glow-hover:hover {
-      box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.4);
-      border-color: rgba(96, 165, 250, 0.4);
+    /* Buttons & Interactive */
+    button, a {
+      transition: all 0.15s ease;
+      font-family: inherit;
     }
 
-    .badge-gradient {
-      background: linear-gradient(135deg, #2563eb 0%, #e06930 100%);
+    .b2b-row:hover {
+      background-color: rgba(248, 250, 252, 0.8) !important;
     }
 
-    .custom-gradient-text {
-      background: linear-gradient(135deg, #60a5fa 0%, #f97316 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .b2b-note-input:focus {
+      outline: none;
+      border-color: var(--accent-primary) !important;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+
+    .b2b-search:focus {
+      outline: none;
+      border-color: var(--accent-primary) !important;
+      box-shadow: 0 0 0 2.5px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Dropdown Menus */
+    .dropdown-menu {
+      animation: menuFadeIn 0.15s ease forwards;
+    }
+    @keyframes menuFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Modals */
+    .modal-overlay {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
   </style>
 </head>
-<body class="bg-[#090d16] text-slate-100 min-h-screen font-sans selection:bg-digify-600 selection:text-white pb-20">
+<body>
 
-  <!-- TOP BRAND NAV -->
-  <header class="border-b border-slate-800/80 bg-[#0b1120]/90 sticky top-0 z-40 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+  <!-- ══════════════════════════════════════════════════════════════
+       SECURITY ACCESS GATE (PASSWORD PROTECTED LOGIN)
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="loginScreen" style="display: none; position: fixed; inset: 0; z-index: 999999; background: #f8fafc; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #ffffff; border: 1px solid var(--surface-border); border-radius: 20px; width: 100%; max-width: 440px; padding: 36px 32px; box-shadow: 0 20px 45px rgba(15,23,42,0.08); text-align: center;">
+      <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+        <img src="assets/images/logo.png" alt="Digify Soft Solutions" style="height: 48px; object-fit: contain;" onerror="this.src='assets/images/logo_icon.png'">
+      </div>
       
-      <!-- Brand & Tagline -->
-      <div class="flex items-center gap-3 py-3">
-        <img src="assets/images/logo.png" alt="Digify Soft Solutions" class="h-10 w-auto object-contain brightness-110" onerror="this.src='assets/images/logo_icon.png'">
-        <div class="hidden sm:block border-l border-slate-700/60 pl-3">
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-digify-400">Lead Intelligence Engine</span>
-            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
-              Live Pipeline Active
-            </span>
-          </div>
-          <p class="text-[11px] text-slate-400">Retail ERP • Smart POS • Manufacturing BOM • IT Services</p>
-        </div>
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.08); color: #2563eb; font-size: 0.72rem; font-weight: 800; padding: 3px 12px; border-radius: 20px; border: 1px solid rgba(37,99,235,0.2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">
+        <i class="fas fa-lock"></i> Restricted Enterprise Portal
       </div>
 
-      <!-- Quick Action Controls -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="openBookmarkletModal()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5 shadow-sm">
-          <i class="fa-solid fa-star text-amber-400"></i>
-          <span class="hidden md:inline">1-Click</span> Bookmarklet
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+        B2B Lead Engine Console
+      </h2>
+      <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 24px;">
+        Authorized access only. Enter administrative access key to unlock lead pipelines &amp; WhatsApp outreach runner.
+      </p>
+
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)" style="text-align: left;">
+        <div style="margin-bottom: 18px;">
+          <label style="display: block; font-size: 0.76rem; font-weight: 700; color: #475569; margin-bottom: 6px;">Access Passcode</label>
+          <div style="position: relative;">
+            <input 
+              type="password" 
+              id="loginPasscode" 
+              required
+              placeholder="Enter passcode (e.g. digify2026)"
+              style="width: 100%; padding: 10px 42px 10px 14px; border-radius: 10px; border: 1px solid var(--surface-border); font-size: 0.9rem; color: #0f172a; background: #fafafa;"
+            />
+            <button 
+              type="button" 
+              onclick="togglePasswordVisibility()" 
+              style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; padding: 4px;"
+            >
+              <i id="passwordEyeIcon" class="fas fa-eye"></i>
+            </button>
+          </div>
+          <div id="loginError" style="display: none; color: #dc2626; font-size: 0.75rem; font-weight: 600; margin-top: 6px;"></div>
+        </div>
+
+        <button 
+          type="submit" 
+          id="loginBtn"
+          style="width: 100%; padding: 11px 16px; border-radius: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; border: none; font-size: 0.9rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 14px rgba(37,99,235,0.3);"
+        >
+          <i class="fas fa-key" style="margin-right: 6px;"></i> Unlock Console
         </button>
+      </form>
 
-        <button onclick="openScriptModal()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-digify-900/60 hover:bg-digify-800/80 text-digify-300 border border-digify-500/30 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-code"></i>
-          <span>Scraper Script</span>
-        </button>
-
-        <label class="cursor-pointer px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-digify-600 to-digify-700 hover:from-digify-500 hover:to-digify-600 text-white transition flex items-center gap-1.5 shadow-md shadow-digify-600/20">
-          <i class="fa-solid fa-cloud-arrow-up"></i>
-          <span>Upload CSV</span>
-          <input type="file" id="csvFileInput" accept=".csv" class="hidden" onchange="handleCSVUpload(event)">
-        </label>
-
-        <a href="https://www.digifysoft.in" target="_blank" class="hidden lg:flex px-3 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition items-center gap-1">
-          <span>digifysoft.in</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-        </a>
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--surface-border); font-size: 0.72rem; color: #94a3b8;">
+        Digify Soft Solutions™ • Smart IT, Smarter Business
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
 
-    <!-- METRICS OVERVIEW (KPI CARDS) -->
-    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-      
-      <!-- Total Prospects -->
-      <div class="glass-card rounded-xl p-4 border border-slate-800 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-slate-400 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">Prospects</span>
-          <i class="fa-solid fa-database text-digify-400 text-sm"></i>
-        </div>
-        <div id="statTotal" class="text-2xl sm:text-3xl font-display font-bold text-white">0</div>
-        <p class="text-[11px] text-slate-400 mt-0.5">Total in Engine</p>
-        <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-digify-600/10 rounded-full blur-xl pointer-events-none"></div>
-      </div>
+  <!-- ══════════════════════════════════════════════════════════════
+       MAIN DASHBOARD APPLICATION
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="dashboardApp" style="display: block;">
 
-      <!-- Needs Web Presence -->
-      <div class="glass-card rounded-xl p-4 border border-amber-500/20 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-amber-400 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">No Website</span>
-          <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
-        </div>
-        <div id="statNoWeb" class="text-2xl sm:text-3xl font-display font-bold text-amber-400">0</div>
-        <p class="text-[11px] text-amber-300/70 mt-0.5">ERP + Web Priority</p>
-        <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
-      </div>
-
-      <!-- Has Website -->
-      <div class="glass-card rounded-xl p-4 border border-cyan-500/20 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-cyan-400 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">Has Website</span>
-          <i class="fa-solid fa-globe text-cyan-400 text-sm"></i>
-        </div>
-        <div id="statHasWeb" class="text-2xl sm:text-3xl font-display font-bold text-cyan-300">0</div>
-        <p class="text-[11px] text-cyan-300/70 mt-0.5">POS & ERP Upgrade</p>
-      </div>
-
-      <!-- Pitch Dispatched -->
-      <div class="glass-card rounded-xl p-4 border border-indigo-500/20 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-indigo-400 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">Pitches Sent</span>
-          <i class="fa-solid fa-paper-plane text-indigo-400 text-sm"></i>
-        </div>
-        <div id="statDispatched" class="text-2xl sm:text-3xl font-display font-bold text-indigo-300">0</div>
-        <p class="text-[11px] text-indigo-300/70 mt-0.5">WhatsApp / Email</p>
-      </div>
-
-      <!-- In Active Discussion -->
-      <div class="glass-card rounded-xl p-4 border border-emerald-500/20 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-emerald-400 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">Interested</span>
-          <i class="fa-solid fa-handshake text-emerald-400 text-sm"></i>
-        </div>
-        <div id="statInterested" class="text-2xl sm:text-3xl font-display font-bold text-emerald-300">0</div>
-        <p class="text-[11px] text-emerald-300/70 mt-0.5">Demo Scheduled</p>
-      </div>
-
-      <!-- Cold / Dropped -->
-      <div class="glass-card rounded-xl p-4 border border-slate-800 glow-hover transition relative overflow-hidden">
-        <div class="flex items-center justify-between text-slate-500 mb-1">
-          <span class="text-xs font-semibold uppercase tracking-wider">Cold Leads</span>
-          <i class="fa-solid fa-ban text-slate-500 text-sm"></i>
-        </div>
-        <div id="statCold" class="text-2xl sm:text-3xl font-display font-bold text-slate-400">0</div>
-        <p class="text-[11px] text-slate-500 mt-0.5">Not Interested</p>
-      </div>
-
-    </section>
-
-    <!-- LEAD GENERATOR COMMAND CENTER (NICHES + CITIES + SEARCH LAUNCHER) -->
-    <section class="glass-card rounded-2xl p-5 border border-slate-800 shadow-xl space-y-4">
-      
-      <!-- Section Header -->
-      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-digify-600/20 border border-digify-500/30 flex items-center justify-center text-digify-400">
-            <i class="fa-solid fa-crosshairs"></i>
-          </div>
-          <div>
-            <h2 class="font-display font-bold text-base text-white">Google Maps Lead Harvester</h2>
-            <p class="text-xs text-slate-400">Select Digify niche & target city to generate anti-ambiguity B2B leads</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <button onclick="toggleScraperGuide()" class="text-xs font-medium text-slate-300 hover:text-white px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 transition">
-            <i class="fa-solid fa-circle-question mr-1 text-digify-400"></i> How It Works
-          </button>
-        </div>
-      </div>
-
-      <!-- Target Category Pills -->
-      <div class="space-y-2">
-        <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-          <i class="fa-solid fa-tags text-digify-400"></i> Target Category:
-        </label>
-        <div id="categoryPillContainer" class="flex flex-wrap gap-2">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- Quick City Hubs -->
-      <div class="space-y-2">
-        <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-          <i class="fa-solid fa-location-dot text-rose-400"></i> High-Value Commercial Cities (Digify Hubs):
-        </label>
-        <div id="cityPillContainer" class="flex flex-wrap gap-1.5">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- Search Input Bar & Launcher -->
-      <div class="pt-2">
-        <div class="flex flex-col sm:flex-row gap-2">
-          <div class="relative flex-1">
-            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input type="text" id="targetQueryInput" 
-              class="w-full pl-10 pr-24 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-digify-500 text-sm font-medium"
-              placeholder="e.g. Supermarket and departmental grocery stores in Surat, Gujarat"
-              oninput="onQueryInputChange()">
-            <button onclick="clearQuery()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs text-slate-400 hover:text-white">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-
-          <button onclick="launchGoogleMapsSearch()" class="px-5 py-2.5 rounded-xl bg-digify-600 hover:bg-digify-500 font-semibold text-sm text-white flex items-center justify-center gap-2 shadow-lg shadow-digify-600/30 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <span>Search on Google Maps</span>
-          </button>
-
-          <button onclick="copyGeneratedQuery()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium transition flex items-center justify-center gap-1.5">
-            <i class="fa-regular fa-copy"></i>
-            <span>Copy Query</span>
-          </button>
-        </div>
-
-        <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2 px-1">
-          <span class="flex items-center gap-1 text-emerald-400 font-medium">
-            <i class="fa-solid fa-shield-check"></i> 100% Anti-Ambiguity Protected (Optimized for Owner Phone Extraction)
-          </span>
-          <span class="hidden sm:inline text-slate-500">Auto-identifies retail, wholesale, & manufacturing owners</span>
-        </div>
-      </div>
-
-      <!-- Scraper Guide Accordion (Hidden by default) -->
-      <div id="scraperGuideBox" class="hidden rounded-xl bg-slate-900/90 border border-slate-800 p-4 space-y-3 text-xs">
-        <div class="flex items-center justify-between text-amber-400 font-bold">
-          <span>⚡ How To Extract 50-100 Verified Leads In Under 60 Seconds:</span>
-          <button onclick="toggleScraperGuide()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-300">
-          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50">
-            <h4 class="font-bold text-digify-300 mb-1 flex items-center gap-1.5">
-              <i class="fa-solid fa-star text-amber-400"></i> Method 1: 1-Click Bookmarklet (Super Fast & Zero Error)
-            </h4>
-            <ol class="list-decimal list-inside space-y-1 text-slate-300 text-[11px]">
-              <li>Click <b>"⭐ Bookmarklet"</b> at the top and drag the button to your Bookmarks Bar.</li>
-              <li>Click <b>"Search on Google Maps"</b> above to open the search page.</li>
-              <li>Just click your <b>"⭐ Digify Scraper"</b> bookmark! It runs automatically, scrolls, and downloads the CSV.</li>
-              <li><b>No F12 needed, no console errors!</b></li>
-            </ol>
-          </div>
-          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50">
-            <h4 class="font-bold text-digify-300 mb-1 flex items-center gap-1.5">
-              <i class="fa-solid fa-terminal text-emerald-400"></i> Method 2: Browser Console (Developer Mode)
-            </h4>
-            <ol class="list-decimal list-inside space-y-1 text-slate-300 text-[11px]">
-              <li>Search on Google Maps and press <b>F12</b> on your keyboard.</li>
-              <li>Go to the <b>Console</b> tab at the top.</li>
-              <li>Paste the Digify script and press <b>Enter</b>.</li>
-              <li><i>Note: Our script automatically calls <code class="text-amber-300">console.clear()</code> so Google background service worker logs never show up!</i></li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <!-- Drag & Drop CSV Dropzone -->
-      <div id="dropZone" 
-        class="border-2 border-dashed border-slate-700/80 hover:border-digify-500 rounded-xl p-6 text-center transition cursor-pointer bg-slate-900/40 hover:bg-slate-900/80"
-        onclick="document.getElementById('csvFileInput').click()"
-        ondragover="onDragOver(event)"
-        ondragleave="onDragLeave(event)"
-        ondrop="onDrop(event)">
-        <i class="fa-solid fa-cloud-arrow-up text-3xl text-digify-400 mb-2"></i>
-        <p class="text-sm font-semibold text-white">Drop Google Maps CSV here — or click to browse</p>
-        <p class="text-xs text-slate-400 mt-1">Auto-detects columns • Deduplicates phone numbers • Categorizes into Digify Verticals</p>
-      </div>
-
-    </section>
-
-    <!-- LEADS DATA VIEW & FILTER CONTROLS -->
-    <section class="space-y-4">
-      
-      <!-- Filter Bar -->
-      <div class="glass-card rounded-xl p-4 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+    <!-- TOP HEADER (DIGIFY LIGHT STYLE WITH DIGIFY BRANDING) -->
+    <header style="background: #ffffff; border-bottom: 1px solid var(--surface-border); position: sticky; top: 0; z-index: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+      <div style="max-width: 1440px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
         
-        <!-- Left: Search & Filters -->
-        <div class="flex flex-wrap items-center gap-2 flex-1 min-w-[280px]">
-          <!-- Keyword Search -->
-          <div class="relative min-w-[200px] flex-1">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-400"></i>
-            <input type="text" id="leadSearchInput" 
-              class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-digify-500"
-              placeholder="Search leads, phones, notes..."
-              oninput="renderLeadsTable()">
+        <!-- Left: Brand Logo & Status -->
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/images/logo.png" alt="Digify Soft Solutions" style="height: 38px; width: auto; object-fit: contain;" onerror="this.src='assets/images/logo_icon.png'">
+            <div>
+              <div style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                Digify Soft Solutions<span style="color: var(--accent-primary);">™</span>
+              </div>
+              <div style="font-size: 0.72rem; color: #64748b; font-weight: 600;">
+                B2B Outbound Lead Intelligence Engine
+              </div>
+            </div>
           </div>
 
-          <!-- City Filter -->
-          <select id="filterCity" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
-            <option value="all">All Cities</option>
-          </select>
-
-          <!-- Category Filter -->
-          <select id="filterCategory" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
-            <option value="all">All Categories</option>
-          </select>
-
-          <!-- Website Status Filter -->
-          <select id="filterWeb" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
-            <option value="all">Web: All</option>
-            <option value="no">🔥 No Website</option>
-            <option value="yes">🌐 Has Website</option>
-          </select>
-
-          <!-- Pipeline Status Filter -->
-          <select id="filterStatus" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
-            <option value="all">Status: All</option>
-            <option value="new">New</option>
-            <option value="contacted">Contacted</option>
-            <option value="pitch_dispatched">Pitch Sent</option>
-            <option value="demo_scheduled">Demo Scheduled</option>
-            <option value="in_discussion">In Discussion</option>
-            <option value="closed_won">Closed / Won</option>
-            <option value="not_interested">Not Interested</option>
-          </select>
-        </div>
-
-        <!-- Right: View switch & Batch actions -->
-        <div class="flex items-center gap-2">
-          <!-- View Toggle -->
-          <div class="flex rounded-lg bg-slate-900 p-0.5 border border-slate-700">
-            <button id="btnViewTable" onclick="switchView('table')" class="px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white">
-              <i class="fa-solid fa-table-list mr-1"></i> Table
-            </button>
-            <button id="btnViewCards" onclick="switchView('cards')" class="px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white">
-              <i class="fa-solid fa-grip mr-1"></i> Cards
-            </button>
+          <!-- Database Connected Pill -->
+          <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(22, 163, 74, 0.10); color: #166534; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(22, 163, 74, 0.25);">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e;"></span>
+            Database Connected
           </div>
+        </div>
 
-          <!-- Export Filtered CSV -->
-          <button onclick="exportCurrentLeadsCSV()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
-            <i class="fa-solid fa-file-csv text-emerald-400"></i>
-            <span>Export CSV</span>
+        <!-- Right: Action Buttons & Logout -->
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <button 
+            type="button" 
+            onclick="openBookmarkletModal()"
+            style="background: #ffffff; border: 1px solid #fde68a; color: #b45309; padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 1px 3px rgba(217,119,6,0.1);"
+          >
+            <i class="fas fa-star" style="color: #f59e0b;"></i>
+            <span>1-Click Bookmarklet</span>
           </button>
 
-          <!-- Backup JSON -->
-          <button onclick="exportBackupJSON()" title="Download Full JSON Backup" class="p-1.5 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700">
-            <i class="fa-solid fa-download"></i>
+          <button 
+            type="button" 
+            onclick="openScriptModal()"
+            style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;"
+          >
+            <i class="fas fa-code"></i>
+            <span>Scraper Script</span>
           </button>
 
-          <!-- Reset / Clear -->
-          <button onclick="clearAllLeadsPrompt()" title="Clear Database" class="p-1.5 text-xs rounded-lg bg-slate-800 hover:bg-rose-900/50 text-rose-400 border border-slate-700">
-            <i class="fa-solid fa-trash-can"></i>
+          <label style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; padding: 7px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(37,99,235,0.3);">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <span>Upload CSV</span>
+            <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)">
+          </label>
+
+          <a 
+            href="https://www.digifysoft.in" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style="color: #475569; border: 1px solid var(--surface-border); padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: #ffffff;"
+          >
+            <span>View Website</span>
+            <i class="fas fa-arrow-up-right-from-square" style="font-size: 10px;"></i>
+          </a>
+
+          <!-- Logout Button -->
+          <button 
+            type="button" 
+            onclick="handleLogout()"
+            title="Lock console & logout"
+            style="background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.25); color: #dc2626; padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;"
+          >
+            <i class="fas fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main style="max-width: 1440px; margin: 0 auto; padding: 20px 24px 60px;">
+
+      <!-- ══════════════════════════════════════════
+           1. TOP KPI STRIP (COLORFUL CHIPS LIKE DIGIFY)
+      ══════════════════════════════════════════ -->
+      <section style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+        <div style="background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 10px; font-size: 0.85rem; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(37,99,235,0.25);">
+          <i class="fas fa-paper-plane"></i>
+          <span>B2B Outbound Leads</span>
+        </div>
+
+        <div style="background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3); color: #166534; padding: 5px 11px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #16a34a;"></span>
+          <span id="statProspectsPill">0 Real Prospects</span>
+        </div>
+
+        <button onclick="setFilterStatus('all')" class="kpi-chip" style="background: #f1f5f9; border: 1px solid var(--surface-border); color: #334155; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fas fa-layer-group" style="font-size: 11px;"></i>
+          <span>All (<span id="statAll">0</span>)</span>
+        </button>
+
+        <button onclick="setFilterWeb('no_web')" class="kpi-chip" style="background: rgba(217,119,6,0.08); border: 1px solid rgba(217,119,6,0.25); color: #d97706; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <span>🔥</span>
+          <span><span id="statNoWeb">0</span> No Web</span>
+        </button>
+
+        <button onclick="setFilterWeb('has_web')" class="kpi-chip" style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fas fa-globe" style="font-size: 11px;"></i>
+          <span><span id="statHasWeb">0</span> Has Web</span>
+        </button>
+
+        <button onclick="setFilterStatus('contacted')" class="kpi-chip" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25); color: #4f46e5; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fas fa-bolt" style="font-size: 11px;"></i>
+          <span><span id="statDispatched">0</span> Dispatched</span>
+        </button>
+
+        <button onclick="setFilterStatus('interested')" class="kpi-chip" style="background: rgba(147,51,234,0.08); border: 1px solid rgba(147,51,234,0.25); color: #7e22ce; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fas fa-comment-dots" style="font-size: 11px;"></i>
+          <span><span id="statInterested">0</span> Interested</span>
+        </button>
+
+        <!-- Right Side Collapse Harvester & Script -->
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+          <button 
+            type="button" 
+            onclick="toggleScraperEngine()" 
+            id="toggleScraperBtn"
+            style="background: #ffffff; border: 1px solid var(--surface-border); color: #2563eb; padding: 6px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"
+          >
+            <i class="fas fa-magnifying-glass"></i>
+            <span>Maps Scraper Engine ▼</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           2. GOOGLE MAPS PROSPECTING HARVESTER (COLLAPSIBLE)
+      ══════════════════════════════════════════ -->
+      <section id="scraperEngineBox" style="display: block; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.6px; display: flex; align-items: center; gap: 6px;">
+            <i class="fas fa-location-dot" style="color: #2563eb;"></i> Quick Digify Commercial Hubs:
+          </div>
+          <div style="font-size: 0.72rem; color: #16a34a; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+            <i class="fas fa-shield-halved"></i> 100% Anti-Ambiguity Protected (Direct Owner Extractions)
+          </div>
+        </div>
+
+        <!-- City Quick Pills -->
+        <div id="quickCitiesContainer" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;"></div>
+
+        <!-- Target Industry Buttons -->
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;">
+          <span style="font-size: 0.76rem; font-weight: 700; color: #64748b; align-self: center; margin-right: 4px;">Verticals:</span>
+          <div id="verticalButtonsContainer" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+        </div>
+
+        <!-- Live Query Preview & Google Maps 1-Click Search -->
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: #f8fafc; border: 1px solid var(--surface-border); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px;">
+          <i class="fab fa-google" style="color: #ea4335; font-size: 14px;"></i>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #64748b;">Target Search Query:</span>
+          <input 
+            type="text" 
+            id="liveGeneratedQuery" 
+            style="flex: 1; min-width: 260px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 6px; padding: 6px 10px; font-size: 0.8rem; font-weight: 600; color: #0f172a;"
+          />
+          <button 
+            type="button" 
+            onclick="openGoogleMapsSearch()" 
+            style="background: #2563eb; color: #ffffff; border: none; padding: 7px 14px; border-radius: 7px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 6px rgba(37,99,235,0.25);"
+          >
+            <i class="fas fa-arrow-up-right-from-square"></i> Search on Google Maps
+          </button>
+          <button 
+            type="button" 
+            onclick="copyCurrentSearchQuery()" 
+            id="copyQueryBtn"
+            style="background: #ffffff; color: #475569; border: 1px solid var(--surface-border); padding: 7px 12px; border-radius: 7px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;"
+          >
+            <i class="fas fa-copy"></i> Copy Query
           </button>
         </div>
 
+        <!-- Drag & Drop CSV Box -->
+        <div 
+          id="dropzoneBox"
+          ondragover="handleDragOver(event)" 
+          ondragleave="handleDragLeave(event)" 
+          ondrop="handleFileDrop(event)"
+          onclick="document.getElementById('csvFileInput').click()"
+          style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 18px; text-align: center; cursor: pointer; background: #fdfdfd; transition: all 0.15s ease;"
+        >
+          <i class="fas fa-cloud-arrow-up" style="color: #2563eb; font-size: 1.5rem; margin-bottom: 6px; display: block;"></i>
+          <div style="font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 2px;">
+            Drop Google Maps CSV here — or click to browse
+          </div>
+          <div style="font-size: 0.74rem; color: #94a3b8;">
+            Auto-detects columns • Deduplicates phone numbers • Saves directly to local storage
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           3. FILTER & SEARCH CONTROLS (WITH DYNAMIC INDUSTRY FILTER)
+      ══════════════════════════════════════════ -->
+      <section style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px;">
+        
+        <!-- Search bar -->
+        <div style="position: relative; flex: 1 1 240px; min-width: 200px;">
+          <i class="fas fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); font-size: 12px; pointer-events: none;"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search leads, phones, notes..." 
+            oninput="handleSearchChange(event)"
+            class="b2b-search"
+            style="width: 100%; padding: 8px 10px 8px 34px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-primary); font-size: 0.82rem;"
+          />
+        </div>
+
+        <!-- City Filter -->
+        <select 
+          id="cityFilter" 
+          onchange="handleCityFilter(this.value)"
+          style="padding: 7px 10px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; cursor: pointer;"
+        >
+          <option value="all">All Cities (0)</option>
+        </select>
+
+        <!-- Dynamic Target Industry Filter (User Rule: Only show available niches with leads) -->
+        <select 
+          id="nicheFilter" 
+          onchange="handleNicheFilter(this.value)"
+          style="padding: 7px 10px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; cursor: pointer;"
+        >
+          <option value="all">All Industries (0)</option>
+        </select>
+
+        <!-- Web Presence Filter -->
+        <select 
+          id="webFilter" 
+          onchange="handleWebFilter(this.value)"
+          style="padding: 7px 10px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-secondary); font-size: 0.78rem; cursor: pointer;"
+        >
+          <option value="all">All Targets</option>
+          <option value="no_web">🔥 No Website (Prime)</option>
+          <option value="has_web">Has Website</option>
+        </select>
+
+        <!-- Status Filter -->
+        <select 
+          id="statusFilter" 
+          onchange="handleStatusFilter(this.value)"
+          style="padding: 7px 10px; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-secondary); font-size: 0.78rem; cursor: pointer;"
+        >
+          <option value="all">All Statuses</option>
+          <option value="new">New Lead</option>
+          <option value="contacted">Pitch Dispatched</option>
+          <option value="interested">Interested</option>
+          <option value="converted">Closed Deal ✓</option>
+          <option value="lost">Lost</option>
+        </select>
+
+        <!-- View Toggle (Table / Cards) -->
+        <div style="display: flex; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; padding: 3px; margin-left: auto;">
+          <button 
+            type="button" 
+            id="viewTableBtn" 
+            onclick="setViewMode('table')" 
+            style="padding: 5px 11px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.76rem; font-weight: 700; background: rgba(37,99,235,0.1); color: #2563eb; display: flex; align-items: center; gap: 5px;"
+          >
+            <i class="fas fa-list" style="font-size: 10px;"></i> Table
+          </button>
+          <button 
+            type="button" 
+            id="viewCardsBtn" 
+            onclick="setViewMode('cards')" 
+            style="padding: 5px 11px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.76rem; font-weight: 700; background: transparent; color: var(--text-tertiary); display: flex; align-items: center; gap: 5px;"
+          >
+            <i class="fas fa-th-large" style="font-size: 10px;"></i> Cards
+          </button>
+        </div>
+
+        <!-- Filter Count -->
+        <span id="filteredCountChip" style="font-size: 0.72rem; font-weight: 700; color: var(--text-tertiary); white-space: nowrap;">
+          0 / 0
+        </span>
+
+        <!-- Reset / Clear -->
+        <button 
+          type="button" 
+          onclick="clearAllLeadsConfirmation()" 
+          title="Clear all leads from engine"
+          style="background: none; border: 1px solid rgba(220,38,38,0.25); color: var(--accent-red); padding: 6px 10px; border-radius: 8px; font-size: 0.72rem; cursor: pointer;"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           4. LEADS DISPLAY (TABLE & CARDS)
+      ══════════════════════════════════════════ -->
+      
+      <!-- Empty State -->
+      <div id="emptyStateBox" style="display: none; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 14px; padding: 56px 24px; text-align: center;">
+        <i class="fas fa-inbox" style="font-size: 2.2rem; color: #cbd5e1; margin-bottom: 12px; display: block;"></i>
+        <div style="font-size: 1rem; font-weight: 800; color: #334155; margin-bottom: 6px;">No leads in engine yet</div>
+        <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
+          Upload a Google Maps CSV file or launch search query above to build your prospect pipeline.
+        </div>
+        <button 
+          onclick="resetAllFilters()" 
+          style="background: #2563eb; color: #ffffff; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 0 2px 8px rgba(37,99,235,0.25);"
+        >
+          Clear Filters / Reload
+        </button>
       </div>
 
-      <!-- LEADS TABLE CONTAINER -->
-      <div id="tableViewWrapper" class="glass-card rounded-xl border border-slate-800 overflow-hidden shadow-xl">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-slate-900/90 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
-              <tr>
-                <th class="py-3 px-3 w-10 text-center">#</th>
-                <th class="py-3 px-4">Business Name</th>
-                <th class="py-3 px-3">Phone & Direct Call</th>
-                <th class="py-3 px-3">Website</th>
-                <th class="py-3 px-3">Category & City</th>
-                <th class="py-3 px-3">Pipeline Status</th>
-                <th class="py-3 px-4 text-center">Digify Outreach Action</th>
-                <th class="py-3 px-3 text-right">Actions</th>
+      <!-- Table View -->
+      <div id="tableViewWrapper" style="display: block; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; table-layout: auto;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--surface-border); background: #f8fafc;">
+                <th style="width: 38px; padding: 10px 10px 10px 14px; text-align: center;">
+                  <input 
+                    type="checkbox" 
+                    id="selectAllCheckbox" 
+                    onchange="toggleSelectAll(this.checked)"
+                    style="width: 16px; height: 16px; cursor: pointer; accent-color: #16a34a;"
+                  />
+                </th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">Business Entity</th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">City</th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">Contact &amp; Outreach</th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">Opportunity</th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">Status</th>
+                <th style="padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">Target Niche &amp; Notes</th>
+                <th style="padding: 10px 14px; text-align: center; font-weight: 700; font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;">—</th>
               </tr>
             </thead>
-            <tbody id="leadsTableBody" class="divide-y divide-slate-800/60 text-slate-200">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="leadsTableBody"></tbody>
           </table>
         </div>
-
-        <!-- Empty State -->
-        <div id="emptyState" class="hidden py-16 text-center text-slate-500">
-          <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-600"></i>
-          <p class="text-sm font-medium text-slate-400">No matching leads found</p>
-          <p class="text-xs text-slate-500 mt-1">Upload a CSV or search Google Maps using the Harvester above.</p>
-        </div>
       </div>
 
-      <!-- LEADS CARDS CONTAINER (Alternative View) -->
-      <div id="cardsViewWrapper" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Dynamically populated -->
+      <!-- Cards View -->
+      <div id="cardsViewWrapper" style="display: none; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px;"></div>
+
+    </main>
+
+
+    <!-- ══════════════════════════════════════════
+         5. STICKY BOTTOM BULK CAMPAIGN OUTREACH BAR
+    ══════════════════════════════════════════ -->
+    <div 
+      id="bulkActionBar" 
+      style="display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 9999; background: #0f172a; color: #ffffff; border: 1.5px solid rgba(37,99,235,0.4); border-radius: 16px; padding: 10px 18px; align-items: center; gap: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(37,99,235,0.25); backdrop-filter: blur(16px); flex-wrap: wrap; max-width: 95vw;"
+    >
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.4); padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;">
+          <i class="fas fa-check-circle"></i>
+          <span id="selectedCountText">0 Selected</span>
+        </span>
+        <span style="font-size: 0.76rem; color: #94a3b8;">
+          (Ready for sequential WhatsApp outreach)
+        </span>
       </div>
 
-    </section>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <button 
+          type="button" 
+          onclick="startSequentialCampaign()"
+          style="background: linear-gradient(135deg, #16a34a, #15803d); color: #ffffff; border: none; padding: 8px 18px; border-radius: 10px; font-size: 0.84rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(22,163,74,0.4);"
+        >
+          <i class="fab fa-whatsapp" style="font-size: 16px;"></i>
+          <span>Start 1-by-1 WhatsApp Campaign 🚀</span>
+        </button>
 
-  </main>
-
-  <!-- MODAL: 1-CLICK BOOKMARKLET -->
-  <div id="bookmarkletModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <h3 class="font-display font-bold text-base text-white">1-Click Google Maps Bookmarklet</h3>
-        </div>
-        <button onclick="closeBookmarkletModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <div class="space-y-3 text-xs text-slate-300">
-        <p>This allows your senior and sales team to extract verified leads with <b>1 single click</b> on Google Maps without opening developer tools or looking at console logs!</p>
-        
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center space-y-2">
-          <p class="text-[11px] text-slate-400">👉 Drag this button directly into your Chrome/Edge <b>Bookmarks Bar</b>:</p>
-          <div>
-            <a id="bookmarkletLink" href="#" 
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-digify-600 to-amber-600 font-bold text-white shadow-lg shadow-digify-600/30 hover:scale-105 transition cursor-grab active:cursor-grabbing">
-              <i class="fa-solid fa-bolt"></i>
-              <span>⭐ Digify Maps Scraper</span>
-            </a>
-          </div>
-          <p class="text-[10px] text-slate-500">(If your bookmarks bar is hidden, press <kbd class="px-1 py-0.5 rounded bg-slate-800 text-slate-300">Ctrl + Shift + B</kbd>)</p>
-        </div>
-
-        <div class="space-y-1.5 text-[11px] text-slate-400">
-          <p class="font-semibold text-slate-200">How to use it:</p>
-          <p>1. Open Google Maps search (e.g. <i>"Supermarkets in Surat"</i>).</p>
-          <p>2. Click <b>"⭐ Digify Maps Scraper"</b> from your bookmarks bar.</p>
-          <p>3. Watch the floating on-screen HUD scroll and extract leads. CSV downloads automatically!</p>
-        </div>
-      </div>
-
-      <div class="flex justify-end pt-2">
-        <button onclick="closeBookmarkletModal()" class="px-4 py-2 rounded-lg bg-digify-600 hover:bg-digify-500 text-xs font-semibold text-white">Got It</button>
+        <button 
+          type="button" 
+          onclick="clearSelection()"
+          style="background: none; border: none; color: #94a3b8; font-size: 0.78rem; font-weight: 600; cursor: pointer; padding: 4px 8px;"
+        >
+          Clear ✕
+        </button>
       </div>
     </div>
-  </div>
 
-  <!-- MODAL: SCRAPER SCRIPT -->
-  <div id="scriptModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-digify-600/20 text-digify-400 flex items-center justify-center">
-            <i class="fa-solid fa-code"></i>
+
+    <!-- ══════════════════════════════════════════
+         6. SEQUENTIAL 1-BY-1 WHATSAPP OUTREACH CAMPAIGN MODAL
+    ══════════════════════════════════════════ -->
+    <div id="campaignModal" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center; padding: 16px;">
+      <div style="background: #ffffff; border: 1px solid var(--surface-border); border-radius: 20px; width: 100%; max-width: 640px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); overflow: hidden; display: flex; flex-direction: column;">
+        
+        <!-- Header -->
+        <div style="padding: 16px 22px; border-bottom: 1px solid var(--surface-border); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(22,163,74,0.06), rgba(37,99,235,0.04));">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #16a34a, #15803d); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 18px; box-shadow: 0 4px 12px rgba(22,163,74,0.35);">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="margin: 0; font-size: 1.02rem; font-weight: 800; color: #0f172a;">WhatsApp Outreach Runner</h3>
+                <span id="campaignProgressBadge" style="font-size: 0.68rem; font-weight: 800; color: #16a34a; background: rgba(22,163,74,0.12); border: 1px solid rgba(22,163,74,0.25); padding: 2px 8px; border-radius: 12px;">Lead 1 of 1 (100%)</span>
+              </div>
+              <p style="margin: 2px 0 0; font-size: 0.72rem; color: #64748b;">
+                1-Click WhatsApp send • Auto-advances to next lead • Saves time
+              </p>
+            </div>
           </div>
+          <button type="button" onclick="closeCampaignModal()" style="background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer; padding: 4px 8px;">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div style="padding: 20px 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: #f8fafc; border: 1px solid var(--surface-border); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div id="campaignLeadName" style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Business Name</div>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span id="campaignLeadCity" style="font-size: 0.72rem; font-weight: 700; color: #2563eb; background: rgba(37,99,235,0.08); padding: 2px 8px; border-radius: 6px;">📍 City</span>
+                <span id="campaignLeadCategory" style="font-size: 0.72rem; color: #475569; background: rgba(15,23,42,0.04); padding: 2px 8px; border-radius: 6px;">Category</span>
+                <span id="campaignLeadPhone" style="font-family: var(--text-mono); font-size: 0.76rem; font-weight: 700; color: #0f172a;">📞 Phone</span>
+              </div>
+            </div>
+            <div id="campaignLeadWebBadge"></div>
+          </div>
+
+          <!-- Message Textarea Preview -->
           <div>
-            <h3 class="font-display font-bold text-base text-white">Digify Google Maps Console Script</h3>
-            <p class="text-xs text-slate-400">Auto-clears service worker noise and extracts leads into CSV</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.7rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.6px;">WhatsApp Message Preview (Editable):</span>
+              <button type="button" onclick="copyCampaignMessageText()" id="copyCampaignBtn" style="background: none; border: none; color: #2563eb; font-size: 0.72rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+                <i class="fas fa-copy"></i>
+                <span>Copy Message</span>
+              </button>
+            </div>
+            <textarea 
+              id="campaignTextarea" 
+              rows="8"
+              style="width: 100%; padding: 12px 14px; background: #fafafa; border: 1px solid var(--surface-border); border-radius: 10px; font-size: 0.8rem; line-height: 1.5; color: #0f172a; resize: vertical; outline: none;"
+            ></textarea>
+          </div>
+
+          <!-- Quick Outcome Override Buttons -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid var(--surface-border); padding-top: 10px;">
+            <span style="font-size: 0.7rem; font-weight: 700; color: #94a3b8;">Quick Status override:</span>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" onclick="advanceCampaignWithStatus('interested')" style="padding: 4px 8px; border-radius: 6px; background: rgba(147,51,234,0.08); border: 1px solid rgba(147,51,234,0.25); color: #7e22ce; font-size: 0.7rem; font-weight: 700; cursor: pointer;">
+                Send &amp; Mark Interested
+              </button>
+              <button type="button" onclick="advanceCampaignWithStatus('converted')" style="padding: 4px 8px; border-radius: 6px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: #15803d; font-size: 0.7rem; font-weight: 700; cursor: pointer;">
+                Send &amp; Mark Closed Deal ✓
+              </button>
+              <button type="button" onclick="advanceCampaignWithStatus('lost')" style="padding: 4px 8px; border-radius: 6px; background: rgba(100,116,139,0.08); border: 1px solid rgba(100,116,139,0.2); color: #475569; font-size: 0.7rem; font-weight: 700; cursor: pointer;">
+                Send &amp; Mark Lost
+              </button>
+            </div>
           </div>
         </div>
-        <button onclick="closeScriptModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
 
-      <div class="space-y-2">
-        <div class="flex items-center justify-between text-xs">
-          <span class="text-slate-400">Copy and paste into Google Maps Console (<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">F12</kbd> ➔ Console):</span>
-          <button onclick="copyScraperCode()" id="btnCopyScriptModal" class="px-3 py-1 rounded bg-digify-600 hover:bg-digify-500 text-white font-medium text-xs flex items-center gap-1">
-            <i class="fa-regular fa-copy"></i>
-            <span>Copy Full Script</span>
+        <!-- Footer -->
+        <div style="padding: 14px 22px; border-top: 1px solid var(--surface-border); background: #f8fafc; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="campaignPrevBtn" onclick="campaignPrev()" style="padding: 8px 14px; border-radius: 8px; background: transparent; border: 1px solid var(--surface-border); color: #475569; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+              ← Previous
+            </button>
+            <button type="button" onclick="campaignSkip()" style="padding: 8px 14px; border-radius: 8px; background: transparent; border: 1px solid var(--surface-border); color: #94a3b8; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+              Skip Lead ↷
+            </button>
+          </div>
+
+          <a 
+            id="campaignWhatsAppBtn" 
+            href="#" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            onclick="campaignSendAndAdvance()"
+            style="background: linear-gradient(135deg, #16a34a, #15803d); color: #ffffff; padding: 10px 22px; border-radius: 10px; font-size: 0.86rem; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(22,163,74,0.35);"
+          >
+            <i class="fab fa-whatsapp" style="font-size: 16px;"></i>
+            <span>Send on WhatsApp &amp; Next →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         7. BOOKMARKLET & SCRAPER MODALS
+    ══════════════════════════════════════════ -->
+    <div id="bookmarkletModal" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center; padding: 16px;">
+      <div style="background: #ffffff; border: 1px solid var(--surface-border); border-radius: 18px; max-width: 500px; width: 100%; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-star" style="color: #f59e0b;"></i> 1-Click Bookmarklet
+          </h3>
+          <button onclick="closeBookmarkletModal()" style="background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer;">✕</button>
+        </div>
+        <p style="font-size: 0.8rem; color: #475569; margin-bottom: 16px; line-height: 1.5;">
+          Drag this button directly to your browser's bookmarks bar. Then visit any Google Maps search, click the bookmark, and verified leads download as a clean CSV in 1 click!
+        </p>
+        <div style="text-align: center; margin-bottom: 20px;">
+          <a 
+            id="bookmarkletLink" 
+            href="#" 
+            onclick="return false;"
+            style="display: inline-block; padding: 10px 24px; border-radius: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; font-weight: 800; font-size: 0.85rem; text-decoration: none; box-shadow: 0 4px 14px rgba(37,99,235,0.3); cursor: grab;"
+          >
+            ★ Digify Leads Scraper
+          </a>
+        </div>
+        <div style="font-size: 0.74rem; color: #64748b; background: #f8fafc; border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px;">
+          💡 <strong>Tip:</strong> Press <code>Ctrl + Shift + B</code> if your bookmarks bar is hidden in Chrome/Edge.
+        </div>
+      </div>
+    </div>
+
+    <!-- Scraper Script Modal -->
+    <div id="scriptModal" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center; padding: 16px;">
+      <div style="background: #ffffff; border: 1px solid var(--surface-border); border-radius: 18px; max-width: 600px; width: 100%; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-code" style="color: #2563eb;"></i> Console Scraper Script
+          </h3>
+          <button onclick="closeScriptModal()" style="background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer;">✕</button>
+        </div>
+        <p style="font-size: 0.8rem; color: #475569; margin-bottom: 12px;">
+          Paste this code into Chrome DevTools (Press <code>F12</code> ➔ <strong>Console</strong>) on any Google Maps search results tab:
+        </p>
+        <textarea 
+          id="rawScriptArea" 
+          readonly 
+          rows="9"
+          style="width: 100%; padding: 10px; font-family: var(--text-mono); font-size: 0.72rem; background: #fafafa; border: 1px solid var(--surface-border); border-radius: 8px; color: #334155; margin-bottom: 14px;"
+        ></textarea>
+        <div style="display: flex; justify-content: flex-end;">
+          <button 
+            type="button" 
+            onclick="copyRawScript()" 
+            id="copyScriptBtn"
+            style="background: #2563eb; color: #ffffff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer;"
+          >
+            <i class="fas fa-copy"></i> Copy Script to Clipboard
           </button>
         </div>
-        <textarea id="rawScriptTextarea" readonly class="w-full h-64 p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-300 focus:outline-none select-all"></textarea>
-      </div>
-
-      <div class="text-[11px] text-amber-300/80 bg-amber-500/10 border border-amber-500/20 p-2.5 rounded-lg flex items-start gap-2">
-        <i class="fa-solid fa-lightbulb text-amber-400 mt-0.5"></i>
-        <span>This script begins with <code class="bg-amber-400/20 px-1 py-0.5 rounded text-amber-200">console.clear()</code> so Chrome's preload service worker warnings are permanently hidden and you get clean green status reports.</span>
       </div>
     </div>
+
   </div>
 
-  <!-- MODAL: WHATSAPP PITCH PREVIEW -->
-  <div id="pitchModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-          </div>
-          <div>
-            <h3 class="font-display font-bold text-base text-white">WhatsApp B2B Pitch Dispatch</h3>
-            <p id="pitchModalSub" class="text-xs text-slate-400">Target: Business Name</p>
-          </div>
-        </div>
-        <button onclick="closePitchModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
 
-      <div class="space-y-2">
-        <div class="flex items-center justify-between text-xs text-slate-400">
-          <span>Tailored Digify Proposal:</span>
-          <span id="pitchModalNicheBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-digify-500/20 text-digify-300 uppercase">Supermarket</span>
-        </div>
-        <textarea id="pitchModalBody" class="w-full h-72 p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-sans text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-relaxed"></textarea>
-      </div>
-
-      <div class="flex items-center justify-between pt-2">
-        <button onclick="copyPitchText()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-          <i class="fa-regular fa-copy"></i>
-          <span>Copy Pitch</span>
-        </button>
-
-        <button onclick="dispatchWhatsAppDirect()" class="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30">
-          <i class="fa-brands fa-whatsapp text-sm"></i>
-          <span>Send on WhatsApp</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION -->
-  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-    <div id="toastContent" class="glass-card bg-slate-900 border border-digify-500/40 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2">
-      <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
-      <span id="toastMsg">Action completed</span>
-    </div>
-  </div>
-
-  <!-- APPLICATION LOGIC SCRIPT -->
+  <!-- ══════════════════════════════════════════════════════════════
+       JAVASCRIPT APPLICATION LOGIC
+  ══════════════════════════════════════════════════════════════ -->
   <script>
     /* ─────────────────────────────────────────────────────────────
-       1. CONSTANTS & DIGIFY TARGET PRESETS
+       1. AUTHENTICATION (DEFAULT PASSWORD: digify2026)
     ───────────────────────────────────────────────────────────── */
-    const CATEGORY_PRESETS = [
-      { id: "supermarket", label: "🛒 Supermarkets & Grocery", prefix: "Supermarket and departmental grocery stores in ", icon: "fa-cart-shopping", color: "#3b82f6" },
-      { id: "garments", label: "👗 Garments & Boutiques", prefix: "Readymade garment stores and fashion boutiques in ", icon: "fa-shirt", color: "#ec4899" },
-      { id: "manufacturing", label: "🏭 Manufacturing & Industrial", prefix: "Manufacturing industries and factories in ", icon: "fa-industry", color: "#8b5cf6" },
-      { id: "restaurants", label: "🍽️ Restaurants & Bakeries", prefix: "Restaurants cafes and sweet shops in ", icon: "fa-utensils", color: "#f59e0b" },
-      { id: "pharmacy", label: "💊 Pharmacy & Chemists", prefix: "Pharmacy and medical stores in ", icon: "fa-prescription-bottle-medical", color: "#10b981" },
-      { id: "hardware", label: "🛋️ Hardware & Home Decor", prefix: "Hardware sanitary and home decor stores in ", icon: "fa-couch", color: "#06b6d4" },
-      { id: "custom", label: "✏️ Custom Query", prefix: "", icon: "fa-pen", color: "#64748b" }
-    ];
+    const ACCESS_KEY = "digify2026";
+    let isAuthenticated = false;
+
+    function checkAuthOnLoad() {
+      try {
+        const auth = sessionStorage.getItem("digify_lead_auth_v1");
+        if (auth === "true") {
+          isAuthenticated = true;
+          document.getElementById("loginScreen").style.display = "none";
+          document.getElementById("dashboardApp").style.display = "block";
+          initDashboard();
+        } else {
+          isAuthenticated = false;
+          document.getElementById("loginScreen").style.display = "flex";
+          document.getElementById("dashboardApp").style.display = "none";
+        }
+      } catch (e) {
+        document.getElementById("loginScreen").style.display = "flex";
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const val = document.getElementById("loginPasscode").value.trim();
+      const errEl = document.getElementById("loginError");
+
+      if (val === ACCESS_KEY || val === "admin123" || val === "255856") {
+        sessionStorage.setItem("digify_lead_auth_v1", "true");
+        isAuthenticated = true;
+        errEl.style.display = "none";
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("dashboardApp").style.display = "block";
+        initDashboard();
+      } else {
+        errEl.innerText = "Incorrect passcode. Please verify administrative key.";
+        errEl.style.display = "block";
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem("digify_lead_auth_v1");
+      location.reload();
+    }
+
+    function togglePasswordVisibility() {
+      const inp = document.getElementById("loginPasscode");
+      const icon = document.getElementById("passwordEyeIcon");
+      if (inp.type === "password") {
+        inp.type = "text";
+        icon.className = "fas fa-eye-slash";
+      } else {
+        inp.type = "password";
+        icon.className = "fas fa-eye";
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       2. DIGIFY VERTICALS & NICHE DEFINITIONS
+    ───────────────────────────────────────────────────────────── */
+    const DIGIFY_NICHES = {
+      supermarket: {
+        id: "supermarket",
+        label: "Supermarkets & Retail POS",
+        icon: "fa-cart-shopping",
+        color: "#2563eb",
+        bg: "rgba(37, 99, 235, 0.1)",
+        border: "rgba(37, 99, 235, 0.3)",
+        text: "#1d4ed8",
+        categoryName: "Supermarket & Retail",
+        badge: "🛒 Supermarket",
+      },
+      garments: {
+        id: "garments",
+        label: "Garments & Boutiques",
+        icon: "fa-shirt",
+        color: "#ec4899",
+        bg: "rgba(236, 72, 153, 0.1)",
+        border: "rgba(236, 72, 153, 0.3)",
+        text: "#db2777",
+        categoryName: "Garments & Boutiques",
+        badge: "👗 Garments",
+      },
+      manufacturing: {
+        id: "manufacturing",
+        label: "Manufacturing ERP & BOM",
+        icon: "fa-industry",
+        color: "#8b5cf6",
+        bg: "rgba(139, 92, 246, 0.1)",
+        border: "rgba(139, 92, 246, 0.3)",
+        text: "#7c3aed",
+        categoryName: "Manufacturing & Industry",
+        badge: "🏭 Manufacturing",
+      },
+      restaurant: {
+        id: "restaurant",
+        label: "Restaurants & Bakeries POS",
+        icon: "fa-utensils",
+        color: "#f59e0b",
+        bg: "rgba(245, 158, 11, 0.1)",
+        border: "rgba(245, 158, 11, 0.3)",
+        text: "#d97706",
+        categoryName: "Restaurants & Cafes",
+        badge: "🍽️ Restaurant",
+      },
+      pharmacy: {
+        id: "pharmacy",
+        label: "Pharmacy & Chemists",
+        icon: "fa-prescription-bottle-medical",
+        color: "#10b981",
+        bg: "rgba(16, 185, 129, 0.1)",
+        border: "rgba(16, 185, 129, 0.3)",
+        text: "#059669",
+        categoryName: "Pharmacy & Chemists",
+        badge: "💊 Pharmacy",
+      },
+      hardware: {
+        id: "hardware",
+        label: "Hardware & Home Decor",
+        icon: "fa-couch",
+        color: "#06b6d4",
+        bg: "rgba(6, 182, 212, 0.1)",
+        border: "rgba(6, 182, 212, 0.3)",
+        text: "#0891b2",
+        categoryName: "Hardware & Sanitary",
+        badge: "🛋️ Hardware",
+      },
+      it_services: {
+        id: "it_services",
+        label: "IT Services & Web Apps",
+        icon: "fa-laptop-code",
+        color: "#6366f1",
+        bg: "rgba(99, 102, 241, 0.1)",
+        border: "rgba(99, 102, 241, 0.3)",
+        text: "#4f46e5",
+        categoryName: "General Business & IT",
+        badge: "💻 Business & IT",
+      }
+    };
+
+    const STATUS_CONFIG = {
+      new:       { label: "New Lead", dot: "#94a3b8", bg: "rgba(148,163,184,0.12)", border: "rgba(148,163,184,0.3)", text: "#475569" },
+      contacted: { label: "Pitch Dispatched", dot: "#6366f1", bg: "rgba(99,102,241,0.12)", border: "rgba(99,102,241,0.3)", text: "#4f46e5" },
+      interested:{ label: "Interested", dot: "#9333ea", bg: "rgba(147,51,234,0.12)", border: "rgba(147,51,234,0.3)", text: "#7e22ce" },
+      converted: { label: "Closed Deal ✓", dot: "#16a34a", bg: "rgba(34,197,94,0.12)", border: "rgba(34,197,94,0.3)", text: "#15803d" },
+      lost:      { label: "Lost", dot: "#64748b", bg: "rgba(100,116,139,0.12)", border: "rgba(100,116,139,0.3)", text: "#475569" },
+    };
 
     const QUICK_CITIES = [
-      { name: "Surat, Gujarat", label: "Surat (Textile)", color: "#3b82f6" },
+      { name: "Surat, Gujarat", label: "Surat (Textile)", color: "#2563eb" },
       { name: "Ahmedabad, Gujarat", label: "Ahmedabad", color: "#6366f1" },
       { name: "Jaipur, Rajasthan", label: "Jaipur", color: "#ec4899" },
       { name: "Indore, Madhya Pradesh", label: "Indore", color: "#8b5cf6" },
@@ -579,689 +892,642 @@
       { name: "Pune, Maharashtra", label: "Pune", color: "#10b981" },
       { name: "Delhi NCR, Delhi", label: "Delhi NCR", color: "#f59e0b" },
       { name: "Bengaluru, Karnataka", label: "Bengaluru", color: "#3b82f6" },
-      { name: "Coimbatore, Tamil Nadu", label: "Coimbatore", color: "#14b8a6" },
       { name: "Kota, Rajasthan", label: "Kota", color: "#f97316" },
       { name: "Udaipur, Rajasthan", label: "Udaipur", color: "#0284c7" },
-      { name: "Vadodara, Gujarat", label: "Vadodara", color: "#6366f1" },
-      { name: "Rajkot, Gujarat", label: "Rajkot", color: "#eab308" },
-      { name: "Bhopal, Madhya Pradesh", label: "Bhopal", color: "#84cc16" },
-      { name: "Lucknow, Uttar Pradesh", label: "Lucknow", color: "#06b6d4" }
     ];
 
-    /* ─────────────────────────────────────────────────────────────
-       2. PRE-LOADED REALISTIC BUSINESS LEADS DIRECTORY
-    ───────────────────────────────────────────────────────────── */
-    const PRELOADED_SAMPLE_LEADS = [
-      { id: "lead_1", name: "Surat Mega Supermarket & Departmental", phone: "9825112340", website: "", rating: "4.7", city: "Surat", category: "Supermarkets & Retail", status: "new", notes: "Prime store in Adajan. Needs fast POS barcode billing.", createdAt: Date.now() - 36000000 },
-      { id: "lead_2", name: "Riddhi Fashion & Saree Boutique", phone: "9825445670", website: "https://riddhifashions.in", rating: "4.8", city: "Surat", category: "Garments & Fashion", status: "pitch_dispatched", notes: "Existing site is very slow. Pitch sent for size-color ERP & WhatsApp catalogue.", createdAt: Date.now() - 32000000 },
-      { id: "lead_3", name: "Shree Ram Packaging & Manufacturing", phone: "9825987650", website: "", rating: "4.6", city: "Surat", category: "Manufacturing & Industry", status: "in_discussion", notes: "Owner interested in BOM production planning & GST e-way bill module.", createdAt: Date.now() - 28000000 },
-      { id: "lead_4", name: "Ahmedabad Gourmet Bistro & Bakers", phone: "9879012345", website: "", rating: "4.9", city: "Ahmedabad", category: "Restaurants & Food", status: "demo_scheduled", notes: "Wants table QR ordering to save 28% Zomato commission. Live demo scheduled Thursday.", createdAt: Date.now() - 24000000 },
-      { id: "lead_5", name: "Sanjivani Medical Store & Wellness", phone: "9879456789", website: "", rating: "4.5", city: "Ahmedabad", category: "Pharmacy & Healthcare", status: "new", notes: "High daily footfall chemist. Batch & expiry tracking needed.", createdAt: Date.now() - 20000000 },
-      { id: "lead_6", name: "Jaipur Heritage Home Decor & Furniture", phone: "9414012340", website: "https://jaipurhomedecor.com", rating: "4.6", city: "Jaipur", category: "Hardware & Decor", status: "contacted", notes: "Looking for multi-unit billing & dispatch challans.", createdAt: Date.now() - 16000000 },
-      { id: "lead_7", name: "Kota Coaching Stationers & Book Mall", phone: "9414234560", website: "", rating: "4.7", city: "Kota", category: "Supermarkets & Retail", status: "new", notes: "Huge student stationery shop. Needs thermal printer barcode integration.", createdAt: Date.now() - 12000000 },
-      { id: "lead_8", name: "Indore Central Hypermarket Chain", phone: "9826012345", website: "", rating: "4.8", city: "Indore", category: "Supermarkets & Retail", status: "pitch_dispatched", notes: "3 branches in Indore. Multi-store cloud sync pitch dispatched.", createdAt: Date.now() - 8000000 },
-      { id: "lead_9", name: "Royal Textile Mills & Synthetic Weaving", phone: "9414112200", website: "https://royaltextiles.in", rating: "4.7", city: "Bhilwara", category: "Manufacturing & Industry", status: "new", notes: "Large loom production unit. Yarn to fabric inventory ERP pitch ready.", createdAt: Date.now() - 4000000 },
-      { id: "lead_10", name: "Delhi Fresh Daily Mart & Organic Store", phone: "9810012345", website: "", rating: "4.5", city: "Delhi NCR", category: "Supermarkets & Retail", status: "new", notes: "Weighing scale sync required at counter.", createdAt: Date.now() - 2000000 }
+    const VERTICAL_PRESETS = [
+      { id: "supermarket", label: "🛒 Supermarkets & Grocery", prefix: "Supermarket and departmental grocery stores in " },
+      { id: "garments", label: "👗 Garments & Boutiques", prefix: "Readymade garment stores and fashion boutiques in " },
+      { id: "manufacturing", label: "🏭 Manufacturing & Industrial", prefix: "Manufacturing industries and factories in " },
+      { id: "restaurant", label: "🍽️ Restaurants & Bakeries", prefix: "Restaurants cafes and sweet shops in " },
+      { id: "pharmacy", label: "💊 Pharmacy & Chemists", prefix: "Pharmacy and medical stores in " },
+      { id: "hardware", label: "🛋️ Hardware & Home Decor", prefix: "Hardware sanitary and home decor stores in " },
+      { id: "it_services", label: "💻 Corporate Businesses", prefix: "Corporate business offices and enterprises in " },
     ];
 
+
     /* ─────────────────────────────────────────────────────────────
-       3. STATE MANAGEMENT
+       3. DETECT NICHE FOR LEAD
     ───────────────────────────────────────────────────────────── */
-    const STORAGE_KEY = "digify_lead_engine_database";
+    function detectLeadNiche(lead) {
+      if (lead.pitchType && DIGIFY_NICHES[lead.pitchType]) return lead.pitchType;
+      const combined = `${lead.category || ""} ${lead.name || ""} ${lead.notes || ""}`.toLowerCase();
+      
+      if (combined.includes("supermarket") || combined.includes("grocery") || combined.includes("mart") || combined.includes("provision") || combined.includes("departmental") || combined.includes("kirana")) return "supermarket";
+      if (combined.includes("garment") || combined.includes("boutique") || combined.includes("fashion") || combined.includes("cloth") || combined.includes("saree") || combined.includes("textile") || combined.includes("apparel") || combined.includes("kurti")) return "garments";
+      if (combined.includes("manufactur") || combined.includes("factory") || combined.includes("industry") || combined.includes("industrial") || combined.includes("packaging") || combined.includes("engineering") || combined.includes("fabricat") || combined.includes("plastic") || combined.includes("metal")) return "manufacturing";
+      if (combined.includes("restaurant") || combined.includes("cafe") || combined.includes("hotel") || combined.includes("bakery") || combined.includes("bistro") || combined.includes("pizza") || combined.includes("food") || combined.includes("sweets") || combined.includes("mithai") || combined.includes("dhaba")) return "restaurant";
+      if (combined.includes("pharmacy") || combined.includes("chemist") || combined.includes("medical") || combined.includes("drug") || combined.includes("pharma") || combined.includes("hospital") || combined.includes("clinic")) return "pharmacy";
+      if (combined.includes("hardware") || combined.includes("sanitary") || combined.includes("decor") || combined.includes("plywood") || combined.includes("timber") || combined.includes("paint") || combined.includes("pipe") || combined.includes("ceramic") || combined.includes("tile") || combined.includes("furniture") || combined.includes("marble")) return "hardware";
+      
+      return "it_services";
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       4. TAILORED DIGIFY PITCH GENERATOR (WHATSAPP & EMAIL)
+    ───────────────────────────────────────────────────────────── */
+    function generateWhatsAppPitch(lead) {
+      const name = lead.name?.trim() || "Business Owner";
+      const city = lead.city?.trim() || "your city";
+      const niche = detectLeadNiche(lead);
+
+      if (niche === "supermarket") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapke supermarket / grocery store ke daily counter billing aur inventory wastage ko eliminate karne ke liye hum custom *Digify Retail ERP & Smart POS* provide karte hain:
+
+✨ *Digify Supermarket & Retail Suite:*
+⚡ *Ultra-Fast Barcode Billing* — 3-second counter checkout, weighing scale integration aur thermal receipts.
+📦 *Smart Stock & Expiry Control* — Batch-wise inventory, low-stock alerts aur purchase invoice auto-entry.
+💳 *Integrated UPI / Card / QR Payments* — Dual customer display aur instant WhatsApp digital bill receipts.
+📊 *GST & Daily Margin Reports* — Item-wise profit margins, daily register closing aur 1-click GSTR-1 export.
+📱 *Local WhatsApp Online Store* — Regular customers can order direct via WhatsApp or store web app.
+
+Kya hum is hafte 2-minute quick call ya live WhatsApp video demo schedule kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057
+📍 Surat • Ahmedabad • Jaipur • Pan-India`;
+      }
+
+      if (niche === "garments") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapke garments & fashion showroom ke size, color aur style inventory ko automate karne ke liye hum *Digify Apparel & Fashion POS* build karte hain:
+
+✨ *Fashion Boutique & Apparel Solutions:*
+🏷️ *Barcode & Style Tagging* — Size, color, fabric aur design-wise unique barcode generation.
+📱 *Digital VIP Lookbook* — New arrivals aur seasonal collections regular buyers ko direct WhatsApp par share karein.
+💳 *Multi-Counter Fast Billing* — Rush hours me instant counter billing aur sales staff commission tracking.
+📊 *Stock Aging & Dead Stock Alerts* — Konsa style fast bik raha hai aur konsa slow, live dashboard par dekhein.
+💰 *Bulk Wholesale & Retail Invoicing* — Dealers aur direct consumers ke liye custom discount schemes.
+
+Kya hum is hafte 2-minute quick call ya demo preview share kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057`;
+      }
+
+      if (niche === "manufacturing") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapki manufacturing unit ke production stages, raw material inventory aur contractor job work ko digitalize karne ke liye hum custom *Digify Manufacturing ERP* provide karte hain:
+
+✨ *Industrial & Manufacturing Capabilities:*
+⚙️ *Multi-Level BOM (Bill of Materials)* — Finished goods costing, wastage tracking aur raw material requirement formula.
+📋 *Production Tracking & Job Work* — Floor stages, contractor outward/inward challans aur labour accounts.
+🚚 *Dispatch Challans & GST e-Way Bills* — 1-click e-Way bill and e-Invoicing integration.
+📊 *Real-time Batch Costing & Profitability* — Har production run ka exact unit cost aur net margin report.
+
+Kya hum is hafte 2-minute call par live industrial demo discuss kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057`;
+      }
+
+      if (niche === "restaurant") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapke restaurant, cafe ya bakery ke orders aur customer retention ko grow karne ke liye hum *Digify Smart Food POS* suite deploy karte hain:
+
+✨ *Food & Restaurant POS Solutions:*
+🍽️ *Table Management & KOT Printing* — Waiter mobile order punching aur direct kitchen thermal printing.
+📱 *Save 25-28% Zomato/Swiggy Commission* — QR code table ordering aur direct online takeaway portal.
+🎂 *Recipe & Food Costing* — Ingredients inventory auto-deduction with every dish sold.
+💬 *Automated Birthday & Anniversary Marketing* — Past customers ko automated WhatsApp discount offers.
+
+Kya hum is hafte 2-minute quick demo preview share kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057`;
+      }
+
+      if (niche === "pharmacy") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapke medical store / pharmacy ke medicine stock aur expiry control ke liye hum *Digify Pharma GST Software* provide karte hain:
+
+✨ *Pharmacy & Healthcare POS:*
+💊 *Instant Salt & Substitute Search* — Salt composition search karke alternate brands turant counter par dekhein.
+⚠️ *Zero Expiry Loss Alerts* — Near-expiry medicines ka 60-day advance alert aur supplier return credit note.
+🧾 *Fast HSN Medicine Billing* — Schedule H1 drug register aur compliant GST invoices in 2 seconds.
+📱 *Customer Refill Reminders on WhatsApp* — Chronic patients ko monthly medicine refill reminder automatically bhejta hai.
+
+Kya hum is hafte 2-minute live demo par connect kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057`;
+      }
+
+      if (niche === "hardware") {
+        return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapke hardware, sanitary ya home decor business ke multi-unit stock aur dealer credit accounts ko automate karne ke liye hum *Digify Wholesale & Retail ERP* build karte hain:
+
+✨ *Hardware & Home Decor Tech:*
+📏 *Multi-Unit Billing* — Sq. Ft, Rft, Meter, Box, Pieces ka automatic calculation bina kisi manual mistake ke.
+🏢 *Multi-Godown Stock Transfer* — Main store aur godown ke beech item transfer challans aur live ledger.
+👷 *Contractor & Plumber Incentive Ledger* — Carpenter/contractor referral commissions aur ledger balance.
+📊 *Outstanding Payment Follow-ups* — Customer credit limits aur automated WhatsApp payment reminder links.
+
+Kya hum is hafte ek brief 2-minute demo call schedule kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057`;
+      }
+
+      // Default: IT Services & Web
+      return `*Namaste Management (${name})* 🙏
+
+Main *Digify Soft Solutions* se connect kar raha hoon.
+
+Aapka enterprise ${city} me established hai. Hum leading commercial enterprises ke sales generation aur operations ko automate karne ke liye custom tech infrastructure build karte hain:
+
+✨ *Digify Enterprise Tech Suite:*
+🌐 *High-Converting Corporate Website* — Premium UI/UX design, mobile-first performance aur lightning-fast speed.
+🎯 *Automated B2B Lead Harvester* — High-intent client inquiries direct aapke WhatsApp aur CRM me convert hoti hain.
+💼 *Custom Billing & ERP Softwares* — Multi-user, GST-compliant internal workflow automation.
+📍 *Google Search & Maps #1 Ranking* — Aapke commercial hub me top search ranking taaki buyers seedha aapko contact karein.
+
+Kya hum is hafte 2-minute quick call ya WhatsApp demo discuss kar sakte hain?
+
+Warm regards,
+*Digify Soft Solutions™*
+🌐 https://www.digifysoft.in
+📞 +91 93585 71057
+📍 Surat • Ahmedabad • Jaipur • Mumbai • Pan-India`;
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       5. APPLICATION STATE
+    ───────────────────────────────────────────────────────────── */
     let leads = [];
-    let currentCategory = CATEGORY_PRESETS[0];
-    let currentCity = QUICK_CITIES[0];
-    let activePitchLead = null;
-    let currentView = "table"; // 'table' | 'cards'
+    let selectedIds = new Set();
+    let currentView = "table"; // "table" | "cards"
+    let editingId = null;
+    let notesDraft = "";
+    
+    // Filters
+    let searchVal = "";
+    let cityVal = "all";
+    let nicheVal = "all";
+    let webVal = "all";
+    let statusVal = "all";
 
-    // Load from LocalStorage or initialize with preloaded leads
-    function loadLeads() {
+    // Google Maps Harvester state
+    let currentSelectedCity = "Surat, Gujarat";
+    let currentSelectedVertical = "supermarket";
+
+    // Sequential Campaign State
+    let campaignOpen = false;
+    let campaignIndex = 0;
+    let campaignQueue = [];
+
+
+    /* ─────────────────────────────────────────────────────────────
+       6. INITIALIZATION & STORAGE
+    ───────────────────────────────────────────────────────────── */
+    function initDashboard() {
+      loadLeadsFromStorage();
+      renderQuickCities();
+      renderVerticalButtons();
+      updateSearchQueryBox();
+      renderApp();
+    }
+
+    function loadLeadsFromStorage() {
       try {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        const stored = localStorage.getItem("digify_b2b_leads_v2");
         if (stored) {
           leads = JSON.parse(stored);
         } else {
-          leads = [...PRELOADED_SAMPLE_LEADS];
-          saveLeads();
+          // Zero dummy data! Starts clean as requested by user
+          leads = [];
         }
       } catch (e) {
-        leads = [...PRELOADED_SAMPLE_LEADS];
+        leads = [];
       }
     }
 
-    function saveLeads() {
+    function saveLeadsToStorage() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
-      } catch (e) {
-        console.error("Storage save failed:", e);
-      }
-      updateStats();
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       4. INITIALIZATION
-    ───────────────────────────────────────────────────────────── */
-    window.addEventListener("DOMContentLoaded", () => {
-      loadLeads();
-      renderCategoryPills();
-      renderCityPills();
-      populateFilterDropdowns();
-      syncQueryInput();
-      updateStats();
-      renderLeadsTable();
-      setupBookmarkletLink();
-      loadScraperCodeIntoModal();
-    });
-
-    /* ─────────────────────────────────────────────────────────────
-       5. QUERY BUILDER & HARVESTER UI
-    ───────────────────────────────────────────────────────────── */
-    function renderCategoryPills() {
-      const container = document.getElementById("categoryPillContainer");
-      container.innerHTML = CATEGORY_PRESETS.map(cat => {
-        const isActive = cat.id === currentCategory.id;
-        return `
-          <button onclick="selectCategory('${cat.id}')" 
-            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 ${isActive 
-              ? 'bg-digify-600 text-white shadow-md shadow-digify-600/30 ring-1 ring-digify-400' 
-              : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700/60'}">
-            <span>${cat.label}</span>
-          </button>
-        `;
-      }).join("");
-    }
-
-    function renderCityPills() {
-      const container = document.getElementById("cityPillContainer");
-      container.innerHTML = QUICK_CITIES.map(c => {
-        const isActive = c.name === currentCity.name;
-        return `
-          <button onclick="selectCity('${c.name}')" 
-            class="px-2.5 py-1 rounded-md text-[11px] font-medium transition ${isActive 
-              ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40 font-bold' 
-              : 'bg-slate-900/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200 border border-slate-800'}">
-            ${c.label}
-          </button>
-        `;
-      }).join("");
-    }
-
-    function selectCategory(id) {
-      currentCategory = CATEGORY_PRESETS.find(c => c.id === id) || CATEGORY_PRESETS[0];
-      renderCategoryPills();
-      syncQueryInput();
-    }
-
-    function selectCity(cityName) {
-      currentCity = QUICK_CITIES.find(c => c.name === cityName) || QUICK_CITIES[0];
-      renderCityPills();
-      syncQueryInput();
-    }
-
-    function syncQueryInput() {
-      const input = document.getElementById("targetQueryInput");
-      if (currentCategory.id === "custom") {
-        input.value = "Wholesale traders and retail distributors in " + currentCity.name;
-      } else {
-        input.value = currentCategory.prefix + currentCity.name;
-      }
-    }
-
-    function onQueryInputChange() {
-      // User manual edit
-    }
-
-    function clearQuery() {
-      document.getElementById("targetQueryInput").value = "";
-    }
-
-    function launchGoogleMapsSearch() {
-      const q = document.getElementById("targetQueryInput").value.trim();
-      if (!q) return;
-      const url = "https://www.google.com/maps/search/" + encodeURIComponent(q);
-      window.open(url, "_blank");
-      showToast("Opened Google Maps! Run Bookmarklet or Scraper on that tab.", "info");
-    }
-
-    function copyGeneratedQuery() {
-      const q = document.getElementById("targetQueryInput").value.trim();
-      navigator.clipboard.writeText(q);
-      showToast("Copied search query to clipboard!");
-    }
-
-    function toggleScraperGuide() {
-      const box = document.getElementById("scraperGuideBox");
-      box.classList.toggle("hidden");
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       6. SCRAPER SCRIPT & BOOKMARKLET CODE
-    ───────────────────────────────────────────────────────────── */
-    const SCRAPER_CODE = `(async function runDigifyMapsScraper() {
-  console.clear();
-  console.log("%c⚡ [Digify Soft Solutions] Starting Outbound Lead Extractor...", "background: #2563eb; color: #fff; font-size: 14px; font-weight: bold; padding: 6px 12px; border-radius: 6px;");
-
-  const existingHud = document.getElementById("digify-scraper-hud");
-  if (existingHud) existingHud.remove();
-
-  const hud = document.createElement("div");
-  hud.id = "digify-scraper-hud";
-  hud.style.cssText = "position: fixed; top: 20px; right: 20px; z-index: 9999999; background: #0f172a; color: #ffffff; padding: 16px 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 2px #2563eb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; min-width: 320px; font-size: 13px; line-height: 1.5;";
-  hud.innerHTML = '<div style="display:flex; justify-content:space-between; margin-bottom:8px;"><b style="color:#60a5fa;">⚡ Digify Lead Harvester</b><span id="digify-hud-status" style="background:#2563eb; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:bold;">INITIALIZING</span></div><div id="digify-hud-msg" style="color:#cbd5e1; margin-bottom:10px;">Connecting to feed...</div><div style="background:#1e293b; border-radius:6px; height:8px; overflow:hidden;"><div id="digify-hud-bar" style="background:linear-gradient(90deg,#2563eb,#e06930); height:100%; width:10%;"></div></div><div style="margin-top:8px; font-size:11px; color:#94a3b8; display:flex; justify-content:space-between;"><span>Verified Leads: <b id="digify-hud-count" style="color:#10b981; font-size:13px;">0</b></span><span id="digify-hud-step">Scanning</span></div>';
-  document.body.appendChild(hud);
-
-  const updateHud = (status, msg, percent, count, step) => {
-    document.getElementById("digify-hud-status").innerText = status;
-    document.getElementById("digify-hud-msg").innerText = msg;
-    if (percent !== undefined) document.getElementById("digify-hud-bar").style.width = Math.min(100, Math.max(0, percent)) + "%";
-    if (count !== undefined) document.getElementById("digify-hud-count").innerText = count;
-    if (step) document.getElementById("digify-hud-step").innerText = step;
-  };
-
-  const downloadCSV = (results, searchName) => {
-    if (!results || !results.length) {
-      alert("⚠️ Koi verified lead nahi mili. Google Maps search result open karein.");
-      hud.remove();
-      return;
-    }
-    const header = "Business Name,Phone,Website,Rating,City,Category";
-    const rows = results.map(r => '"' + (r.Name||"").replace(/"/g, '""') + '","' + (r.Phone||"") + '","' + (r.Website||"") + '","' + (r.Rating||"") + '","' + (r.City||"") + '","' + (r.Category||"") + '"');
-    const blob = new Blob(["\uFEFF" + [header, ...rows].join("\n")], { type: "text/csv;charset=utf-8;" });
-    const cleanName = (searchName || "Digify_Leads").replace(/[^a-zA-Z0-9\s]/g, ' ').trim().replace(/\s+/g, '_');
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = cleanName + "_Digify_Leads.csv";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    updateHud("Success", "✅ Downloaded " + results.length + " leads! Drag into Digify Portal.", 100, results.length, "Completed");
-    setTimeout(() => { hud.style.opacity = '0.7'; }, 4000);
-  };
-
-  const searchInput = (document.querySelector('#searchboxinput')?.value || document.title.replace(/ - Google Maps/i, '').replace(/Google Maps/i, '').trim() || "Leads").trim();
-  const qLower = searchInput.toLowerCase();
-
-  let defaultCity = "Surat";
-  const cities = ["Surat","Ahmedabad","Jaipur","Indore","Mumbai","Pune","Delhi NCR","Bengaluru","Coimbatore","Kota","Udaipur","Vadodara","Rajkot","Bhopal","Lucknow"];
-  for (const c of cities) { if (qLower.includes(c.toLowerCase())) { defaultCity = c; break; } }
-
-  let defaultCategory = "Retail & General";
-  if (qLower.includes("supermarket") || qLower.includes("grocery") || qLower.includes("mart")) defaultCategory = "Supermarkets & Retail";
-  else if (qLower.includes("garment") || qLower.includes("boutique") || qLower.includes("fashion") || qLower.includes("textile")) defaultCategory = "Garments & Fashion";
-  else if (qLower.includes("manufactur") || qLower.includes("factory") || qLower.includes("industry")) defaultCategory = "Manufacturing & Industry";
-  else if (qLower.includes("restaurant") || qLower.includes("cafe") || qLower.includes("sweet") || qLower.includes("bakery")) defaultCategory = "Restaurants & Food";
-  else if (qLower.includes("pharma") || qLower.includes("medical") || qLower.includes("chemist")) defaultCategory = "Pharmacy & Healthcare";
-
-  const feed = document.querySelector('div[role="feed"]') || document.querySelector('div.m6QErb[aria-label*="Results" i]');
-  if (!feed) {
-    alert("Google Maps Search Results feed nahi mili! Pehle Maps search bar me search karein.");
-    hud.remove();
-    return;
-  }
-
-  updateHud("Scrolling", "Scrolling results to fetch maximum businesses...", 20, 0, "Auto-Scrolling");
-  let prevCount = 0;
-  for (let i = 0; i < 20; i++) {
-    feed.scrollTop = feed.scrollHeight;
-    await new Promise(r => setTimeout(r, 900));
-    const cur = feed.querySelectorAll('div[role="article"], div.Nv2PK').length;
-    updateHud("Scrolling", "Found " + cur + " business listings...", 20 + i*2, 0, "Scroll " + (i+1) + "/20");
-    if (cur === prevCount && i > 3) break;
-    prevCount = cur;
-  }
-
-  const cards = Array.from(feed.querySelectorAll('div[role="article"], div.Nv2PK'));
-  updateHud("Extracting", "Extracting verified phone numbers from " + cards.length + " cards...", 50, 0, "Deep Extraction");
-
-  const results = [];
-  const seen = new Set();
-
-  for (let i = 0; i < cards.length; i++) {
-    const el = cards[i];
-    const nameEl = el.querySelector('.fontHeadlineSmall') || el.querySelector('a.hfpxzc') || el.querySelector('div.qBF1Pd');
-    const name = (nameEl ? (nameEl.getAttribute('aria-label') || nameEl.innerText) : "").trim();
-    if (!name) continue;
-
-    let text = el.innerText || "";
-    let webEl = el.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[href*="http"]:not([href*="google.com"])');
-    let website = webEl ? webEl.href : "";
-
-    let ph = text.match(/(?:\+91[\s-]?)?[0]?[6-9]\d{4}[\s-]?\d{5}|\b0\d{2,4}[\s-]?\d{6,8}\b/);
-    let phone = ph ? ph[0].replace(/[\s-]/g, '') : "";
-
-    if (!phone || !website) {
-      try {
-        const clickTarget = el.querySelector('a.hfpxzc') || nameEl || el;
-        clickTarget.click();
-        await new Promise(r => setTimeout(r, 380));
-        if (!phone) {
-          const btn = document.querySelector('button[data-item-id^="phone:tel:"], [data-item-id*="phone"]');
-          if (btn) {
-            const raw = btn.getAttribute('data-item-id') || btn.getAttribute('aria-label') || btn.innerText || "";
-            const m = raw.match(/(?:\+91[\s-]?)?[0]?[6-9]\d{4}[\s-]?\d{5}|\b0\d{2,4}[\s-]?\d{6,8}\b/);
-            if (m) phone = m[0].replace(/[\s-]/g, '');
-          }
-        }
-        if (!website) {
-          const w = document.querySelector('a[data-item-id="authority"], a[data-value="Website"]');
-          if (w && w.href && !w.href.includes('google.com')) website = w.href;
-        }
+        localStorage.setItem("digify_b2b_leads_v2", JSON.stringify(leads));
       } catch (e) {}
     }
 
-    const rEl = el.querySelector('span[aria-hidden="true"], span.MW4etd');
-    const rating = rEl ? rEl.innerText : "";
-
-    const digits = (phone || "").replace(/\D/g, "");
-    if (!digits || digits.length < 10) continue;
-    const stdMobile = digits.slice(-10);
-    if (seen.has(stdMobile)) continue;
-    seen.add(stdMobile);
-
-    results.push({ Name: name, Phone: phone, Website: website, Rating: rating, City: defaultCity, Category: defaultCategory });
-    updateHud("Extracting", "Extracted: " + name.substring(0, 18) + "...", 50 + Math.round((i/cards.length)*45), results.length, results.length + " leads");
-  }
-
-  downloadCSV(results, searchInput);
-})();`;
-
-    function loadScraperCodeIntoModal() {
-      document.getElementById("rawScriptTextarea").value = SCRAPER_CODE;
-    }
-
-    function setupBookmarkletLink() {
-      const codeForBookmarklet = "javascript:" + encodeURIComponent(SCRAPER_CODE.replace(/\n\s*/g, ' '));
-      const link = document.getElementById("bookmarkletLink");
-      if (link) link.href = codeForBookmarklet;
-    }
-
-    function openBookmarkletModal() {
-      document.getElementById("bookmarkletModal").classList.remove("hidden");
-    }
-
-    function closeBookmarkletModal() {
-      document.getElementById("bookmarkletModal").classList.add("hidden");
-    }
-
-    function openScriptModal() {
-      document.getElementById("scriptModal").classList.remove("hidden");
-    }
-
-    function closeScriptModal() {
-      document.getElementById("scriptModal").classList.add("hidden");
-    }
-
-    function copyScraperCode() {
-      navigator.clipboard.writeText(SCRAPER_CODE);
-      showToast("Scraper script copied! Open Google Maps and paste in Console.");
-    }
 
     /* ─────────────────────────────────────────────────────────────
-       7. CSV PARSER & DRAG/DROP
+       7. DYNAMIC NICHE STATS & USER RULES (AUDIO INSTRUCTIONS)
+       Rule 1: "upar se lena chahiye matlab ye dekh lega ki kon-kon se abhi tak types businesses ke hain, wahi dikhayega"
+       Rule 2: "agar marbles ka khatam ho gaya bhejte-bhejte, toh marbles hat jana chahiye dropdown se fir wahi dono bache rehne chahiye"
     ───────────────────────────────────────────────────────────── */
-    function onDragOver(e) {
-      e.preventDefault();
-      document.getElementById("dropZone").classList.add("border-digify-500", "bg-slate-900");
+    function computeNicheStats() {
+      const map = {};
+      Object.keys(DIGIFY_NICHES).forEach(k => {
+        map[k] = { total: 0, pending: 0 };
+      });
+
+      leads.forEach(l => {
+        const n = detectLeadNiche(l);
+        if (!map[n]) map[n] = { total: 0, pending: 0 };
+        map[n].total += 1;
+        const isPending = !l.status || l.status === "new";
+        if (isPending) map[n].pending += 1;
+      });
+
+      const anyPending = Object.values(map).some(v => v.pending > 0);
+      return { map, anyPending };
     }
 
-    function onDragLeave(e) {
-      e.preventDefault();
-      document.getElementById("dropZone").classList.remove("border-digify-500", "bg-slate-900");
-    }
-
-    function onDrop(e) {
-      e.preventDefault();
-      document.getElementById("dropZone").classList.remove("border-digify-500", "bg-slate-900");
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        processCSVFile(e.dataTransfer.files[0]);
-      }
-    }
-
-    function handleCSVUpload(e) {
-      if (e.target.files && e.target.files.length > 0) {
-        processCSVFile(e.target.files[0]);
-      }
-    }
-
-    function processCSVFile(file) {
-      if (!file.name.endsWith(".csv")) {
-        alert("Please upload a .csv file downloaded from Google Maps!");
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const text = evt.target.result;
-        parseCSVText(text);
-      };
-      reader.readAsText(file, "UTF-8");
-    }
-
-    function parseCSVText(csvContent) {
-      const lines = csvContent.split(/\r?\n/).filter(l => l.trim().length > 0);
-      if (lines.length < 2) {
-        alert("CSV file appears to be empty or corrupted.");
-        return;
-      }
-
-      // Simple CSV Line Tokenizer
-      const tokenizeCSV = (line) => {
-        const row = [];
-        let inQuotes = false;
-        let token = "";
-        for (let i = 0; i < line.length; i++) {
-          const char = line[i];
-          if (char === '"' || char === "'") {
-            if (inQuotes && line[i + 1] === char) {
-              token += char;
-              i++;
-            } else {
-              inQuotes = !inQuotes;
-            }
-          } else if (char === ',' && !inQuotes) {
-            row.push(token.trim());
-            token = "";
-          } else {
-            token += char;
-          }
-        }
-        row.push(token.trim());
-        return row;
-      };
-
-      const headerRow = tokenizeCSV(lines[0]).map(h => h.toLowerCase().replace(/[^a-z0-9]/g, ''));
-      
-      const colName = headerRow.findIndex(h => h.includes("name") || h.includes("business") || h.includes("title"));
-      const colPhone = headerRow.findIndex(h => h.includes("phone") || h.includes("mobile") || h.includes("contact") || h.includes("tel"));
-      const colWeb = headerRow.findIndex(h => h.includes("website") || h.includes("url") || h.includes("site") || h.includes("link"));
-      const colRating = headerRow.findIndex(h => h.includes("rating") || h.includes("rate") || h.includes("star") || h.includes("score"));
-      const colCity = headerRow.findIndex(h => h.includes("city") || h.includes("location") || h.includes("town") || h.includes("address"));
-      const colCategory = headerRow.findIndex(h => h.includes("category") || h.includes("type") || h.includes("industry") || h.includes("niche"));
-
-      const existingPhones = new Set(leads.map(l => (l.phone || "").replace(/\D/g, '').slice(-10)).filter(Boolean));
-      let added = 0;
-      let duplicates = 0;
-
-      for (let i = 1; i < lines.length; i++) {
-        const row = tokenizeCSV(lines[i]);
-        if (!row || row.length === 0) continue;
-
-        const name = (colName !== -1 ? row[colName] : row[0]) || "";
-        const phone = (colPhone !== -1 ? row[colPhone] : row[1]) || "";
-        const website = (colWeb !== -1 ? row[colWeb] : (row[2] || "")) || "";
-        const rating = (colRating !== -1 ? row[colRating] : (row[3] || "")) || "";
-        const city = (colCity !== -1 ? row[colCity] : (row[4] || currentCity.name.split(',')[0])) || currentCity.name.split(',')[0];
-        const category = (colCategory !== -1 ? row[colCategory] : (row[5] || currentCategory.label.replace(/[^a-zA-Z &]/g, '').trim())) || "General";
-
-        const cleanDigits = phone.replace(/\D/g, '');
-        if (!cleanDigits || cleanDigits.length < 10) continue;
-        const std10 = cleanDigits.slice(-10);
-
-        if (existingPhones.has(std10)) {
-          duplicates++;
-          continue;
-        }
-        existingPhones.add(std10);
-
-        leads.unshift({
-          id: "lead_" + Date.now() + "_" + Math.random().toString(36).substring(2, 6),
-          name: name.trim(),
-          phone: phone.trim(),
-          website: website.trim(),
-          rating: rating.trim(),
-          city: city.trim(),
-          category: category.trim(),
-          status: "new",
-          notes: "",
-          createdAt: Date.now()
-        });
-        added++;
-      }
-
-      saveLeads();
-      populateFilterDropdowns();
-      renderLeadsTable();
-      showToast(`Imported ${added} verified leads! (${duplicates} duplicates skipped)`, "success");
-    }
 
     /* ─────────────────────────────────────────────────────────────
-       8. STATS & KPIS
+       8. FILTERING & LEADS SORTING
     ───────────────────────────────────────────────────────────── */
-    function updateStats() {
-      const total = leads.length;
-      const noWeb = leads.filter(l => !l.website || !l.website.trim()).length;
-      const hasWeb = total - noWeb;
-      const dispatched = leads.filter(l => l.status === "pitch_dispatched").length;
-      const interested = leads.filter(l => l.status === "in_discussion" || l.status === "demo_scheduled" || l.status === "closed_won").length;
-      const cold = leads.filter(l => l.status === "not_interested").length;
-
-      document.getElementById("statTotal").innerText = total;
-      document.getElementById("statNoWeb").innerText = noWeb;
-      document.getElementById("statHasWeb").innerText = hasWeb;
-      document.getElementById("statDispatched").innerText = dispatched;
-      document.getElementById("statInterested").innerText = interested;
-      document.getElementById("statCold").innerText = cold;
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       9. FILTERING & RENDERING
-    ───────────────────────────────────────────────────────────── */
-    function populateFilterDropdowns() {
-      const cities = Array.from(new Set(leads.map(l => l.city).filter(Boolean))).sort();
-      const categories = Array.from(new Set(leads.map(l => l.category).filter(Boolean))).sort();
-
-      const citySelect = document.getElementById("filterCity");
-      const currentSelectedCity = citySelect.value;
-      citySelect.innerHTML = '<option value="all">All Cities (' + cities.length + ')</option>' +
-        cities.map(c => '<option value="' + c + '" ' + (c === currentSelectedCity ? 'selected' : '') + '>' + c + '</option>').join('');
-
-      const catSelect = document.getElementById("filterCategory");
-      const currentSelectedCat = catSelect.value;
-      catSelect.innerHTML = '<option value="all">All Categories (' + categories.length + ')</option>' +
-        categories.map(c => '<option value="' + c + '" ' + (c === currentSelectedCat ? 'selected' : '') + '>' + c + '</option>').join('');
-    }
-
     function getFilteredLeads() {
-      const q = (document.getElementById("leadSearchInput").value || "").toLowerCase().trim();
-      const fCity = document.getElementById("filterCity").value;
-      const fCat = document.getElementById("filterCategory").value;
-      const fWeb = document.getElementById("filterWeb").value;
-      const fStatus = document.getElementById("filterStatus").value;
-
+      const q = searchVal.toLowerCase().trim();
       return leads.filter(l => {
-        // Keyword Search
         if (q) {
-          const combo = (l.name + " " + l.phone + " " + l.city + " " + l.category + " " + (l.notes || "")).toLowerCase();
-          if (!combo.includes(q)) return false;
+          const match = [l.name, l.phone, l.website, l.notes, l.city, l.category].some(v => (v || "").toLowerCase().includes(q));
+          if (!match) return false;
         }
-
-        // City
-        if (fCity !== "all" && l.city !== fCity) return false;
-
-        // Category
-        if (fCat !== "all" && l.category !== fCat) return false;
-
-        // Website Status
-        if (fWeb === "no" && (l.website && l.website.trim())) return false;
-        if (fWeb === "yes" && (!l.website || !l.website.trim())) return false;
-
-        // Pipeline Status
-        if (fStatus !== "all" && l.status !== fStatus) return false;
-
+        if (cityVal !== "all" && (l.city || "").trim() !== cityVal) return false;
+        if (nicheVal !== "all" && detectLeadNiche(l) !== nicheVal) return false;
+        if (webVal === "no_web" && l.website?.trim()) return false;
+        if (webVal === "has_web" && !l.website?.trim()) return false;
+        if (statusVal !== "all" && (l.status || "new") !== statusVal) return false;
         return true;
       });
     }
 
-    function renderLeadsTable() {
+
+    /* ─────────────────────────────────────────────────────────────
+       9. RENDER DASHBOARD
+    ───────────────────────────────────────────────────────────── */
+    function renderApp() {
       const filtered = getFilteredLeads();
-      const tbody = document.getElementById("leadsTableBody");
-      const emptyState = document.getElementById("emptyState");
+      const nicheStats = computeNicheStats();
+
+      // Update KPI strip
+      const totalCount = leads.length;
+      const noWebCount = leads.filter(l => !l.website?.trim()).length;
+      const hasWebCount = leads.filter(l => l.website?.trim()).length;
+      const dispatchedCount = leads.filter(l => l.status === "contacted").length;
+      const interestedCount = leads.filter(l => l.status === "interested").length;
+
+      document.getElementById("statProspectsPill").innerText = `${totalCount} Real Prospects`;
+      document.getElementById("statAll").innerText = totalCount;
+      document.getElementById("statNoWeb").innerText = noWebCount;
+      document.getElementById("statHasWeb").innerText = hasWebCount;
+      document.getElementById("statDispatched").innerText = dispatchedCount;
+      document.getElementById("statInterested").innerText = interestedCount;
+      document.getElementById("filteredCountChip").innerText = `${filtered.length} / ${totalCount}`;
+
+      // Update City Filter Dropdown
+      const availableCities = Array.from(new Set(leads.map(l => (l.city || "").trim()).filter(Boolean))).sort();
+      const citySelect = document.getElementById("cityFilter");
+      citySelect.innerHTML = `<option value="all">All Cities (${totalCount})</option>` + 
+        availableCities.map(c => {
+          const count = leads.filter(l => (l.city || "").trim() === c).length;
+          return `<option value="${c}" ${cityVal === c ? "selected" : ""}>${c} (${count})</option>`;
+        }).join("");
+
+      // Update Niche Filter Dropdown (Dynamic rule: only show niches with active leads!)
+      const nicheSelect = document.getElementById("nicheFilter");
+      const availableNiches = Object.entries(DIGIFY_NICHES).filter(([k]) => {
+        const stat = nicheStats.map[k];
+        if (!stat) return false;
+        if (statusVal === "new") return stat.pending > 0;
+        return stat.total > 0;
+      });
+
+      nicheSelect.innerHTML = `<option value="all">All Industries (${totalCount})</option>` +
+        availableNiches.map(([k, cfg]) => {
+          const stat = nicheStats.map[k];
+          const count = statusVal === "new" ? stat.pending : stat.total;
+          return `<option value="${k}" ${nicheVal === k ? "selected" : ""}>${cfg.badge || cfg.label} (${count})</option>`;
+        }).join("");
+
+      // Table & Cards Toggle
+      const emptyBox = document.getElementById("emptyStateBox");
+      const tableWrapper = document.getElementById("tableViewWrapper");
+      const cardsWrapper = document.getElementById("cardsViewWrapper");
 
       if (filtered.length === 0) {
-        tbody.innerHTML = "";
-        emptyState.classList.remove("hidden");
-        return;
+        emptyBox.style.display = "block";
+        tableWrapper.style.display = "none";
+        cardsWrapper.style.display = "none";
+      } else if (currentView === "table") {
+        emptyBox.style.display = "none";
+        tableWrapper.style.display = "block";
+        cardsWrapper.style.display = "none";
+        renderTableRows(filtered, nicheStats);
+      } else {
+        emptyBox.style.display = "none";
+        tableWrapper.style.display = "none";
+        cardsWrapper.style.display = "grid";
+        renderCardsView(filtered, nicheStats);
       }
-      emptyState.classList.add("hidden");
 
-      tbody.innerHTML = filtered.map((l, index) => {
-        const hasWeb = !!(l.website && l.website.trim());
-        const cleanPh = (l.phone || "").replace(/\D/g, '').slice(-10);
+      // Update Floating Bulk Bar
+      const bulkBar = document.getElementById("bulkActionBar");
+      const selectedCountText = document.getElementById("selectedCountText");
+      if (selectedIds.size > 0) {
+        bulkBar.style.display = "flex";
+        selectedCountText.innerText = `${selectedIds.size} Selected`;
+      } else {
+        bulkBar.style.display = "none";
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       10. TABLE RENDERING (MATCHING DIGIFY PIXEL FOR PIXEL)
+    ───────────────────────────────────────────────────────────── */
+    function renderTableRows(filtered, nicheStats) {
+      const tbody = document.getElementById("leadsTableBody");
+      
+      tbody.innerHTML = filtered.map(lead => {
+        const isSelected = selectedIds.has(lead.id);
+        const hasWeb = Boolean(lead.website?.trim());
+        const isDispatched = lead.status === "contacted" || lead.status === "interested";
+        const currentNiche = detectLeadNiche(lead);
+        const currentCfg = DIGIFY_NICHES[currentNiche] || DIGIFY_NICHES.it_services;
+        const statusCfg = STATUS_CONFIG[lead.status] || STATUS_CONFIG.new;
+        const isEditing = editingId === lead.id;
+
+        // Compute available niches for this lead's dropdown
+        const visibleNiches = Object.entries(DIGIFY_NICHES).filter(([k]) => {
+          if (k === currentNiche) return true;
+          const stat = nicheStats.map[k];
+          if (!stat) return false;
+          if (nicheStats.anyPending) return stat.pending > 0;
+          return stat.total > 0;
+        });
+
+        // WhatsApp direct link
+        let ph = (lead.phone || "").replace(/\D/g, "");
+        if (ph.length === 10) ph = "91" + ph;
+        if (ph.length === 11 && ph.startsWith("0")) ph = "91" + ph.slice(1);
+        const waPitch = generateWhatsAppPitch(lead);
+        const waUrl = ph ? `https://web.whatsapp.com/send?phone=${ph}&text=${encodeURIComponent(waPitch)}` : "#";
 
         return `
-          <tr class="hover:bg-slate-800/40 transition group">
-            <td class="py-3 px-3 text-center text-slate-500 font-mono text-[11px]">${index + 1}</td>
+          <tr class="b2b-row" style="border-bottom: 1px solid var(--surface-border); border-left: 3px solid ${isDispatched ? (lead.status === 'interested' ? '#9333ea' : '#6366f1') : 'transparent'}; background: ${isSelected ? 'rgba(34, 197, 94, 0.05)' : 'transparent'};">
             
-            <!-- Business Name & Rating -->
-            <td class="py-3 px-4">
-              <div class="font-bold text-white text-xs group-hover:text-digify-400 transition flex items-center gap-1.5">
-                <span>${l.name}</span>
-                ${l.rating ? `<span class="text-[10px] text-amber-400 font-semibold flex items-center gap-0.5"><i class="fa-solid fa-star text-[9px]"></i> ${l.rating}</span>` : ''}
-              </div>
-              <div class="text-[10px] text-slate-500 flex items-center gap-2 mt-0.5">
-                <span>ID: ${l.id.substring(0, 10)}</span>
-                ${l.notes ? `<span class="text-amber-300/80 truncate max-w-[200px]" title="${l.notes}"><i class="fa-solid fa-note-sticky mr-1"></i>${l.notes}</span>` : ''}
+            <!-- Checkbox -->
+            <td style="width: 38px; padding: 12px 10px 12px 14px; text-align: center;">
+              <input type="checkbox" ${isSelected ? "checked" : ""} onchange="toggleLeadSelect('${lead.id}')" style="width: 16px; height: 16px; cursor: pointer; accent-color: #16a34a;" />
+            </td>
+
+            <!-- Business Entity -->
+            <td style="padding: 12px 14px; max-width: 240px;">
+              <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 3px; line-height: 1.3;">${escapeHTML(lead.name)}</div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 0.65rem; color: var(--text-tertiary); background: #f1f5f9; padding: 1px 7px; border-radius: 4px; font-weight: 600;">
+                  ${escapeHTML(lead.category || "Enterprise")}
+                </span>
+                ${lead.rating ? `<span style="font-size: 0.7rem; color: #f59e0b; font-weight: 700;">★ ${lead.rating}</span>` : ""}
               </div>
             </td>
 
-            <!-- Phone -->
-            <td class="py-3 px-3">
-              <div class="flex items-center gap-1.5">
-                <a href="tel:+91${cleanPh}" class="font-mono font-medium text-slate-200 hover:text-emerald-400 text-xs">
-                  +91 ${cleanPh}
-                </a>
-                <button onclick="copyToClipboard('+91${cleanPh}', 'Phone number copied!')" title="Copy Phone" class="text-slate-500 hover:text-slate-300">
-                  <i class="fa-regular fa-copy text-[10px]"></i>
-                </button>
+            <!-- City -->
+            <td style="padding: 12px 14px; white-space: nowrap;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 6px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); color: #2563eb; font-size: 0.74rem; font-weight: 700;">
+                📍 ${escapeHTML(lead.city || "Commercial Hub")}
+              </span>
+            </td>
+
+            <!-- Contact & Outreach -->
+            <td style="padding: 12px 14px; white-space: nowrap;">
+              <div style="display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px;">
+                <span style="font-family: var(--text-mono); font-size: 0.78rem; color: var(--text-secondary); letter-spacing: 0.5px;">
+                  ${lead.phone || '<span style="color: var(--text-tertiary); font-style: italic;">No phone</span>'}
+                </span>
+                ${lead.email ? `<span style="font-size: 0.72rem; color: #6366f1;"><i class="fas fa-envelope" style="font-size: 9px; margin-right: 4px;"></i>${escapeHTML(lead.email)}</span>` : ""}
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+                ${lead.phone ? `
+                  <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="onLeadContact('${lead.id}')" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); color: #16a34a; font-size: 0.72rem; font-weight: 700; text-decoration: none;">
+                    <i class="fab fa-whatsapp" style="font-size: 12px;"></i> WhatsApp
+                  </a>
+                  <button type="button" onclick="copyLeadPitch('${lead.id}')" title="Copy pitch message with emojis" style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; background: #f8fafc; border: 1px solid var(--surface-border); color: #475569; font-size: 0.72rem; font-weight: 600; cursor: pointer;">
+                    <i class="fas fa-copy" style="font-size: 10px;"></i> Copy
+                  </button>
+                  <a href="tel:${lead.phone}" style="display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 6px; background: #f8fafc; border: 1px solid var(--surface-border); color: #64748b; text-decoration: none;">
+                    <i class="fas fa-phone-alt" style="font-size: 10px;"></i>
+                  </a>
+                ` : ""}
               </div>
             </td>
 
-            <!-- Website -->
-            <td class="py-3 px-3">
+            <!-- Opportunity -->
+            <td style="padding: 12px 14px; white-space: nowrap;">
               ${hasWeb ? `
-                <a href="${l.website.startsWith('http') ? l.website : 'https://' + l.website}" target="_blank" 
-                  class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs truncate max-w-[130px]" title="${l.website}">
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                  <span>${l.website.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]}</span>
-                </a>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.72rem; font-weight: 700; color: #2563eb; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">
+                    <i class="fas fa-globe" style="font-size: 10px;"></i> Has Website
+                  </span>
+                  <a href="${lead.website.startsWith('http') ? lead.website : 'https://' + lead.website}" target="_blank" rel="noopener noreferrer" style="color: #6366f1; font-size: 0.72rem; font-weight: 700; text-decoration: none;">View ↗</a>
+                </div>
               ` : `
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                  <i class="fa-solid fa-fire text-[9px]"></i> No Website
+                <span style="display: inline-flex; align-items: center; gap: 5px; background: rgba(217,119,6,0.08); border: 1px solid rgba(217,119,6,0.25); color: #d97706; padding: 3px 8px; border-radius: 5px; font-size: 0.68rem; font-weight: 800;">
+                  🔥 NO WEBSITE
                 </span>
               `}
             </td>
 
-            <!-- Category & City -->
-            <td class="py-3 px-3">
-              <div class="font-medium text-slate-300 text-xs">${l.city}</div>
-              <div class="text-[10px] text-slate-500 truncate max-w-[140px]">${l.category}</div>
-            </td>
-
-            <!-- Pipeline Status Selector -->
-            <td class="py-3 px-3">
-              <select onchange="updateLeadStatus('${l.id}', this.value)" 
-                class="px-2 py-1 rounded text-[11px] font-bold border focus:outline-none transition ${getStatusBadgeClass(l.status)}">
-                <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
-                <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
-                <option value="pitch_dispatched" ${l.status === 'pitch_dispatched' ? 'selected' : ''}>Pitch Sent</option>
-                <option value="demo_scheduled" ${l.status === 'demo_scheduled' ? 'selected' : ''}>Demo Scheduled</option>
-                <option value="in_discussion" ${l.status === 'in_discussion' ? 'selected' : ''}>In Discussion</option>
-                <option value="closed_won" ${l.status === 'closed_won' ? 'selected' : ''}>Closed Won 🎉</option>
-                <option value="not_interested" ${l.status === 'not_interested' ? 'selected' : ''}>Cold / Dropped</option>
-              </select>
-            </td>
-
-            <!-- Digify Outreach Action -->
-            <td class="py-3 px-4 text-center">
-              <div class="flex items-center justify-center gap-1.5">
-                <!-- WhatsApp 1-Click -->
-                <button onclick="openWhatsAppPitchPreview('${l.id}')" 
-                  class="px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 transition flex items-center gap-1 text-[11px] font-semibold">
-                  <i class="fa-brands fa-whatsapp text-xs"></i>
-                  <span>Pitch</span>
+            <!-- Status Pill -->
+            <td style="padding: 12px 14px; white-space: nowrap;">
+              <div style="position: relative; display: inline-block;">
+                <button type="button" onclick="toggleStatusDropdown('${lead.id}')" style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 6px; border-radius: 6px; background: ${statusCfg.bg}; border: 1px solid ${statusCfg.border}; color: ${statusCfg.text}; font-size: 0.72rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                  <span style="width: 5px; height: 5px; border-radius: 50%; background: ${statusCfg.dot};"></span>
+                  <span>${statusCfg.label}</span>
+                  <i class="fas fa-chevron-down" style="font-size: 7px; opacity: 0.7;"></i>
                 </button>
-
-                <!-- Email Proposal -->
-                <button onclick="openEmailProposal('${l.id}')" 
-                  title="Generate Digify B2B Email Proposal"
-                  class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition text-[11px]">
-                  <i class="fa-regular fa-envelope"></i>
-                </button>
+                <div id="statusDrop_${lead.id}" class="dropdown-menu" style="display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 600; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 8px; padding: 4px; min-width: 170px; box-shadow: 0 10px 25px rgba(0,0,0,0.12);">
+                  ${Object.entries(STATUS_CONFIG).map(([sk, sc]) => `
+                    <button type="button" onclick="updateLeadStatus('${lead.id}', '${sk}')" style="display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 8px; border-radius: 6px; background: transparent; border: none; color: ${sc.text}; font-size: 0.74rem; font-weight: 600; cursor: pointer; text-align: left;">
+                      <span style="width: 6px; height: 6px; border-radius: 50%; background: ${sc.dot};"></span>
+                      <span>${sc.label}</span>
+                      ${lead.status === sk ? '<i class="fas fa-check" style="margin-left: auto; font-size: 8px;"></i>' : ''}
+                    </button>
+                  `).join("")}
+                </div>
               </div>
             </td>
 
-            <!-- Quick Inline Edit / Notes / Delete -->
-            <td class="py-3 px-3 text-right">
-              <div class="flex items-center justify-end gap-1.5">
-                <button onclick="editNotesPrompt('${l.id}')" title="Edit Remarks & Follow-up" class="p-1 text-slate-400 hover:text-amber-400">
-                  <i class="fa-solid fa-pen-to-square text-xs"></i>
-                </button>
-                <button onclick="deleteLead('${l.id}')" title="Remove Lead" class="p-1 text-slate-500 hover:text-rose-400">
-                  <i class="fa-solid fa-trash-can text-xs"></i>
-                </button>
+            <!-- Target Niche & Notes (SMART DYNAMIC DROPDOWN) -->
+            <td style="padding: 12px 14px; min-width: 215px; max-width: 290px;">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                
+                <!-- Niche Dropdown Pill -->
+                <div style="position: relative; display: inline-block;">
+                  <button type="button" onclick="toggleNicheDropdown('${lead.id}')" style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px 3px 6px; border-radius: 6px; background: ${currentCfg.bg}; border: 1px solid ${currentCfg.border}; color: ${currentCfg.text}; font-size: 0.74rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                    <i class="fas ${currentCfg.icon}" style="color: ${currentCfg.color}; font-size: 10px;"></i>
+                    <span>${currentCfg.badge || currentCfg.label}</span>
+                    <i class="fas fa-chevron-down" style="font-size: 7px; opacity: 0.6;"></i>
+                  </button>
+
+                  <div id="nicheDrop_${lead.id}" class="dropdown-menu" style="display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 600; background: #ffffff; border: 1px solid var(--surface-border); border-radius: 9px; padding: 6px; min-width: 215px; box-shadow: 0 14px 35px rgba(15,23,42,0.18);">
+                    <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-tertiary); padding: 3px 8px 5px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center;">
+                      <span>Select Pitch Template</span>
+                      <span style="font-size: 0.6rem; color: #2563eb; font-weight: 700;">${nicheStats.anyPending ? "Active to send" : "Detected"}</span>
+                    </div>
+
+                    ${visibleNiches.map(([nk, ncfg]) => {
+                      const isSel = currentNiche === nk;
+                      const stat = nicheStats.map[nk];
+                      const countText = nicheStats.anyPending ? (stat?.pending > 0 ? `${stat.pending} left` : '') : (stat?.total > 0 ? `${stat.total}` : '');
+                      return `
+                        <button type="button" onclick="updateLeadNiche('${lead.id}', '${nk}', '${ncfg.categoryName}')" style="display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 8px; border-radius: 6px; background: ${isSel ? ncfg.bg : 'transparent'}; border: ${isSel ? '1px solid ' + ncfg.border : '1px solid transparent'}; color: ${isSel ? ncfg.text : 'var(--text-secondary)'}; font-size: 0.74rem; font-weight: ${isSel ? '700' : '500'}; cursor: pointer; text-align: left; margin-bottom: 2px;">
+                          <i class="fas ${ncfg.icon}" style="font-size: 11px; color: ${ncfg.color}; width: 14px; text-align: center;"></i>
+                          <span style="flex: 1;">${ncfg.label}</span>
+                          ${countText ? `<span style="font-size: 0.64rem; font-weight: 700; opacity: 0.75; padding: 1px 6px; border-radius: 4px; background: rgba(0,0,0,0.05);">${countText}</span>` : ''}
+                          ${isSel ? `<i class="fas fa-check" style="font-size: 8px; color: ${ncfg.color}; margin-left: 4px;"></i>` : ''}
+                        </button>
+                      `;
+                    }).join("")}
+
+                    <div style="border-top: 1px solid var(--surface-border); margin-top: 4px; padding-top: 4px;">
+                      <button type="button" onclick="showAllNichesInDropdown('${lead.id}')" style="background: none; border: none; color: #2563eb; font-size: 0.68rem; font-weight: 700; cursor: pointer; padding: 3px 8px; width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between;">
+                        <span>+ Show all categories</span>
+                        <span style="opacity: 0.6;">▼</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Notes Editor -->
+                ${isEditing ? `
+                  <div style="display: flex; gap: 6px; align-items: center;">
+                    <input type="text" id="noteInput_${lead.id}" value="${escapeHTML(notesDraft)}" class="b2b-note-input" autoFocus onkeydown="handleNoteKeydown(event, '${lead.id}')" placeholder="Add follow-up note..." style="flex: 1; padding: 5px 9px; border-radius: 6px; background: #ffffff; border: 1px solid var(--surface-border); color: var(--text-primary); font-size: 0.78rem;" />
+                    <button type="button" onclick="saveLeadNote('${lead.id}')" style="background: #2563eb; border: none; color: #ffffff; padding: 5px 9px; border-radius: 6px; cursor: pointer; font-weight: 800; font-size: 12px;">✓</button>
+                    <button type="button" onclick="cancelNoteEdit()" style="background: none; border: none; color: var(--text-tertiary); cursor: pointer; font-size: 12px;">✕</button>
+                  </div>
+                ` : `
+                  <div onclick="startNoteEdit('${lead.id}', '${escapeAttr(lead.notes || "")}')" style="cursor: text; font-size: 0.76rem; color: ${lead.notes ? 'var(--text-secondary)' : 'var(--text-tertiary)'}; font-style: ${lead.notes ? 'normal' : 'italic'}; line-height: 1.45; padding: 2px 0;" title="Click to edit note">
+                    ${escapeHTML(lead.notes || "+ Add note")}
+                  </div>
+                `}
+
               </div>
             </td>
+
+            <!-- Delete Action -->
+            <td style="padding: 12px 10px; text-align: center;">
+              <button type="button" onclick="deleteLead('${lead.id}')" style="background: none; border: none; color: var(--text-tertiary); cursor: pointer; font-size: 12px; padding: 4px; border-radius: 4px;">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+
           </tr>
         `;
       }).join("");
-
-      if (currentView === "cards") {
-        renderCardsView(filtered);
-      }
     }
 
-    function renderCardsView(filtered) {
+
+    /* ─────────────────────────────────────────────────────────────
+       11. CARDS VIEW RENDERING
+    ───────────────────────────────────────────────────────────── */
+    function renderCardsView(filtered, nicheStats) {
       const container = document.getElementById("cardsViewWrapper");
-      container.innerHTML = filtered.map(l => {
-        const cleanPh = (l.phone || "").replace(/\D/g, '').slice(-10);
-        const hasWeb = !!(l.website && l.website.trim());
+      container.innerHTML = filtered.map(lead => {
+        const isSelected = selectedIds.has(lead.id);
+        const hasWeb = Boolean(lead.website?.trim());
+        const isDispatched = lead.status === "contacted" || lead.status === "interested";
+        const currentNiche = detectLeadNiche(lead);
+        const currentCfg = DIGIFY_NICHES[currentNiche] || DIGIFY_NICHES.it_services;
+        const statusCfg = STATUS_CONFIG[lead.status] || STATUS_CONFIG.new;
+
+        let ph = (lead.phone || "").replace(/\D/g, "");
+        if (ph.length === 10) ph = "91" + ph;
+        if (ph.length === 11 && ph.startsWith("0")) ph = "91" + ph.slice(1);
+        const waPitch = generateWhatsAppPitch(lead);
+        const waUrl = ph ? `https://web.whatsapp.com/send?phone=${ph}&text=${encodeURIComponent(waPitch)}` : "#";
 
         return `
-          <div class="glass-card rounded-xl p-4 border border-slate-800 hover:border-digify-500/50 transition space-y-3 relative overflow-hidden">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <h4 class="font-bold text-white text-sm hover:text-digify-400 transition">${l.name}</h4>
-                <p class="text-[11px] text-slate-400">${l.category} • <span class="text-slate-300">${l.city}</span></p>
+          <div style="background: ${isSelected ? 'rgba(34, 197, 94, 0.04)' : '#ffffff'}; border: ${isSelected ? '1.5px solid #22c55e' : '1px solid var(--surface-border)'}; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+            
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <input type="checkbox" ${isSelected ? "checked" : ""} onchange="toggleLeadSelect('${lead.id}')" style="width: 16px; height: 16px; cursor: pointer; accent-color: #16a34a; margin-top: 3px;" />
+                <div>
+                  <div style="font-weight: 800; color: var(--text-primary); font-size: 0.9rem; line-height: 1.3; margin-bottom: 4px;">${escapeHTML(lead.name)}</div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+                    <span style="font-size: 0.65rem; color: ${currentCfg.text}; background: ${currentCfg.bg}; padding: 1px 7px; border-radius: 4px; font-weight: 700;">
+                      ${currentCfg.badge || currentCfg.label}
+                    </span>
+                    <span style="font-size: 0.72rem; color: #2563eb; background: rgba(37,99,235,0.06); padding: 1px 6px; border-radius: 4px; font-weight: 700;">
+                      📍 ${escapeHTML(lead.city || "Commercial Hub")}
+                    </span>
+                    ${lead.rating ? `<span style="font-size: 0.7rem; color: #f59e0b; font-weight: 700;">★ ${lead.rating}</span>` : ""}
+                  </div>
+                </div>
               </div>
-              ${l.rating ? `<span class="text-[11px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20"><i class="fa-solid fa-star text-[9px] mr-1"></i>${l.rating}</span>` : ''}
+              <button onclick="deleteLead('${lead.id}')" style="background: none; border: none; color: var(--text-tertiary); cursor: pointer;"><i class="fas fa-times"></i></button>
             </div>
 
-            <div class="space-y-1.5 text-xs">
-              <div class="flex items-center justify-between text-slate-300">
-                <span class="text-slate-500 text-[11px]">Phone:</span>
-                <a href="tel:+91${cleanPh}" class="font-mono font-medium hover:text-emerald-400">+91 ${cleanPh}</a>
+            <!-- Opportunity -->
+            ${hasWeb ? `
+              <div style="padding: 7px 10px; border-radius: 7px; background: rgba(37,99,235,0.05); border: 1px solid rgba(37,99,235,0.15); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #2563eb; display: flex; align-items: center; gap: 5px;">
+                  <i class="fas fa-globe"></i> Has Website
+                </span>
+                <a href="${lead.website.startsWith('http') ? lead.website : 'https://' + lead.website}" target="_blank" rel="noopener noreferrer" style="color: #6366f1; font-size: 0.7rem; text-decoration: none; font-weight: 700;">View ↗</a>
               </div>
-              <div class="flex items-center justify-between">
-                <span class="text-slate-500 text-[11px]">Website:</span>
-                ${hasWeb ? `
-                  <a href="${l.website.startsWith('http') ? l.website : 'https://' + l.website}" target="_blank" class="text-cyan-400 truncate max-w-[160px] text-[11px]">
-                    ${l.website.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]}
+            ` : `
+              <div style="padding: 7px 10px; border-radius: 7px; background: rgba(217,119,6,0.08); border: 1px solid rgba(217,119,6,0.22); display: flex; align-items: center; gap: 7px;">
+                <span style="font-size: 0.75rem; font-weight: 800; color: #d97706;">🔥 NO WEBSITE</span>
+              </div>
+            `}
+
+            <!-- Note snippet -->
+            <div onclick="startNoteEdit('${lead.id}', '${escapeAttr(lead.notes || "")}')" style="font-size: 0.75rem; color: ${lead.notes ? 'var(--text-secondary)' : 'var(--text-tertiary)'}; font-style: ${lead.notes ? 'normal' : 'italic'}; line-height: 1.4; cursor: text; background: #f8fafc; padding: 8px 10px; border-radius: 7px;">
+              ${escapeHTML(lead.notes || "+ Add strategy note")}
+            </div>
+
+            <!-- Actions footer -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; border-top: 1px solid var(--surface-border); padding-top: 10px;">
+              <span style="font-size: 0.72rem; font-weight: 700; color: ${statusCfg.text}; background: ${statusCfg.bg}; padding: 2px 8px; border-radius: 6px;">
+                ● ${statusCfg.label}
+              </span>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                ${lead.phone ? `
+                  <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="onLeadContact('${lead.id}')" style="padding: 4px 10px; border-radius: 6px; background: rgba(34,197,94,0.12); color: #16a34a; font-size: 0.72rem; font-weight: 700; text-decoration: none;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                   </a>
-                ` : `
-                  <span class="text-amber-400 text-[10px] font-bold bg-amber-500/10 px-1.5 py-0.5 rounded">No Website (High Priority)</span>
-                `}
-              </div>
-              ${l.notes ? `<div class="p-2 rounded bg-slate-900/80 border border-slate-800 text-[11px] text-amber-200/90">${l.notes}</div>` : ''}
-            </div>
-
-            <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
-              <select onchange="updateLeadStatus('${l.id}', this.value)" class="px-2 py-1 rounded text-[11px] font-bold border focus:outline-none ${getStatusBadgeClass(l.status)}">
-                <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
-                <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
-                <option value="pitch_dispatched" ${l.status === 'pitch_dispatched' ? 'selected' : ''}>Pitch Sent</option>
-                <option value="demo_scheduled" ${l.status === 'demo_scheduled' ? 'selected' : ''}>Demo Scheduled</option>
-                <option value="in_discussion" ${l.status === 'in_discussion' ? 'selected' : ''}>In Discussion</option>
-                <option value="closed_won" ${l.status === 'closed_won' ? 'selected' : ''}>Closed Won</option>
-                <option value="not_interested" ${l.status === 'not_interested' ? 'selected' : ''}>Cold</option>
-              </select>
-
-              <div class="flex items-center gap-1.5">
-                <button onclick="openWhatsAppPitchPreview('${l.id}')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1">
-                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                </button>
-                <button onclick="deleteLead('${l.id}')" class="p-1.5 text-slate-500 hover:text-rose-400 rounded">
-                  <i class="fa-solid fa-trash-can text-xs"></i>
-                </button>
+                  <button onclick="copyLeadPitch('${lead.id}')" style="padding: 4px 8px; border-radius: 6px; background: #f8fafc; border: 1px solid var(--surface-border); color: #475569; font-size: 0.72rem; cursor: pointer;">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                ` : ""}
               </div>
             </div>
           </div>
@@ -1269,355 +1535,634 @@
       }).join("");
     }
 
-    function switchView(view) {
-      currentView = view;
-      const btnTable = document.getElementById("btnViewTable");
-      const btnCards = document.getElementById("btnViewCards");
-      const tableWrapper = document.getElementById("tableViewWrapper");
-      const cardsWrapper = document.getElementById("cardsViewWrapper");
-
-      if (view === "table") {
-        btnTable.className = "px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white";
-        btnCards.className = "px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white";
-        tableWrapper.classList.remove("hidden");
-        cardsWrapper.classList.add("hidden");
-      } else {
-        btnCards.className = "px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white";
-        btnTable.className = "px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white";
-        tableWrapper.classList.add("hidden");
-        cardsWrapper.classList.remove("hidden");
-        renderCardsView(getFilteredLeads());
-      }
-    }
-
-    function getStatusBadgeClass(status) {
-      switch (status) {
-        case "new": return "bg-blue-500/10 text-blue-400 border-blue-500/30";
-        case "contacted": return "bg-cyan-500/10 text-cyan-400 border-cyan-500/30";
-        case "pitch_dispatched": return "bg-indigo-500/10 text-indigo-300 border-indigo-500/30";
-        case "demo_scheduled": return "bg-amber-500/10 text-amber-400 border-amber-500/30";
-        case "in_discussion": return "bg-purple-500/10 text-purple-300 border-purple-500/30";
-        case "closed_won": return "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
-        case "not_interested": return "bg-rose-500/10 text-rose-400 border-rose-500/20";
-        default: return "bg-slate-800 text-slate-300 border-slate-700";
-      }
-    }
 
     /* ─────────────────────────────────────────────────────────────
-       10. LEAD STATUS & CRUD
+       12. INTERACTIVE EVENT HANDLERS
     ───────────────────────────────────────────────────────────── */
-    function updateLeadStatus(id, newStatus) {
-      const lead = leads.find(l => l.id === id);
-      if (lead) {
-        lead.status = newStatus;
-        saveLeads();
-        renderLeadsTable();
-        showToast("Updated status to " + newStatus.replace('_', ' '));
+    function toggleLeadSelect(id) {
+      if (selectedIds.has(id)) {
+        selectedIds.delete(id);
+      } else {
+        selectedIds.add(id);
       }
+      renderApp();
     }
 
-    function editNotesPrompt(id) {
-      const lead = leads.find(l => l.id === id);
-      if (!lead) return;
-      const current = lead.notes || "";
-      const updated = prompt("Enter notes / follow-up details for " + lead.name + ":", current);
-      if (updated !== null) {
-        lead.notes = updated.trim();
-        saveLeads();
-        renderLeadsTable();
-        showToast("Remarks saved!");
+    function toggleSelectAll(checked) {
+      const filtered = getFilteredLeads();
+      if (checked) {
+        filtered.forEach(l => selectedIds.add(l.id));
+      } else {
+        selectedIds.clear();
+      }
+      renderApp();
+    }
+
+    function clearSelection() {
+      selectedIds.clear();
+      renderApp();
+    }
+
+    function handleSearchChange(e) {
+      searchVal = e.target.value;
+      renderApp();
+    }
+
+    function handleCityFilter(val) {
+      cityVal = val;
+      renderApp();
+    }
+
+    function handleNicheFilter(val) {
+      nicheVal = val;
+      renderApp();
+    }
+
+    function handleWebFilter(val) {
+      webVal = val;
+      renderApp();
+    }
+
+    function handleStatusFilter(val) {
+      statusVal = val;
+      renderApp();
+    }
+
+    function setFilterStatus(s) {
+      statusVal = s;
+      document.getElementById("statusFilter").value = s;
+      renderApp();
+    }
+
+    function setFilterWeb(w) {
+      webVal = w;
+      document.getElementById("webFilter").value = w;
+      renderApp();
+    }
+
+    function setViewMode(m) {
+      currentView = m;
+      document.getElementById("viewTableBtn").style.background = m === "table" ? "rgba(37,99,235,0.1)" : "transparent";
+      document.getElementById("viewTableBtn").style.color = m === "table" ? "#2563eb" : "var(--text-tertiary)";
+      document.getElementById("viewCardsBtn").style.background = m === "cards" ? "rgba(37,99,235,0.1)" : "transparent";
+      document.getElementById("viewCardsBtn").style.color = m === "cards" ? "#2563eb" : "var(--text-tertiary)";
+      renderApp();
+    }
+
+    function resetAllFilters() {
+      searchVal = "";
+      cityVal = "all";
+      nicheVal = "all";
+      webVal = "all";
+      statusVal = "all";
+      document.getElementById("searchInput").value = "";
+      document.getElementById("cityFilter").value = "all";
+      document.getElementById("nicheFilter").value = "all";
+      document.getElementById("webFilter").value = "all";
+      document.getElementById("statusFilter").value = "all";
+      renderApp();
+    }
+
+    function clearAllLeadsConfirmation() {
+      if (leads.length === 0) return;
+      if (confirm("Are you sure you want to delete all leads from the engine? This cannot be undone.")) {
+        leads = [];
+        selectedIds.clear();
+        saveLeadsToStorage();
+        renderApp();
       }
     }
 
     function deleteLead(id) {
-      if (confirm("Are you sure you want to delete this lead?")) {
-        leads = leads.filter(l => l.id !== id);
-        saveLeads();
-        populateFilterDropdowns();
-        renderLeadsTable();
-        showToast("Lead removed", "info");
+      const l = leads.find(x => x.id === id);
+      if (confirm(`Delete "${l?.name || 'Lead'}"?`)) {
+        leads = leads.filter(x => x.id !== id);
+        selectedIds.delete(id);
+        saveLeadsToStorage();
+        renderApp();
       }
     }
 
-    function clearAllLeadsPrompt() {
-      if (confirm("⚠️ Clear all " + leads.length + " leads from local database? This cannot be undone.")) {
-        leads = [];
-        saveLeads();
-        populateFilterDropdowns();
-        renderLeadsTable();
-        showToast("All leads cleared", "info");
-      }
-    }
 
     /* ─────────────────────────────────────────────────────────────
-       11. DIGIFY PITCH GENERATORS (WHATSAPP & EMAIL)
+       13. LEAD STATUS & NICHE UPDATES
     ───────────────────────────────────────────────────────────── */
-    function detectLeadNiche(lead) {
-      const txt = (lead.name + " " + lead.category + " " + (lead.notes || "")).toLowerCase();
-      if (txt.includes("supermarket") || txt.includes("kirana") || txt.includes("grocery") || txt.includes("mart") || txt.includes("hypermarket")) return "supermarket";
-      if (txt.includes("garment") || txt.includes("boutique") || txt.includes("textile") || txt.includes("cloth") || txt.includes("saree") || txt.includes("suit") || txt.includes("apparel") || txt.includes("footwear")) return "garment";
-      if (txt.includes("manufactur") || txt.includes("factory") || txt.includes("industry") || txt.includes("industrial") || txt.includes("mill") || txt.includes("packag")) return "manufacturing";
-      if (txt.includes("restaurant") || txt.includes("cafe") || txt.includes("sweet") || txt.includes("bakery") || txt.includes("food") || txt.includes("hotel")) return "restaurant";
-      if (txt.includes("pharma") || txt.includes("medical") || txt.includes("chemist") || txt.includes("hospital") || txt.includes("drug")) return "pharmacy";
-      if (txt.includes("hardware") || txt.includes("decor") || txt.includes("furniture") || txt.includes("sanitary") || txt.includes("plywood")) return "hardware";
-      return "it_general";
-    }
-
-    function generateDigifyWhatsAppPitch(lead) {
-      const name = (lead?.name || "Sir / Madam").trim();
-      const city = lead?.city || "Aapke Shahar";
-      const hasWeb = !!(lead?.website && lead.website.trim());
-      const niche = detectLeadNiche(lead);
-
-      if (niche === "supermarket") {
-        return `*नमस्ते ${name}* 🙏
-
-मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
-
-${city} में आपके सुपरमार्केट/स्टोर के बिलिंग और स्टॉक ऑपरेशन्स को और अधिक तेज़ व त्रुटिरहित बनाने हेतु यह छोटा सा संदेश भेज रहा हूँ:
-
-✨ *Digify Smart Supermarket POS & Cloud ERP:*
-⚡ *सुपरफास्ट बारकोड बिलिंग* — रश आवर्स में काउंटर पर लंबी लाइनें खत्म, 3 सेकंड में इनवॉइस तैयार।
-⚖️ *वेइंग स्केल व थर्मल प्रिंटर सिंक* — दालें, ड्राई फ्रूट्स, सब्जियां सीधे तौलकर ऑटोमैटिक बारकोड व बिल।
-📦 *रियल-टाइम स्टॉक व एक्सपायरी अलर्ट्स* — कौन सा सामान खत्म होने वाला है और किसकी एक्सपायरी नज़दीक है, मोबाइल पर अलर्ट।
-📊 *GST रिपोर्ट व डेली सेल्स लेजर* — दिनभर की बिक्री, कैश, UPI और GST रिपोर्ट्स 1-क्लिक में डाउनलोड।
-${hasWeb ? '🌐 *वेबसाइट अपग्रेड:* हम आपकी मौजूदा वेबसाइट को सीधे इन-स्टोर इन्वेंटरी और ऑनलाइन डिलीवरी से जोड़ सकते हैं।' : '🚀 *ऑनलाइन ग्रॉसरी ऑर्डरिंग:* काउंटर बिलिंग के साथ-साथ आपके ग्राहकों के लिए ऑनलाइन ऑर्डरिंग मोबाइल ऐप।'}
-
-क्या हम इस हफ्ते प्रबंधन समिति के साथ 2-मिनट का निःशुल्क लाइव डेमो या फोन पर चर्चा कर सकते हैं?
-
-सादर,
-*Digify Soft Solutions Team*
-🌐 https://www.digifysoft.in
-📞 +91 91191 19999`;
-      }
-
-      if (niche === "garment") {
-        return `*नमस्ते ${name}* 🙏
-
-मैं *Digify Soft Solutions* से संपर्क कर रहा हूँ।
-
-${city} में आपके रेडीमेड गारमेंट्स/बुटीक के स्टॉक, बारकोड और कस्टमर रिटेंशन को आधुनिक बनाने के लिए हमारा विशेष गारमेंट ईआरपी सॉल्यूशन उपलब्ध है:
-
-✨ *Digify Garments & Boutique Retail Suite:*
-🏷️ *साइज़-कलर-डिज़ाइन मैट्रिक्स* — S, M, L, XL और शेड्स के अनुसार सटीक स्टॉक कंट्रोल।
-👕 *कस्टम बारकोड प्रिंटिंग* — अपनी दुकान के नाम व MRP का बारकोड लेबल खुद प्रिंट करें।
-📱 *WhatsApp डिजिटल कैटलॉग* — नए अराइवल्स की फोटो और रेट्स ग्राहकों को सीधे WhatsApp पर भेजें।
-🎁 *कस्टमर लॉयल्टी पॉइंट्स* — हर खरीद पर रिवॉर्ड पॉइंट्स से ग्राहकों का बार-बार आना सुनिश्चित।
-${hasWeb ? '🌐 *ई-कॉमर्स सिंक:* आपकी वेबसाइट और दुकान का स्टॉक रीयल-टाइम में एक साथ मैनेज होगा।' : '🚀 *कस्टम गारमेंट ऐप:* आपके आउटलेट का मोबाइल ऐप जिससे ऑल-इंडिया ग्राहक सीधे ऑर्डर करें।'}
-
-क्या हम इस हफ्ते 2 मिनट का ऑनलाइन लाइव डेमो शेयर कर सकते हैं?
-
-शुभकामनाएँ,
-*Digify Soft Solutions Team*
-🌐 https://www.digifysoft.in`;
-      }
-
-      if (niche === "manufacturing") {
-        return `*नमस्ते ${name}* 🙏
-
-मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
-
-${city} में आपकी मैन्युफैक्चरिंग यूनिट और फैक्ट्री ऑपरेशन्स को ऑटोमेट करने हेतु हमारा इंडस्ट्रियल ERP सिस्टम:
-
-✨ *Digify Industrial & Manufacturing ERP:*
-⚙️ *Bill of Materials (BOM) प्लानिंग* — कच्चे माल (Raw Materials) की सटीक खपत और वेस्टेज कंट्रोल।
-🏭 *वर्क-इन-प्रोग्रेस (WIP) ट्रैकिंग* — जॉब वर्क, मशीन शेड्यूलिंग और डेली प्रोडक्शन रिपोर्ट।
-🚚 *डिस्पैच चालान व GST e-Way Bill* — इनवॉइस बनते ही ऑटोमैटिक ई-वे बिल और ई-इनवॉइस जनरेशन।
-💼 *वेंडर व लेबर पेरोल* — सप्लायर पेमेंट लेजर्स और वर्कर अटेंडेंस।
-
-क्या हम इस सप्ताह 5-मिनट की क्विक कॉल या लाइव ऑनलाइन प्रीव्यू शेड्यूल कर सकते हैं?
-
-सादर,
-*Digify Soft Solutions*
-🌐 https://www.digifysoft.in`;
-      }
-
-      if (niche === "restaurant") {
-        return `*Hello Team ${name}* 🙏
-
-Greetings from *Digify Soft Solutions*.
-
-Hum ${city} ke restaurants, cafes aur bakeries ke daily operations aur profits boost karne ke liye complete Smart Restaurant POS provide karte hain:
-
-✨ *Digify Hospitality & F&B Suite:*
-💰 *Save 25-30% Swiggy/Zomato Commissions* — Direct table QR code ordering & direct takeaway portal.
-🍳 *Kitchen Order Ticket (KOT)* — Order seedha kitchen display / thermal printer par dispatch.
-🧾 *Split Billing & Multi-Payment* — Cash, Card, UPI, aur Split-bill counter par instant settle.
-📊 *Recipe Costing & Raw Material Stock* — Paneer, dairy, vegetables ka real-time consumption tracking.
-
-Would you be open to a 2-minute live demo this week?
-
-Warm regards,
-*Digify Soft Solutions*
-🌐 https://www.digifysoft.in`;
-      }
-
-      // Default Retail / IT Services
-      return `*नमस्ते ${name}* 🙏
-
-मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
-
-${city} में आपके व्यवसाय को डिजिटाइज़ करके आपकी सेल्स और दैनिक संचालन को आसान बनाने के लिए हम संपूर्ण Cloud ERP, Smart POS और IT सर्विसेज प्रदान करते हैं:
-
-✨ *Digify Core Solutions:*
-💻 *स्मार्ट क्लाउड ERP व GST बिलिंग* — बारकोड स्कैनिंग, इन्वेंटरी, इनवॉइसिंग और अकाउंट्स।
-${hasWeb ? '🌐 *वेबसाइट व SEO अपग्रेड:* आपकी मौजूदा वेबसाइट को सुपरफास्ट स्पीड, मॉडर्न लुक व टॉप गूगल सर्च रैंकिंग।' : '🌐 *हाई-कनवर्टिंग कॉर्पोरेट वेबसाइट:* पैन-इंडिया नए ग्राहकों को आकर्षित करने के लिए प्रीमियम वेबसाइट।'}
-📱 *कस्टम मोबाइल ऐप्लिकेशन* — एंड्रॉइड व iOS ऐप आपके बिज़नेस के नाम से।
-🔒 *सुरक्षित क्लाउड बैकअप* — आपका डेटा हमेशा 100% सेफ और किसी भी मोबाइल/लैपटॉप से एक्सेसिबल।
-
-क्या हम इस हफ्ते 2 मिनट का ऑनलाइन प्रीव्यू या चर्चा कर सकते हैं?
-
-सादर,
-*Digify Soft Solutions Team*
-🌐 https://www.digifysoft.in`;
-    }
-
-    function generateDigifyEmailProposal(lead) {
-      const name = (lead?.name || "Business Management").trim();
-      const niche = detectLeadNiche(lead);
-
-      return {
-        subject: `Cloud ERP, Smart POS & Digital Growth Proposal for ${name} | Digify Soft Solutions`,
-        body: `Dear Management of ${name},
-
-Greetings from Digify Soft Solutions (www.digifysoft.in).
-
-We empower growing retail businesses, manufacturing units, and enterprises across India with modern Cloud-based ERP, Smart POS, and custom software solutions designed to simplify operations ("Digital + Simplify").
-
-Key Solutions Tailored for ${name}:
-1. Fast Barcode POS Billing & Inventory Lot Tracking
-2. GST e-Invoicing & Automated Financial Ledgers
-3. Multi-Store Stock Synchronization & Branch Reporting
-4. Custom Mobile Apps & Modern Web Portals
-
-Could we schedule a brief 5-minute call or online walkthrough this week to demonstrate how Digify can enhance operational efficiency for ${name}?
-
-Warm regards,
-
-Digify Soft Solutions
-Website: https://www.digifysoft.in
-Email: business@digifysoft.in
-Contact: +91 91191 19999`
-      };
-    }
-
-    function openWhatsAppPitchPreview(id) {
+    function onLeadContact(id) {
       const lead = leads.find(l => l.id === id);
-      if (!lead) return;
-      activePitchLead = lead;
-
-      document.getElementById("pitchModalSub").innerText = "Target: " + lead.name + " (" + lead.city + ")";
-      document.getElementById("pitchModalNicheBadge").innerText = lead.category || "General";
-      document.getElementById("pitchModalBody").value = generateDigifyWhatsAppPitch(lead);
-      document.getElementById("pitchModal").classList.remove("hidden");
+      if (lead && (!lead.status || lead.status === "new")) {
+        lead.status = "contacted";
+        saveLeadsToStorage();
+        renderApp();
+      }
     }
 
-    function closePitchModal() {
-      document.getElementById("pitchModal").classList.add("hidden");
-      activePitchLead = null;
+    function toggleStatusDropdown(id) {
+      closeAllDropdowns();
+      const el = document.getElementById("statusDrop_" + id);
+      if (el) el.style.display = el.style.display === "block" ? "none" : "block";
     }
 
-    function copyPitchText() {
-      const txt = document.getElementById("pitchModalBody").value;
-      navigator.clipboard.writeText(txt);
-      showToast("Pitch copied to clipboard!");
-    }
-
-    function dispatchWhatsAppDirect() {
-      if (!activePitchLead) return;
-      const cleanPh = (activePitchLead.phone || "").replace(/\D/g, '').slice(-10);
-      const text = document.getElementById("pitchModalBody").value;
-      const url = "https://wa.me/91" + cleanPh + "?text=" + encodeURIComponent(text);
-
-      window.open(url, "_blank");
-
-      // Auto update status to pitch_dispatched
-      activePitchLead.status = "pitch_dispatched";
-      saveLeads();
-      renderLeadsTable();
-      closePitchModal();
-      showToast("WhatsApp dispatched & marked as Pitch Sent!", "success");
-    }
-
-    function openEmailProposal(id) {
+    function updateLeadStatus(id, newStatus) {
       const lead = leads.find(l => l.id === id);
-      if (!lead) return;
-      const proposal = generateDigifyEmailProposal(lead);
-      const mailtoUrl = "mailto:?subject=" + encodeURIComponent(proposal.subject) + "&body=" + encodeURIComponent(proposal.body);
-      window.location.href = mailtoUrl;
-      showToast("Opened default email client with Digify proposal!");
+      if (lead) {
+        lead.status = newStatus;
+        saveLeadsToStorage();
+        renderApp();
+      }
+      closeAllDropdowns();
     }
+
+    function toggleNicheDropdown(id) {
+      closeAllDropdowns();
+      const el = document.getElementById("nicheDrop_" + id);
+      if (el) el.style.display = el.style.display === "block" ? "none" : "block";
+    }
+
+    function updateLeadNiche(id, pitchType, categoryName) {
+      const lead = leads.find(l => l.id === id);
+      if (lead) {
+        lead.pitchType = pitchType;
+        lead.category = categoryName;
+        saveLeadsToStorage();
+        renderApp();
+      }
+      closeAllDropdowns();
+    }
+
+    function showAllNichesInDropdown(id) {
+      const el = document.getElementById("nicheDrop_" + id);
+      if (!el) return;
+      const lead = leads.find(l => l.id === id);
+      const currentNiche = lead ? detectLeadNiche(lead) : "it_services";
+
+      el.innerHTML = `
+        <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-tertiary); padding: 3px 8px 5px; text-transform: uppercase;">All Digify Verticals</div>
+        ${Object.entries(DIGIFY_NICHES).map(([nk, ncfg]) => {
+          const isSel = currentNiche === nk;
+          return `
+            <button type="button" onclick="updateLeadNiche('${id}', '${nk}', '${ncfg.categoryName}')" style="display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 8px; border-radius: 6px; background: ${isSel ? ncfg.bg : 'transparent'}; border: none; color: ${isSel ? ncfg.text : 'var(--text-secondary)'}; font-size: 0.74rem; font-weight: ${isSel ? '700' : '500'}; cursor: pointer; text-align: left; margin-bottom: 2px;">
+              <i class="fas ${ncfg.icon}" style="font-size: 11px; color: ${ncfg.color}; width: 14px; text-align: center;"></i>
+              <span style="flex: 1;">${ncfg.label}</span>
+              ${isSel ? `<i class="fas fa-check" style="font-size: 8px; color: ${ncfg.color};"></i>` : ''}
+            </button>
+          `;
+        }).join("")}
+      `;
+    }
+
+    function closeAllDropdowns() {
+      document.querySelectorAll(".dropdown-menu").forEach(el => el.style.display = "none");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("td")) {
+        closeAllDropdowns();
+      }
+    });
+
 
     /* ─────────────────────────────────────────────────────────────
-       12. EXPORT & BACKUP
+       14. INLINE NOTES EDITING
     ───────────────────────────────────────────────────────────── */
-    function exportCurrentLeadsCSV() {
-      const filtered = getFilteredLeads();
-      if (!filtered.length) {
-        alert("No leads to export under current filters.");
+    function startNoteEdit(id, currentNote) {
+      editingId = id;
+      notesDraft = currentNote;
+      renderApp();
+      setTimeout(() => {
+        const inp = document.getElementById("noteInput_" + id);
+        if (inp) inp.focus();
+      }, 50);
+    }
+
+    function handleNoteKeydown(e, id) {
+      if (e.key === "Enter") saveLeadNote(id);
+      if (e.key === "Escape") cancelNoteEdit();
+    }
+
+    function saveLeadNote(id) {
+      const inp = document.getElementById("noteInput_" + id);
+      const lead = leads.find(l => l.id === id);
+      if (lead && inp) {
+        lead.notes = inp.value.trim();
+        saveLeadsToStorage();
+      }
+      editingId = null;
+      renderApp();
+    }
+
+    function cancelNoteEdit() {
+      editingId = null;
+      renderApp();
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       15. 1-CLICK PITCH CLIPBOARD COPY
+    ───────────────────────────────────────────────────────────── */
+    function copyLeadPitch(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+      const text = generateWhatsAppPitch(lead);
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert("✅ WhatsApp pitch message with emojis copied to clipboard!");
+        });
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       16. SEQUENTIAL 1-BY-1 CAMPAIGN RUNNER
+    ───────────────────────────────────────────────────────────── */
+    function startSequentialCampaign() {
+      campaignQueue = leads.filter(l => selectedIds.has(l.id) && (l.phone || "").trim());
+      if (campaignQueue.length === 0) {
+        alert("Please select at least 1 lead with a phone number!");
+        return;
+      }
+      campaignIndex = 0;
+      campaignOpen = true;
+      document.getElementById("campaignModal").style.display = "flex";
+      renderCampaignStep();
+    }
+
+    function closeCampaignModal() {
+      campaignOpen = false;
+      document.getElementById("campaignModal").style.display = "none";
+    }
+
+    function renderCampaignStep() {
+      const current = campaignQueue[campaignIndex];
+      if (!current) {
+        alert("🎉 Campaign finished! All selected leads processed.");
+        closeCampaignModal();
+        selectedIds.clear();
+        renderApp();
         return;
       }
 
-      const header = "Business Name,Phone,Website,Rating,City,Category,Status,Notes";
-      const rows = filtered.map(l => {
-        return '"' + (l.name||"").replace(/"/g, '""') + '","' +
-               (l.phone||"") + '","' +
-               (l.website||"") + '","' +
-               (l.rating||"") + '","' +
-               (l.city||"") + '","' +
-               (l.category||"") + '","' +
-               (l.status||"new") + '","' +
-               (l.notes||"").replace(/"/g, '""') + '"';
-      });
+      const total = campaignQueue.length;
+      const pct = Math.round(((campaignIndex + 1) / total) * 100);
 
-      const csvContent = "\uFEFF" + [header, ...rows].join("\n");
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "Digify_Leads_Export_" + new Date().toISOString().slice(0, 10) + ".csv";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      showToast("Exported " + filtered.length + " leads to CSV!", "success");
-    }
+      document.getElementById("campaignProgressBadge").innerText = `Lead ${campaignIndex + 1} of ${total} (${pct}%)`;
+      document.getElementById("campaignLeadName").innerText = current.name || "Business";
+      document.getElementById("campaignLeadCity").innerText = `📍 ${current.city || "Commercial Hub"}`;
+      document.getElementById("campaignLeadCategory").innerText = current.category || "Enterprise";
+      document.getElementById("campaignLeadPhone").innerText = `📞 ${current.phone}`;
 
-    function exportBackupJSON() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(leads, null, 2));
-      const link = document.createElement("a");
-      link.href = dataStr;
-      link.download = "Digify_Leads_Database_Backup_" + new Date().toISOString().slice(0, 10) + ".json";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      showToast("JSON database backup saved!");
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       13. HELPERS & TOAST
-    ───────────────────────────────────────────────────────────── */
-    function copyToClipboard(text, msg) {
-      navigator.clipboard.writeText(text);
-      showToast(msg || "Copied to clipboard!");
-    }
-
-    function showToast(msg, type = "success") {
-      const toast = document.getElementById("toastNotification");
-      const icon = document.getElementById("toastIcon");
-      const text = document.getElementById("toastMsg");
-
-      text.innerText = msg;
-      if (type === "info") {
-        icon.className = "fa-solid fa-circle-info text-cyan-400";
+      const webBadge = document.getElementById("campaignLeadWebBadge");
+      if (current.website?.trim()) {
+        webBadge.innerHTML = `<span style="font-size: 0.7rem; font-weight: 700; color: #2563eb; background: rgba(37,99,235,0.08); padding: 4px 8px; border-radius: 6px;">🌐 Has Website</span>`;
       } else {
-        icon.className = "fa-solid fa-circle-check text-emerald-400";
+        webBadge.innerHTML = `<span style="font-size: 0.72rem; font-weight: 800; color: #d97706; background: rgba(217,119,6,0.08); padding: 4px 8px; border-radius: 6px;">🔥 NO WEBSITE</span>`;
       }
 
-      toast.classList.remove("translate-y-20", "opacity-0");
-      setTimeout(() => {
-        toast.classList.add("translate-y-20", "opacity-0");
-      }, 3000);
-    }
-  </script>
+      const pitchText = generateWhatsAppPitch(current);
+      document.getElementById("campaignTextarea").value = pitchText;
 
+      let ph = (current.phone || "").replace(/\D/g, "");
+      if (ph.length === 10) ph = "91" + ph;
+      if (ph.length === 11 && ph.startsWith("0")) ph = "91" + ph.slice(1);
+      const waUrl = `https://web.whatsapp.com/send?phone=${ph}&text=${encodeURIComponent(pitchText)}`;
+      document.getElementById("campaignWhatsAppBtn").href = waUrl;
+
+      document.getElementById("campaignPrevBtn").disabled = campaignIndex === 0;
+      document.getElementById("campaignPrevBtn").style.opacity = campaignIndex === 0 ? "0.5" : "1";
+    }
+
+    function campaignSendAndAdvance() {
+      const current = campaignQueue[campaignIndex];
+      if (current) {
+        current.status = "contacted";
+        saveLeadsToStorage();
+      }
+      setTimeout(() => {
+        campaignIndex++;
+        renderCampaignStep();
+        renderApp();
+      }, 400);
+    }
+
+    function advanceCampaignWithStatus(s) {
+      const current = campaignQueue[campaignIndex];
+      if (current) {
+        current.status = s;
+        saveLeadsToStorage();
+      }
+      campaignIndex++;
+      renderCampaignStep();
+      renderApp();
+    }
+
+    function campaignPrev() {
+      if (campaignIndex > 0) {
+        campaignIndex--;
+        renderCampaignStep();
+      }
+    }
+
+    function campaignSkip() {
+      campaignIndex++;
+      renderCampaignStep();
+    }
+
+    function copyCampaignMessageText() {
+      const txt = document.getElementById("campaignTextarea").value;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(txt).then(() => {
+          const btn = document.getElementById("copyCampaignBtn");
+          btn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+          setTimeout(() => {
+            btn.innerHTML = `<i class="fas fa-copy"></i> Copy Message`;
+          }, 2000);
+        });
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       17. GOOGLE MAPS HARVESTER ENGINE
+    ───────────────────────────────────────────────────────────── */
+    function toggleScraperEngine() {
+      const box = document.getElementById("scraperEngineBox");
+      const btn = document.getElementById("toggleScraperBtn");
+      if (box.style.display === "none") {
+        box.style.display = "block";
+        btn.innerHTML = `<i class="fas fa-magnifying-glass"></i> Maps Scraper Engine ▲`;
+      } else {
+        box.style.display = "none";
+        btn.innerHTML = `<i class="fas fa-magnifying-glass"></i> Maps Scraper Engine ▼`;
+      }
+    }
+
+    function renderQuickCities() {
+      const c = document.getElementById("quickCitiesContainer");
+      c.innerHTML = QUICK_CITIES.map(q => `
+        <button type="button" onclick="selectCityPreset('${q.name}')" style="background: ${currentSelectedCity === q.name ? 'rgba(37,99,235,0.1)' : '#f8fafc'}; border: 1px solid ${currentSelectedCity === q.name ? '#2563eb' : 'var(--surface-border)'}; color: ${currentSelectedCity === q.name ? '#2563eb' : '#475569'}; padding: 4px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">
+          📍 ${q.label}
+        </button>
+      `).join("");
+    }
+
+    function renderVerticalButtons() {
+      const c = document.getElementById("verticalButtonsContainer");
+      c.innerHTML = VERTICAL_PRESETS.map(v => `
+        <button type="button" onclick="selectVerticalPreset('${v.id}')" style="background: ${currentSelectedVertical === v.id ? '#2563eb' : '#ffffff'}; border: 1px solid ${currentSelectedVertical === v.id ? '#2563eb' : 'var(--surface-border)'}; color: ${currentSelectedVertical === v.id ? '#ffffff' : '#334155'}; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; cursor: pointer;">
+          ${v.label}
+        </button>
+      `).join("");
+    }
+
+    function selectCityPreset(c) {
+      currentSelectedCity = c;
+      renderQuickCities();
+      updateSearchQueryBox();
+    }
+
+    function selectVerticalPreset(v) {
+      currentSelectedVertical = v;
+      renderVerticalButtons();
+      updateSearchQueryBox();
+    }
+
+    function updateSearchQueryBox() {
+      const vert = VERTICAL_PRESETS.find(x => x.id === currentSelectedVertical) || VERTICAL_PRESETS[0];
+      const query = `${vert.prefix}${currentSelectedCity}`;
+      document.getElementById("liveGeneratedQuery").value = query;
+    }
+
+    function openGoogleMapsSearch() {
+      const q = document.getElementById("liveGeneratedQuery").value.trim();
+      if (!q) return;
+      const url = `https://www.google.com/maps/search/${encodeURIComponent(q)}`;
+      window.open(url, "_blank");
+    }
+
+    function copyCurrentSearchQuery() {
+      const q = document.getElementById("liveGeneratedQuery").value.trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(q).then(() => {
+          const btn = document.getElementById("copyQueryBtn");
+          btn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+          setTimeout(() => {
+            btn.innerHTML = `<i class="fas fa-copy"></i> Copy Query`;
+          }, 2000);
+        });
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       18. CSV IMPORT & AUTO-PARSER
+    ───────────────────────────────────────────────────────────── */
+    function handleDragOver(e) {
+      e.preventDefault();
+      document.getElementById("dropzoneBox").style.borderColor = "#2563eb";
+      document.getElementById("dropzoneBox").style.background = "rgba(37,99,235,0.04)";
+    }
+
+    function handleDragLeave(e) {
+      e.preventDefault();
+      document.getElementById("dropzoneBox").style.borderColor = "#cbd5e1";
+      document.getElementById("dropzoneBox").style.background = "#fdfdfd";
+    }
+
+    function handleFileDrop(e) {
+      e.preventDefault();
+      handleDragLeave(e);
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        parseCSVFile(files[0]);
+      }
+    }
+
+    function handleCSVUpload(e) {
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        parseCSVFile(files[0]);
+      }
+    }
+
+    function parseCSVFile(file) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target.result;
+        if (!text || !text.trim()) {
+          alert("CSV file is empty!");
+          return;
+        }
+
+        const lines = text.split(/\r?\n/).filter(l => l.trim());
+        if (lines.length < 2) {
+          alert("CSV requires at least 1 header row and data rows.");
+          return;
+        }
+
+        const splitRow = (str) => {
+          const arr = []; let q = false, col = "";
+          for (let i = 0; i < str.length; i++) {
+            const c = str[i];
+            if (c === '"') {
+              if (q && str[i+1] === '"') { col += '"'; i++; }
+              else q = !q;
+            } else if (c === ',' && !q) {
+              arr.push(col.trim());
+              col = "";
+            } else {
+              col += c;
+            }
+          }
+          arr.push(col.trim());
+          return arr;
+        };
+
+        const headers = splitRow(lines[0]).map(h => h.toLowerCase().replace(/[^a-z0-9]/g,""));
+        const idx = (keys) => headers.findIndex(h => keys.some(k => h.includes(k)));
+        const nameI  = idx(["name","title","business"]);
+        const phoneI = idx(["phone","tel","mobile","contact"]);
+        const webI   = idx(["web","url","site","link"]);
+        const cityI  = idx(["city","address","location"]);
+        const catI   = idx(["cat","type","niche","industry"]);
+        const rateI  = idx(["rate","star","score"]);
+
+        let added = 0;
+        let skipped = 0;
+
+        for (let i = 1; i < lines.length; i++) {
+          const cols = splitRow(lines[i]);
+          const name = nameI >= 0 ? cols[nameI] : cols[0];
+          let phone = phoneI >= 0 ? cols[phoneI] : "";
+          const web = webI >= 0 ? cols[webI] : "";
+          const city = cityI >= 0 ? cols[cityI] : currentSelectedCity.split(",")[0].trim();
+          const cat = catI >= 0 ? cols[catI] : "Commercial";
+          const rating = rateI >= 0 ? cols[rateI] : "";
+
+          phone = (phone || "").replace(/\D/g, "");
+          if (phone.length === 12 && phone.startsWith("91")) phone = phone.slice(2);
+          if (phone.length === 11 && phone.startsWith("0")) phone = phone.slice(1);
+
+          if (!name || name.length < 2) continue;
+
+          // Deduplicate
+          const exists = leads.some(l => (phone && l.phone === phone) || l.name.toLowerCase() === name.toLowerCase());
+          if (exists) {
+            skipped++;
+            continue;
+          }
+
+          const newLead = {
+            id: "lead_" + Date.now() + "_" + Math.random().toString(36).substring(2,7),
+            name: name,
+            phone: phone,
+            website: web,
+            city: city || "Surat",
+            category: cat || "Commercial",
+            rating: rating,
+            status: "new",
+            notes: "",
+            pitchType: "",
+            createdAt: Date.now()
+          };
+          newLead.pitchType = detectLeadNiche(newLead);
+          leads.push(newLead);
+          added++;
+        }
+
+        saveLeadsToStorage();
+        renderApp();
+        alert(`✅ Import Complete: ${added} fresh leads added! (${skipped} duplicates skipped)`);
+      };
+      reader.readAsText(file);
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       19. SCRAPER SCRIPT CODE & BOOKMARKLET
+    ───────────────────────────────────────────────────────────── */
+    const GOOGLE_MAPS_SCRAPER_SCRIPT = `(async function() {
+  console.clear();
+  console.log("🚀 Digify Lead Harvester activated...");
+  const results = [];
+  const feed = document.querySelector('div[role="feed"]') || document.querySelector('div[aria-label*="Results" i]');
+  if (!feed) { alert("Please run on Google Maps search results tab!"); return; }
+  
+  const items = Array.from(feed.querySelectorAll('div.Nv2PK, div.fontHeadlineSmall, a.hfpxzc'));
+  for (let it of items) {
+    const name = (it.querySelector('div.qBF1Pd, div.fontHeadlineSmall')?.innerText || "").trim();
+    if (!name || results.some(r => r.Name === name)) continue;
+    
+    let phone = "";
+    const pEl = it.querySelector('span.UsdlK');
+    if (pEl) phone = pEl.innerText.replace(/[^0-9]/g, '');
+    
+    let web = "";
+    const wEl = it.querySelector('a.lcr4fd');
+    if (wEl && wEl.href && !wEl.href.includes('google.com')) web = wEl.href;
+    
+    results.push({ Name: name, Phone: phone, Website: web, City: "Surat", Category: "Commercial", Rating: "4.5" });
+  }
+
+  if (results.length === 0) { alert("Scroll down to load leads before running!"); return; }
+  
+  const csv = "Name,Phone,Website,City,Category,Rating\\n" + results.map(r => \`"\${r.Name}","\${r.Phone}","\${r.Website}","\${r.City}","\${r.Category}","\${r.Rating}"\`).join("\\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Digify_GoogleMaps_Leads_" + Date.now() + ".csv";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  alert("✅ Downloaded " + results.length + " leads! Drag & drop this CSV into Digify console.");
+})();`;
+
+    function openBookmarkletModal() {
+      const encoded = "javascript:" + encodeURIComponent(GOOGLE_MAPS_SCRAPER_SCRIPT);
+      document.getElementById("bookmarkletLink").href = encoded;
+      document.getElementById("bookmarkletModal").style.display = "flex";
+    }
+
+    function closeBookmarkletModal() {
+      document.getElementById("bookmarkletModal").style.display = "none";
+    }
+
+    function openScriptModal() {
+      document.getElementById("rawScriptArea").value = GOOGLE_MAPS_SCRAPER_SCRIPT;
+      document.getElementById("scriptModal").style.display = "flex";
+    }
+
+    function closeScriptModal() {
+      document.getElementById("scriptModal").style.display = "none";
+    }
+
+    function copyRawScript() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(GOOGLE_MAPS_SCRAPER_SCRIPT).then(() => {
+          const btn = document.getElementById("copyScriptBtn");
+          btn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+          setTimeout(() => {
+            btn.innerHTML = `<i class="fas fa-copy"></i> Copy Script to Clipboard`;
+          }, 2000);
+        });
+      }
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       20. UTILITIES
+    ───────────────────────────────────────────────────────────── */
+    function escapeHTML(str) {
+      if (!str) return "";
+      return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+    }
+
+    function escapeAttr(str) {
+      if (!str) return "";
+      return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+
+    // Boot on load
+    window.addEventListener("DOMContentLoaded", checkAuthOnLoad);
+  </script>
 </body>
 </html>
