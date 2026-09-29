@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digify Soft Solutions™ | B2B Outbound Lead Engine & Pipeline</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            digify: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              orange: '#e06930',
+              accent: '#f97316',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbars & Utilities */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glow-hover:hover {
+      box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.4);
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    .badge-gradient {
+      background: linear-gradient(135deg, #2563eb 0%, #e06930 100%);
+    }
+
+    .custom-gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-[#090d16] text-slate-100 min-h-screen font-sans selection:bg-digify-600 selection:text-white pb-20">
+
+  <!-- TOP BRAND NAV -->
+  <header class="border-b border-slate-800/80 bg-[#0b1120]/90 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      
+      <!-- Brand & Tagline -->
+      <div class="flex items-center gap-3 py-3">
+        <img src="assets/images/logo.png" alt="Digify Soft Solutions" class="h-10 w-auto object-contain brightness-110" onerror="this.src='assets/images/logo_icon.png'">
+        <div class="hidden sm:block border-l border-slate-700/60 pl-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-digify-400">Lead Intelligence Engine</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+              Live Pipeline Active
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">Retail ERP • Smart POS • Manufacturing BOM • IT Services</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="openBookmarkletModal()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-star text-amber-400"></i>
+          <span class="hidden md:inline">1-Click</span> Bookmarklet
+        </button>
+
+        <button onclick="openScriptModal()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-digify-900/60 hover:bg-digify-800/80 text-digify-300 border border-digify-500/30 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-code"></i>
+          <span>Scraper Script</span>
+        </button>
+
+        <label class="cursor-pointer px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-digify-600 to-digify-700 hover:from-digify-500 hover:to-digify-600 text-white transition flex items-center gap-1.5 shadow-md shadow-digify-600/20">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Upload CSV</span>
+          <input type="file" id="csvFileInput" accept=".csv" class="hidden" onchange="handleCSVUpload(event)">
+        </label>
+
+        <a href="https://www.digifysoft.in" target="_blank" class="hidden lg:flex px-3 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition items-center gap-1">
+          <span>digifysoft.in</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
+
+    <!-- METRICS OVERVIEW (KPI CARDS) -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+      
+      <!-- Total Prospects -->
+      <div class="glass-card rounded-xl p-4 border border-slate-800 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-400 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">Prospects</span>
+          <i class="fa-solid fa-database text-digify-400 text-sm"></i>
+        </div>
+        <div id="statTotal" class="text-2xl sm:text-3xl font-display font-bold text-white">0</div>
+        <p class="text-[11px] text-slate-400 mt-0.5">Total in Engine</p>
+        <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-digify-600/10 rounded-full blur-xl pointer-events-none"></div>
+      </div>
+
+      <!-- Needs Web Presence -->
+      <div class="glass-card rounded-xl p-4 border border-amber-500/20 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-amber-400 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">No Website</span>
+          <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
+        </div>
+        <div id="statNoWeb" class="text-2xl sm:text-3xl font-display font-bold text-amber-400">0</div>
+        <p class="text-[11px] text-amber-300/70 mt-0.5">ERP + Web Priority</p>
+        <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
+      </div>
+
+      <!-- Has Website -->
+      <div class="glass-card rounded-xl p-4 border border-cyan-500/20 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-cyan-400 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">Has Website</span>
+          <i class="fa-solid fa-globe text-cyan-400 text-sm"></i>
+        </div>
+        <div id="statHasWeb" class="text-2xl sm:text-3xl font-display font-bold text-cyan-300">0</div>
+        <p class="text-[11px] text-cyan-300/70 mt-0.5">POS & ERP Upgrade</p>
+      </div>
+
+      <!-- Pitch Dispatched -->
+      <div class="glass-card rounded-xl p-4 border border-indigo-500/20 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-indigo-400 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">Pitches Sent</span>
+          <i class="fa-solid fa-paper-plane text-indigo-400 text-sm"></i>
+        </div>
+        <div id="statDispatched" class="text-2xl sm:text-3xl font-display font-bold text-indigo-300">0</div>
+        <p class="text-[11px] text-indigo-300/70 mt-0.5">WhatsApp / Email</p>
+      </div>
+
+      <!-- In Active Discussion -->
+      <div class="glass-card rounded-xl p-4 border border-emerald-500/20 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-emerald-400 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">Interested</span>
+          <i class="fa-solid fa-handshake text-emerald-400 text-sm"></i>
+        </div>
+        <div id="statInterested" class="text-2xl sm:text-3xl font-display font-bold text-emerald-300">0</div>
+        <p class="text-[11px] text-emerald-300/70 mt-0.5">Demo Scheduled</p>
+      </div>
+
+      <!-- Cold / Dropped -->
+      <div class="glass-card rounded-xl p-4 border border-slate-800 glow-hover transition relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span class="text-xs font-semibold uppercase tracking-wider">Cold Leads</span>
+          <i class="fa-solid fa-ban text-slate-500 text-sm"></i>
+        </div>
+        <div id="statCold" class="text-2xl sm:text-3xl font-display font-bold text-slate-400">0</div>
+        <p class="text-[11px] text-slate-500 mt-0.5">Not Interested</p>
+      </div>
+
+    </section>
+
+    <!-- LEAD GENERATOR COMMAND CENTER (NICHES + CITIES + SEARCH LAUNCHER) -->
+    <section class="glass-card rounded-2xl p-5 border border-slate-800 shadow-xl space-y-4">
+      
+      <!-- Section Header -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-digify-600/20 border border-digify-500/30 flex items-center justify-center text-digify-400">
+            <i class="fa-solid fa-crosshairs"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-bold text-base text-white">Google Maps Lead Harvester</h2>
+            <p class="text-xs text-slate-400">Select Digify niche & target city to generate anti-ambiguity B2B leads</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="toggleScraperGuide()" class="text-xs font-medium text-slate-300 hover:text-white px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 transition">
+            <i class="fa-solid fa-circle-question mr-1 text-digify-400"></i> How It Works
+          </button>
+        </div>
+      </div>
+
+      <!-- Target Category Pills -->
+      <div class="space-y-2">
+        <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-tags text-digify-400"></i> Target Category:
+        </label>
+        <div id="categoryPillContainer" class="flex flex-wrap gap-2">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Quick City Hubs -->
+      <div class="space-y-2">
+        <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-location-dot text-rose-400"></i> High-Value Commercial Cities (Digify Hubs):
+        </label>
+        <div id="cityPillContainer" class="flex flex-wrap gap-1.5">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Search Input Bar & Launcher -->
+      <div class="pt-2">
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="relative flex-1">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input type="text" id="targetQueryInput" 
+              class="w-full pl-10 pr-24 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-digify-500 text-sm font-medium"
+              placeholder="e.g. Supermarket and departmental grocery stores in Surat, Gujarat"
+              oninput="onQueryInputChange()">
+            <button onclick="clearQuery()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs text-slate-400 hover:text-white">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <button onclick="launchGoogleMapsSearch()" class="px-5 py-2.5 rounded-xl bg-digify-600 hover:bg-digify-500 font-semibold text-sm text-white flex items-center justify-center gap-2 shadow-lg shadow-digify-600/30 transition">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Search on Google Maps</span>
+          </button>
+
+          <button onclick="copyGeneratedQuery()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium transition flex items-center justify-center gap-1.5">
+            <i class="fa-regular fa-copy"></i>
+            <span>Copy Query</span>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2 px-1">
+          <span class="flex items-center gap-1 text-emerald-400 font-medium">
+            <i class="fa-solid fa-shield-check"></i> 100% Anti-Ambiguity Protected (Optimized for Owner Phone Extraction)
+          </span>
+          <span class="hidden sm:inline text-slate-500">Auto-identifies retail, wholesale, & manufacturing owners</span>
+        </div>
+      </div>
+
+      <!-- Scraper Guide Accordion (Hidden by default) -->
+      <div id="scraperGuideBox" class="hidden rounded-xl bg-slate-900/90 border border-slate-800 p-4 space-y-3 text-xs">
+        <div class="flex items-center justify-between text-amber-400 font-bold">
+          <span>⚡ How To Extract 50-100 Verified Leads In Under 60 Seconds:</span>
+          <button onclick="toggleScraperGuide()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-300">
+          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50">
+            <h4 class="font-bold text-digify-300 mb-1 flex items-center gap-1.5">
+              <i class="fa-solid fa-star text-amber-400"></i> Method 1: 1-Click Bookmarklet (Super Fast & Zero Error)
+            </h4>
+            <ol class="list-decimal list-inside space-y-1 text-slate-300 text-[11px]">
+              <li>Click <b>"⭐ Bookmarklet"</b> at the top and drag the button to your Bookmarks Bar.</li>
+              <li>Click <b>"Search on Google Maps"</b> above to open the search page.</li>
+              <li>Just click your <b>"⭐ Digify Scraper"</b> bookmark! It runs automatically, scrolls, and downloads the CSV.</li>
+              <li><b>No F12 needed, no console errors!</b></li>
+            </ol>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50">
+            <h4 class="font-bold text-digify-300 mb-1 flex items-center gap-1.5">
+              <i class="fa-solid fa-terminal text-emerald-400"></i> Method 2: Browser Console (Developer Mode)
+            </h4>
+            <ol class="list-decimal list-inside space-y-1 text-slate-300 text-[11px]">
+              <li>Search on Google Maps and press <b>F12</b> on your keyboard.</li>
+              <li>Go to the <b>Console</b> tab at the top.</li>
+              <li>Paste the Digify script and press <b>Enter</b>.</li>
+              <li><i>Note: Our script automatically calls <code class="text-amber-300">console.clear()</code> so Google background service worker logs never show up!</i></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drag & Drop CSV Dropzone -->
+      <div id="dropZone" 
+        class="border-2 border-dashed border-slate-700/80 hover:border-digify-500 rounded-xl p-6 text-center transition cursor-pointer bg-slate-900/40 hover:bg-slate-900/80"
+        onclick="document.getElementById('csvFileInput').click()"
+        ondragover="onDragOver(event)"
+        ondragleave="onDragLeave(event)"
+        ondrop="onDrop(event)">
+        <i class="fa-solid fa-cloud-arrow-up text-3xl text-digify-400 mb-2"></i>
+        <p class="text-sm font-semibold text-white">Drop Google Maps CSV here — or click to browse</p>
+        <p class="text-xs text-slate-400 mt-1">Auto-detects columns • Deduplicates phone numbers • Categorizes into Digify Verticals</p>
+      </div>
+
+    </section>
+
+    <!-- LEADS DATA VIEW & FILTER CONTROLS -->
+    <section class="space-y-4">
+      
+      <!-- Filter Bar -->
+      <div class="glass-card rounded-xl p-4 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        
+        <!-- Left: Search & Filters -->
+        <div class="flex flex-wrap items-center gap-2 flex-1 min-w-[280px]">
+          <!-- Keyword Search -->
+          <div class="relative min-w-[200px] flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-400"></i>
+            <input type="text" id="leadSearchInput" 
+              class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-digify-500"
+              placeholder="Search leads, phones, notes..."
+              oninput="renderLeadsTable()">
+          </div>
+
+          <!-- City Filter -->
+          <select id="filterCity" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
+            <option value="all">All Cities</option>
+          </select>
+
+          <!-- Category Filter -->
+          <select id="filterCategory" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
+            <option value="all">All Categories</option>
+          </select>
+
+          <!-- Website Status Filter -->
+          <select id="filterWeb" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
+            <option value="all">Web: All</option>
+            <option value="no">🔥 No Website</option>
+            <option value="yes">🌐 Has Website</option>
+          </select>
+
+          <!-- Pipeline Status Filter -->
+          <select id="filterStatus" onchange="renderLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
+            <option value="all">Status: All</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="pitch_dispatched">Pitch Sent</option>
+            <option value="demo_scheduled">Demo Scheduled</option>
+            <option value="in_discussion">In Discussion</option>
+            <option value="closed_won">Closed / Won</option>
+            <option value="not_interested">Not Interested</option>
+          </select>
+        </div>
+
+        <!-- Right: View switch & Batch actions -->
+        <div class="flex items-center gap-2">
+          <!-- View Toggle -->
+          <div class="flex rounded-lg bg-slate-900 p-0.5 border border-slate-700">
+            <button id="btnViewTable" onclick="switchView('table')" class="px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white">
+              <i class="fa-solid fa-table-list mr-1"></i> Table
+            </button>
+            <button id="btnViewCards" onclick="switchView('cards')" class="px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white">
+              <i class="fa-solid fa-grip mr-1"></i> Cards
+            </button>
+          </div>
+
+          <!-- Export Filtered CSV -->
+          <button onclick="exportCurrentLeadsCSV()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-csv text-emerald-400"></i>
+            <span>Export CSV</span>
+          </button>
+
+          <!-- Backup JSON -->
+          <button onclick="exportBackupJSON()" title="Download Full JSON Backup" class="p-1.5 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700">
+            <i class="fa-solid fa-download"></i>
+          </button>
+
+          <!-- Reset / Clear -->
+          <button onclick="clearAllLeadsPrompt()" title="Clear Database" class="p-1.5 text-xs rounded-lg bg-slate-800 hover:bg-rose-900/50 text-rose-400 border border-slate-700">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- LEADS TABLE CONTAINER -->
+      <div id="tableViewWrapper" class="glass-card rounded-xl border border-slate-800 overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900/90 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-3 w-10 text-center">#</th>
+                <th class="py-3 px-4">Business Name</th>
+                <th class="py-3 px-3">Phone & Direct Call</th>
+                <th class="py-3 px-3">Website</th>
+                <th class="py-3 px-3">Category & City</th>
+                <th class="py-3 px-3">Pipeline Status</th>
+                <th class="py-3 px-4 text-center">Digify Outreach Action</th>
+                <th class="py-3 px-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody" class="divide-y divide-slate-800/60 text-slate-200">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden py-16 text-center text-slate-500">
+          <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-600"></i>
+          <p class="text-sm font-medium text-slate-400">No matching leads found</p>
+          <p class="text-xs text-slate-500 mt-1">Upload a CSV or search Google Maps using the Harvester above.</p>
+        </div>
+      </div>
+
+      <!-- LEADS CARDS CONTAINER (Alternative View) -->
+      <div id="cardsViewWrapper" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamically populated -->
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: 1-CLICK BOOKMARKLET -->
+  <div id="bookmarkletModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <h3 class="font-display font-bold text-base text-white">1-Click Google Maps Bookmarklet</h3>
+        </div>
+        <button onclick="closeBookmarkletModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-300">
+        <p>This allows your senior and sales team to extract verified leads with <b>1 single click</b> on Google Maps without opening developer tools or looking at console logs!</p>
+        
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center space-y-2">
+          <p class="text-[11px] text-slate-400">👉 Drag this button directly into your Chrome/Edge <b>Bookmarks Bar</b>:</p>
+          <div>
+            <a id="bookmarkletLink" href="#" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-digify-600 to-amber-600 font-bold text-white shadow-lg shadow-digify-600/30 hover:scale-105 transition cursor-grab active:cursor-grabbing">
+              <i class="fa-solid fa-bolt"></i>
+              <span>⭐ Digify Maps Scraper</span>
+            </a>
+          </div>
+          <p class="text-[10px] text-slate-500">(If your bookmarks bar is hidden, press <kbd class="px-1 py-0.5 rounded bg-slate-800 text-slate-300">Ctrl + Shift + B</kbd>)</p>
+        </div>
+
+        <div class="space-y-1.5 text-[11px] text-slate-400">
+          <p class="font-semibold text-slate-200">How to use it:</p>
+          <p>1. Open Google Maps search (e.g. <i>"Supermarkets in Surat"</i>).</p>
+          <p>2. Click <b>"⭐ Digify Maps Scraper"</b> from your bookmarks bar.</p>
+          <p>3. Watch the floating on-screen HUD scroll and extract leads. CSV downloads automatically!</p>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="closeBookmarkletModal()" class="px-4 py-2 rounded-lg bg-digify-600 hover:bg-digify-500 text-xs font-semibold text-white">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SCRAPER SCRIPT -->
+  <div id="scriptModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-digify-600/20 text-digify-400 flex items-center justify-center">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base text-white">Digify Google Maps Console Script</h3>
+            <p class="text-xs text-slate-400">Auto-clears service worker noise and extracts leads into CSV</p>
+          </div>
+        </div>
+        <button onclick="closeScriptModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-slate-400">Copy and paste into Google Maps Console (<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">F12</kbd> ➔ Console):</span>
+          <button onclick="copyScraperCode()" id="btnCopyScriptModal" class="px-3 py-1 rounded bg-digify-600 hover:bg-digify-500 text-white font-medium text-xs flex items-center gap-1">
+            <i class="fa-regular fa-copy"></i>
+            <span>Copy Full Script</span>
+          </button>
+        </div>
+        <textarea id="rawScriptTextarea" readonly class="w-full h-64 p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-300 focus:outline-none select-all"></textarea>
+      </div>
+
+      <div class="text-[11px] text-amber-300/80 bg-amber-500/10 border border-amber-500/20 p-2.5 rounded-lg flex items-start gap-2">
+        <i class="fa-solid fa-lightbulb text-amber-400 mt-0.5"></i>
+        <span>This script begins with <code class="bg-amber-400/20 px-1 py-0.5 rounded text-amber-200">console.clear()</code> so Chrome's preload service worker warnings are permanently hidden and you get clean green status reports.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WHATSAPP PITCH PREVIEW -->
+  <div id="pitchModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-[#0b1120] border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base text-white">WhatsApp B2B Pitch Dispatch</h3>
+            <p id="pitchModalSub" class="text-xs text-slate-400">Target: Business Name</p>
+          </div>
+        </div>
+        <button onclick="closePitchModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span>Tailored Digify Proposal:</span>
+          <span id="pitchModalNicheBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-digify-500/20 text-digify-300 uppercase">Supermarket</span>
+        </div>
+        <textarea id="pitchModalBody" class="w-full h-72 p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-sans text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-relaxed"></textarea>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="copyPitchText()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 flex items-center gap-1.5">
+          <i class="fa-regular fa-copy"></i>
+          <span>Copy Pitch</span>
+        </button>
+
+        <button onclick="dispatchWhatsAppDirect()" class="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>Send on WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toastContent" class="glass-card bg-slate-900 border border-digify-500/40 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2">
+      <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span id="toastMsg">Action completed</span>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC SCRIPT -->
+  <script>
+    /* ─────────────────────────────────────────────────────────────
+       1. CONSTANTS & DIGIFY TARGET PRESETS
+    ───────────────────────────────────────────────────────────── */
+    const CATEGORY_PRESETS = [
+      { id: "supermarket", label: "🛒 Supermarkets & Grocery", prefix: "Supermarket and departmental grocery stores in ", icon: "fa-cart-shopping", color: "#3b82f6" },
+      { id: "garments", label: "👗 Garments & Boutiques", prefix: "Readymade garment stores and fashion boutiques in ", icon: "fa-shirt", color: "#ec4899" },
+      { id: "manufacturing", label: "🏭 Manufacturing & Industrial", prefix: "Manufacturing industries and factories in ", icon: "fa-industry", color: "#8b5cf6" },
+      { id: "restaurants", label: "🍽️ Restaurants & Bakeries", prefix: "Restaurants cafes and sweet shops in ", icon: "fa-utensils", color: "#f59e0b" },
+      { id: "pharmacy", label: "💊 Pharmacy & Chemists", prefix: "Pharmacy and medical stores in ", icon: "fa-prescription-bottle-medical", color: "#10b981" },
+      { id: "hardware", label: "🛋️ Hardware & Home Decor", prefix: "Hardware sanitary and home decor stores in ", icon: "fa-couch", color: "#06b6d4" },
+      { id: "custom", label: "✏️ Custom Query", prefix: "", icon: "fa-pen", color: "#64748b" }
+    ];
+
+    const QUICK_CITIES = [
+      { name: "Surat, Gujarat", label: "Surat (Textile)", color: "#3b82f6" },
+      { name: "Ahmedabad, Gujarat", label: "Ahmedabad", color: "#6366f1" },
+      { name: "Jaipur, Rajasthan", label: "Jaipur", color: "#ec4899" },
+      { name: "Indore, Madhya Pradesh", label: "Indore", color: "#8b5cf6" },
+      { name: "Mumbai, Maharashtra", label: "Mumbai", color: "#06b6d4" },
+      { name: "Pune, Maharashtra", label: "Pune", color: "#10b981" },
+      { name: "Delhi NCR, Delhi", label: "Delhi NCR", color: "#f59e0b" },
+      { name: "Bengaluru, Karnataka", label: "Bengaluru", color: "#3b82f6" },
+      { name: "Coimbatore, Tamil Nadu", label: "Coimbatore", color: "#14b8a6" },
+      { name: "Kota, Rajasthan", label: "Kota", color: "#f97316" },
+      { name: "Udaipur, Rajasthan", label: "Udaipur", color: "#0284c7" },
+      { name: "Vadodara, Gujarat", label: "Vadodara", color: "#6366f1" },
+      { name: "Rajkot, Gujarat", label: "Rajkot", color: "#eab308" },
+      { name: "Bhopal, Madhya Pradesh", label: "Bhopal", color: "#84cc16" },
+      { name: "Lucknow, Uttar Pradesh", label: "Lucknow", color: "#06b6d4" }
+    ];
+
+    /* ─────────────────────────────────────────────────────────────
+       2. PRE-LOADED REALISTIC BUSINESS LEADS DIRECTORY
+    ───────────────────────────────────────────────────────────── */
+    const PRELOADED_SAMPLE_LEADS = [
+      { id: "lead_1", name: "Surat Mega Supermarket & Departmental", phone: "9825112340", website: "", rating: "4.7", city: "Surat", category: "Supermarkets & Retail", status: "new", notes: "Prime store in Adajan. Needs fast POS barcode billing.", createdAt: Date.now() - 36000000 },
+      { id: "lead_2", name: "Riddhi Fashion & Saree Boutique", phone: "9825445670", website: "https://riddhifashions.in", rating: "4.8", city: "Surat", category: "Garments & Fashion", status: "pitch_dispatched", notes: "Existing site is very slow. Pitch sent for size-color ERP & WhatsApp catalogue.", createdAt: Date.now() - 32000000 },
+      { id: "lead_3", name: "Shree Ram Packaging & Manufacturing", phone: "9825987650", website: "", rating: "4.6", city: "Surat", category: "Manufacturing & Industry", status: "in_discussion", notes: "Owner interested in BOM production planning & GST e-way bill module.", createdAt: Date.now() - 28000000 },
+      { id: "lead_4", name: "Ahmedabad Gourmet Bistro & Bakers", phone: "9879012345", website: "", rating: "4.9", city: "Ahmedabad", category: "Restaurants & Food", status: "demo_scheduled", notes: "Wants table QR ordering to save 28% Zomato commission. Live demo scheduled Thursday.", createdAt: Date.now() - 24000000 },
+      { id: "lead_5", name: "Sanjivani Medical Store & Wellness", phone: "9879456789", website: "", rating: "4.5", city: "Ahmedabad", category: "Pharmacy & Healthcare", status: "new", notes: "High daily footfall chemist. Batch & expiry tracking needed.", createdAt: Date.now() - 20000000 },
+      { id: "lead_6", name: "Jaipur Heritage Home Decor & Furniture", phone: "9414012340", website: "https://jaipurhomedecor.com", rating: "4.6", city: "Jaipur", category: "Hardware & Decor", status: "contacted", notes: "Looking for multi-unit billing & dispatch challans.", createdAt: Date.now() - 16000000 },
+      { id: "lead_7", name: "Kota Coaching Stationers & Book Mall", phone: "9414234560", website: "", rating: "4.7", city: "Kota", category: "Supermarkets & Retail", status: "new", notes: "Huge student stationery shop. Needs thermal printer barcode integration.", createdAt: Date.now() - 12000000 },
+      { id: "lead_8", name: "Indore Central Hypermarket Chain", phone: "9826012345", website: "", rating: "4.8", city: "Indore", category: "Supermarkets & Retail", status: "pitch_dispatched", notes: "3 branches in Indore. Multi-store cloud sync pitch dispatched.", createdAt: Date.now() - 8000000 },
+      { id: "lead_9", name: "Royal Textile Mills & Synthetic Weaving", phone: "9414112200", website: "https://royaltextiles.in", rating: "4.7", city: "Bhilwara", category: "Manufacturing & Industry", status: "new", notes: "Large loom production unit. Yarn to fabric inventory ERP pitch ready.", createdAt: Date.now() - 4000000 },
+      { id: "lead_10", name: "Delhi Fresh Daily Mart & Organic Store", phone: "9810012345", website: "", rating: "4.5", city: "Delhi NCR", category: "Supermarkets & Retail", status: "new", notes: "Weighing scale sync required at counter.", createdAt: Date.now() - 2000000 }
+    ];
+
+    /* ─────────────────────────────────────────────────────────────
+       3. STATE MANAGEMENT
+    ───────────────────────────────────────────────────────────── */
+    const STORAGE_KEY = "digify_lead_engine_database";
+    let leads = [];
+    let currentCategory = CATEGORY_PRESETS[0];
+    let currentCity = QUICK_CITIES[0];
+    let activePitchLead = null;
+    let currentView = "table"; // 'table' | 'cards'
+
+    // Load from LocalStorage or initialize with preloaded leads
+    function loadLeads() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          leads = JSON.parse(stored);
+        } else {
+          leads = [...PRELOADED_SAMPLE_LEADS];
+          saveLeads();
+        }
+      } catch (e) {
+        leads = [...PRELOADED_SAMPLE_LEADS];
+      }
+    }
+
+    function saveLeads() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+      } catch (e) {
+        console.error("Storage save failed:", e);
+      }
+      updateStats();
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       4. INITIALIZATION
+    ───────────────────────────────────────────────────────────── */
+    window.addEventListener("DOMContentLoaded", () => {
+      loadLeads();
+      renderCategoryPills();
+      renderCityPills();
+      populateFilterDropdowns();
+      syncQueryInput();
+      updateStats();
+      renderLeadsTable();
+      setupBookmarkletLink();
+      loadScraperCodeIntoModal();
+    });
+
+    /* ─────────────────────────────────────────────────────────────
+       5. QUERY BUILDER & HARVESTER UI
+    ───────────────────────────────────────────────────────────── */
+    function renderCategoryPills() {
+      const container = document.getElementById("categoryPillContainer");
+      container.innerHTML = CATEGORY_PRESETS.map(cat => {
+        const isActive = cat.id === currentCategory.id;
+        return `
+          <button onclick="selectCategory('${cat.id}')" 
+            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 ${isActive 
+              ? 'bg-digify-600 text-white shadow-md shadow-digify-600/30 ring-1 ring-digify-400' 
+              : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700/60'}">
+            <span>${cat.label}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderCityPills() {
+      const container = document.getElementById("cityPillContainer");
+      container.innerHTML = QUICK_CITIES.map(c => {
+        const isActive = c.name === currentCity.name;
+        return `
+          <button onclick="selectCity('${c.name}')" 
+            class="px-2.5 py-1 rounded-md text-[11px] font-medium transition ${isActive 
+              ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40 font-bold' 
+              : 'bg-slate-900/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200 border border-slate-800'}">
+            ${c.label}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function selectCategory(id) {
+      currentCategory = CATEGORY_PRESETS.find(c => c.id === id) || CATEGORY_PRESETS[0];
+      renderCategoryPills();
+      syncQueryInput();
+    }
+
+    function selectCity(cityName) {
+      currentCity = QUICK_CITIES.find(c => c.name === cityName) || QUICK_CITIES[0];
+      renderCityPills();
+      syncQueryInput();
+    }
+
+    function syncQueryInput() {
+      const input = document.getElementById("targetQueryInput");
+      if (currentCategory.id === "custom") {
+        input.value = "Wholesale traders and retail distributors in " + currentCity.name;
+      } else {
+        input.value = currentCategory.prefix + currentCity.name;
+      }
+    }
+
+    function onQueryInputChange() {
+      // User manual edit
+    }
+
+    function clearQuery() {
+      document.getElementById("targetQueryInput").value = "";
+    }
+
+    function launchGoogleMapsSearch() {
+      const q = document.getElementById("targetQueryInput").value.trim();
+      if (!q) return;
+      const url = "https://www.google.com/maps/search/" + encodeURIComponent(q);
+      window.open(url, "_blank");
+      showToast("Opened Google Maps! Run Bookmarklet or Scraper on that tab.", "info");
+    }
+
+    function copyGeneratedQuery() {
+      const q = document.getElementById("targetQueryInput").value.trim();
+      navigator.clipboard.writeText(q);
+      showToast("Copied search query to clipboard!");
+    }
+
+    function toggleScraperGuide() {
+      const box = document.getElementById("scraperGuideBox");
+      box.classList.toggle("hidden");
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       6. SCRAPER SCRIPT & BOOKMARKLET CODE
+    ───────────────────────────────────────────────────────────── */
+    const SCRAPER_CODE = `(async function runDigifyMapsScraper() {
+  console.clear();
+  console.log("%c⚡ [Digify Soft Solutions] Starting Outbound Lead Extractor...", "background: #2563eb; color: #fff; font-size: 14px; font-weight: bold; padding: 6px 12px; border-radius: 6px;");
+
+  const existingHud = document.getElementById("digify-scraper-hud");
+  if (existingHud) existingHud.remove();
+
+  const hud = document.createElement("div");
+  hud.id = "digify-scraper-hud";
+  hud.style.cssText = "position: fixed; top: 20px; right: 20px; z-index: 9999999; background: #0f172a; color: #ffffff; padding: 16px 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 2px #2563eb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; min-width: 320px; font-size: 13px; line-height: 1.5;";
+  hud.innerHTML = '<div style="display:flex; justify-content:space-between; margin-bottom:8px;"><b style="color:#60a5fa;">⚡ Digify Lead Harvester</b><span id="digify-hud-status" style="background:#2563eb; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:bold;">INITIALIZING</span></div><div id="digify-hud-msg" style="color:#cbd5e1; margin-bottom:10px;">Connecting to feed...</div><div style="background:#1e293b; border-radius:6px; height:8px; overflow:hidden;"><div id="digify-hud-bar" style="background:linear-gradient(90deg,#2563eb,#e06930); height:100%; width:10%;"></div></div><div style="margin-top:8px; font-size:11px; color:#94a3b8; display:flex; justify-content:space-between;"><span>Verified Leads: <b id="digify-hud-count" style="color:#10b981; font-size:13px;">0</b></span><span id="digify-hud-step">Scanning</span></div>';
+  document.body.appendChild(hud);
+
+  const updateHud = (status, msg, percent, count, step) => {
+    document.getElementById("digify-hud-status").innerText = status;
+    document.getElementById("digify-hud-msg").innerText = msg;
+    if (percent !== undefined) document.getElementById("digify-hud-bar").style.width = Math.min(100, Math.max(0, percent)) + "%";
+    if (count !== undefined) document.getElementById("digify-hud-count").innerText = count;
+    if (step) document.getElementById("digify-hud-step").innerText = step;
+  };
+
+  const downloadCSV = (results, searchName) => {
+    if (!results || !results.length) {
+      alert("⚠️ Koi verified lead nahi mili. Google Maps search result open karein.");
+      hud.remove();
+      return;
+    }
+    const header = "Business Name,Phone,Website,Rating,City,Category";
+    const rows = results.map(r => '"' + (r.Name||"").replace(/"/g, '""') + '","' + (r.Phone||"") + '","' + (r.Website||"") + '","' + (r.Rating||"") + '","' + (r.City||"") + '","' + (r.Category||"") + '"');
+    const blob = new Blob(["\uFEFF" + [header, ...rows].join("\n")], { type: "text/csv;charset=utf-8;" });
+    const cleanName = (searchName || "Digify_Leads").replace(/[^a-zA-Z0-9\s]/g, ' ').trim().replace(/\s+/g, '_');
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = cleanName + "_Digify_Leads.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    updateHud("Success", "✅ Downloaded " + results.length + " leads! Drag into Digify Portal.", 100, results.length, "Completed");
+    setTimeout(() => { hud.style.opacity = '0.7'; }, 4000);
+  };
+
+  const searchInput = (document.querySelector('#searchboxinput')?.value || document.title.replace(/ - Google Maps/i, '').replace(/Google Maps/i, '').trim() || "Leads").trim();
+  const qLower = searchInput.toLowerCase();
+
+  let defaultCity = "Surat";
+  const cities = ["Surat","Ahmedabad","Jaipur","Indore","Mumbai","Pune","Delhi NCR","Bengaluru","Coimbatore","Kota","Udaipur","Vadodara","Rajkot","Bhopal","Lucknow"];
+  for (const c of cities) { if (qLower.includes(c.toLowerCase())) { defaultCity = c; break; } }
+
+  let defaultCategory = "Retail & General";
+  if (qLower.includes("supermarket") || qLower.includes("grocery") || qLower.includes("mart")) defaultCategory = "Supermarkets & Retail";
+  else if (qLower.includes("garment") || qLower.includes("boutique") || qLower.includes("fashion") || qLower.includes("textile")) defaultCategory = "Garments & Fashion";
+  else if (qLower.includes("manufactur") || qLower.includes("factory") || qLower.includes("industry")) defaultCategory = "Manufacturing & Industry";
+  else if (qLower.includes("restaurant") || qLower.includes("cafe") || qLower.includes("sweet") || qLower.includes("bakery")) defaultCategory = "Restaurants & Food";
+  else if (qLower.includes("pharma") || qLower.includes("medical") || qLower.includes("chemist")) defaultCategory = "Pharmacy & Healthcare";
+
+  const feed = document.querySelector('div[role="feed"]') || document.querySelector('div.m6QErb[aria-label*="Results" i]');
+  if (!feed) {
+    alert("Google Maps Search Results feed nahi mili! Pehle Maps search bar me search karein.");
+    hud.remove();
+    return;
+  }
+
+  updateHud("Scrolling", "Scrolling results to fetch maximum businesses...", 20, 0, "Auto-Scrolling");
+  let prevCount = 0;
+  for (let i = 0; i < 20; i++) {
+    feed.scrollTop = feed.scrollHeight;
+    await new Promise(r => setTimeout(r, 900));
+    const cur = feed.querySelectorAll('div[role="article"], div.Nv2PK').length;
+    updateHud("Scrolling", "Found " + cur + " business listings...", 20 + i*2, 0, "Scroll " + (i+1) + "/20");
+    if (cur === prevCount && i > 3) break;
+    prevCount = cur;
+  }
+
+  const cards = Array.from(feed.querySelectorAll('div[role="article"], div.Nv2PK'));
+  updateHud("Extracting", "Extracting verified phone numbers from " + cards.length + " cards...", 50, 0, "Deep Extraction");
+
+  const results = [];
+  const seen = new Set();
+
+  for (let i = 0; i < cards.length; i++) {
+    const el = cards[i];
+    const nameEl = el.querySelector('.fontHeadlineSmall') || el.querySelector('a.hfpxzc') || el.querySelector('div.qBF1Pd');
+    const name = (nameEl ? (nameEl.getAttribute('aria-label') || nameEl.innerText) : "").trim();
+    if (!name) continue;
+
+    let text = el.innerText || "";
+    let webEl = el.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[href*="http"]:not([href*="google.com"])');
+    let website = webEl ? webEl.href : "";
+
+    let ph = text.match(/(?:\+91[\s-]?)?[0]?[6-9]\d{4}[\s-]?\d{5}|\b0\d{2,4}[\s-]?\d{6,8}\b/);
+    let phone = ph ? ph[0].replace(/[\s-]/g, '') : "";
+
+    if (!phone || !website) {
+      try {
+        const clickTarget = el.querySelector('a.hfpxzc') || nameEl || el;
+        clickTarget.click();
+        await new Promise(r => setTimeout(r, 380));
+        if (!phone) {
+          const btn = document.querySelector('button[data-item-id^="phone:tel:"], [data-item-id*="phone"]');
+          if (btn) {
+            const raw = btn.getAttribute('data-item-id') || btn.getAttribute('aria-label') || btn.innerText || "";
+            const m = raw.match(/(?:\+91[\s-]?)?[0]?[6-9]\d{4}[\s-]?\d{5}|\b0\d{2,4}[\s-]?\d{6,8}\b/);
+            if (m) phone = m[0].replace(/[\s-]/g, '');
+          }
+        }
+        if (!website) {
+          const w = document.querySelector('a[data-item-id="authority"], a[data-value="Website"]');
+          if (w && w.href && !w.href.includes('google.com')) website = w.href;
+        }
+      } catch (e) {}
+    }
+
+    const rEl = el.querySelector('span[aria-hidden="true"], span.MW4etd');
+    const rating = rEl ? rEl.innerText : "";
+
+    const digits = (phone || "").replace(/\D/g, "");
+    if (!digits || digits.length < 10) continue;
+    const stdMobile = digits.slice(-10);
+    if (seen.has(stdMobile)) continue;
+    seen.add(stdMobile);
+
+    results.push({ Name: name, Phone: phone, Website: website, Rating: rating, City: defaultCity, Category: defaultCategory });
+    updateHud("Extracting", "Extracted: " + name.substring(0, 18) + "...", 50 + Math.round((i/cards.length)*45), results.length, results.length + " leads");
+  }
+
+  downloadCSV(results, searchInput);
+})();`;
+
+    function loadScraperCodeIntoModal() {
+      document.getElementById("rawScriptTextarea").value = SCRAPER_CODE;
+    }
+
+    function setupBookmarkletLink() {
+      const codeForBookmarklet = "javascript:" + encodeURIComponent(SCRAPER_CODE.replace(/\n\s*/g, ' '));
+      const link = document.getElementById("bookmarkletLink");
+      if (link) link.href = codeForBookmarklet;
+    }
+
+    function openBookmarkletModal() {
+      document.getElementById("bookmarkletModal").classList.remove("hidden");
+    }
+
+    function closeBookmarkletModal() {
+      document.getElementById("bookmarkletModal").classList.add("hidden");
+    }
+
+    function openScriptModal() {
+      document.getElementById("scriptModal").classList.remove("hidden");
+    }
+
+    function closeScriptModal() {
+      document.getElementById("scriptModal").classList.add("hidden");
+    }
+
+    function copyScraperCode() {
+      navigator.clipboard.writeText(SCRAPER_CODE);
+      showToast("Scraper script copied! Open Google Maps and paste in Console.");
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       7. CSV PARSER & DRAG/DROP
+    ───────────────────────────────────────────────────────────── */
+    function onDragOver(e) {
+      e.preventDefault();
+      document.getElementById("dropZone").classList.add("border-digify-500", "bg-slate-900");
+    }
+
+    function onDragLeave(e) {
+      e.preventDefault();
+      document.getElementById("dropZone").classList.remove("border-digify-500", "bg-slate-900");
+    }
+
+    function onDrop(e) {
+      e.preventDefault();
+      document.getElementById("dropZone").classList.remove("border-digify-500", "bg-slate-900");
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processCSVFile(e.dataTransfer.files[0]);
+      }
+    }
+
+    function handleCSVUpload(e) {
+      if (e.target.files && e.target.files.length > 0) {
+        processCSVFile(e.target.files[0]);
+      }
+    }
+
+    function processCSVFile(file) {
+      if (!file.name.endsWith(".csv")) {
+        alert("Please upload a .csv file downloaded from Google Maps!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target.result;
+        parseCSVText(text);
+      };
+      reader.readAsText(file, "UTF-8");
+    }
+
+    function parseCSVText(csvContent) {
+      const lines = csvContent.split(/\r?\n/).filter(l => l.trim().length > 0);
+      if (lines.length < 2) {
+        alert("CSV file appears to be empty or corrupted.");
+        return;
+      }
+
+      // Simple CSV Line Tokenizer
+      const tokenizeCSV = (line) => {
+        const row = [];
+        let inQuotes = false;
+        let token = "";
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"' || char === "'") {
+            if (inQuotes && line[i + 1] === char) {
+              token += char;
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (char === ',' && !inQuotes) {
+            row.push(token.trim());
+            token = "";
+          } else {
+            token += char;
+          }
+        }
+        row.push(token.trim());
+        return row;
+      };
+
+      const headerRow = tokenizeCSV(lines[0]).map(h => h.toLowerCase().replace(/[^a-z0-9]/g, ''));
+      
+      const colName = headerRow.findIndex(h => h.includes("name") || h.includes("business") || h.includes("title"));
+      const colPhone = headerRow.findIndex(h => h.includes("phone") || h.includes("mobile") || h.includes("contact") || h.includes("tel"));
+      const colWeb = headerRow.findIndex(h => h.includes("website") || h.includes("url") || h.includes("site") || h.includes("link"));
+      const colRating = headerRow.findIndex(h => h.includes("rating") || h.includes("rate") || h.includes("star") || h.includes("score"));
+      const colCity = headerRow.findIndex(h => h.includes("city") || h.includes("location") || h.includes("town") || h.includes("address"));
+      const colCategory = headerRow.findIndex(h => h.includes("category") || h.includes("type") || h.includes("industry") || h.includes("niche"));
+
+      const existingPhones = new Set(leads.map(l => (l.phone || "").replace(/\D/g, '').slice(-10)).filter(Boolean));
+      let added = 0;
+      let duplicates = 0;
+
+      for (let i = 1; i < lines.length; i++) {
+        const row = tokenizeCSV(lines[i]);
+        if (!row || row.length === 0) continue;
+
+        const name = (colName !== -1 ? row[colName] : row[0]) || "";
+        const phone = (colPhone !== -1 ? row[colPhone] : row[1]) || "";
+        const website = (colWeb !== -1 ? row[colWeb] : (row[2] || "")) || "";
+        const rating = (colRating !== -1 ? row[colRating] : (row[3] || "")) || "";
+        const city = (colCity !== -1 ? row[colCity] : (row[4] || currentCity.name.split(',')[0])) || currentCity.name.split(',')[0];
+        const category = (colCategory !== -1 ? row[colCategory] : (row[5] || currentCategory.label.replace(/[^a-zA-Z &]/g, '').trim())) || "General";
+
+        const cleanDigits = phone.replace(/\D/g, '');
+        if (!cleanDigits || cleanDigits.length < 10) continue;
+        const std10 = cleanDigits.slice(-10);
+
+        if (existingPhones.has(std10)) {
+          duplicates++;
+          continue;
+        }
+        existingPhones.add(std10);
+
+        leads.unshift({
+          id: "lead_" + Date.now() + "_" + Math.random().toString(36).substring(2, 6),
+          name: name.trim(),
+          phone: phone.trim(),
+          website: website.trim(),
+          rating: rating.trim(),
+          city: city.trim(),
+          category: category.trim(),
+          status: "new",
+          notes: "",
+          createdAt: Date.now()
+        });
+        added++;
+      }
+
+      saveLeads();
+      populateFilterDropdowns();
+      renderLeadsTable();
+      showToast(`Imported ${added} verified leads! (${duplicates} duplicates skipped)`, "success");
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       8. STATS & KPIS
+    ───────────────────────────────────────────────────────────── */
+    function updateStats() {
+      const total = leads.length;
+      const noWeb = leads.filter(l => !l.website || !l.website.trim()).length;
+      const hasWeb = total - noWeb;
+      const dispatched = leads.filter(l => l.status === "pitch_dispatched").length;
+      const interested = leads.filter(l => l.status === "in_discussion" || l.status === "demo_scheduled" || l.status === "closed_won").length;
+      const cold = leads.filter(l => l.status === "not_interested").length;
+
+      document.getElementById("statTotal").innerText = total;
+      document.getElementById("statNoWeb").innerText = noWeb;
+      document.getElementById("statHasWeb").innerText = hasWeb;
+      document.getElementById("statDispatched").innerText = dispatched;
+      document.getElementById("statInterested").innerText = interested;
+      document.getElementById("statCold").innerText = cold;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       9. FILTERING & RENDERING
+    ───────────────────────────────────────────────────────────── */
+    function populateFilterDropdowns() {
+      const cities = Array.from(new Set(leads.map(l => l.city).filter(Boolean))).sort();
+      const categories = Array.from(new Set(leads.map(l => l.category).filter(Boolean))).sort();
+
+      const citySelect = document.getElementById("filterCity");
+      const currentSelectedCity = citySelect.value;
+      citySelect.innerHTML = '<option value="all">All Cities (' + cities.length + ')</option>' +
+        cities.map(c => '<option value="' + c + '" ' + (c === currentSelectedCity ? 'selected' : '') + '>' + c + '</option>').join('');
+
+      const catSelect = document.getElementById("filterCategory");
+      const currentSelectedCat = catSelect.value;
+      catSelect.innerHTML = '<option value="all">All Categories (' + categories.length + ')</option>' +
+        categories.map(c => '<option value="' + c + '" ' + (c === currentSelectedCat ? 'selected' : '') + '>' + c + '</option>').join('');
+    }
+
+    function getFilteredLeads() {
+      const q = (document.getElementById("leadSearchInput").value || "").toLowerCase().trim();
+      const fCity = document.getElementById("filterCity").value;
+      const fCat = document.getElementById("filterCategory").value;
+      const fWeb = document.getElementById("filterWeb").value;
+      const fStatus = document.getElementById("filterStatus").value;
+
+      return leads.filter(l => {
+        // Keyword Search
+        if (q) {
+          const combo = (l.name + " " + l.phone + " " + l.city + " " + l.category + " " + (l.notes || "")).toLowerCase();
+          if (!combo.includes(q)) return false;
+        }
+
+        // City
+        if (fCity !== "all" && l.city !== fCity) return false;
+
+        // Category
+        if (fCat !== "all" && l.category !== fCat) return false;
+
+        // Website Status
+        if (fWeb === "no" && (l.website && l.website.trim())) return false;
+        if (fWeb === "yes" && (!l.website || !l.website.trim())) return false;
+
+        // Pipeline Status
+        if (fStatus !== "all" && l.status !== fStatus) return false;
+
+        return true;
+      });
+    }
+
+    function renderLeadsTable() {
+      const filtered = getFilteredLeads();
+      const tbody = document.getElementById("leadsTableBody");
+      const emptyState = document.getElementById("emptyState");
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+      emptyState.classList.add("hidden");
+
+      tbody.innerHTML = filtered.map((l, index) => {
+        const hasWeb = !!(l.website && l.website.trim());
+        const cleanPh = (l.phone || "").replace(/\D/g, '').slice(-10);
+
+        return `
+          <tr class="hover:bg-slate-800/40 transition group">
+            <td class="py-3 px-3 text-center text-slate-500 font-mono text-[11px]">${index + 1}</td>
+            
+            <!-- Business Name & Rating -->
+            <td class="py-3 px-4">
+              <div class="font-bold text-white text-xs group-hover:text-digify-400 transition flex items-center gap-1.5">
+                <span>${l.name}</span>
+                ${l.rating ? `<span class="text-[10px] text-amber-400 font-semibold flex items-center gap-0.5"><i class="fa-solid fa-star text-[9px]"></i> ${l.rating}</span>` : ''}
+              </div>
+              <div class="text-[10px] text-slate-500 flex items-center gap-2 mt-0.5">
+                <span>ID: ${l.id.substring(0, 10)}</span>
+                ${l.notes ? `<span class="text-amber-300/80 truncate max-w-[200px]" title="${l.notes}"><i class="fa-solid fa-note-sticky mr-1"></i>${l.notes}</span>` : ''}
+              </div>
+            </td>
+
+            <!-- Phone -->
+            <td class="py-3 px-3">
+              <div class="flex items-center gap-1.5">
+                <a href="tel:+91${cleanPh}" class="font-mono font-medium text-slate-200 hover:text-emerald-400 text-xs">
+                  +91 ${cleanPh}
+                </a>
+                <button onclick="copyToClipboard('+91${cleanPh}', 'Phone number copied!')" title="Copy Phone" class="text-slate-500 hover:text-slate-300">
+                  <i class="fa-regular fa-copy text-[10px]"></i>
+                </button>
+              </div>
+            </td>
+
+            <!-- Website -->
+            <td class="py-3 px-3">
+              ${hasWeb ? `
+                <a href="${l.website.startsWith('http') ? l.website : 'https://' + l.website}" target="_blank" 
+                  class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs truncate max-w-[130px]" title="${l.website}">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                  <span>${l.website.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]}</span>
+                </a>
+              ` : `
+                <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <i class="fa-solid fa-fire text-[9px]"></i> No Website
+                </span>
+              `}
+            </td>
+
+            <!-- Category & City -->
+            <td class="py-3 px-3">
+              <div class="font-medium text-slate-300 text-xs">${l.city}</div>
+              <div class="text-[10px] text-slate-500 truncate max-w-[140px]">${l.category}</div>
+            </td>
+
+            <!-- Pipeline Status Selector -->
+            <td class="py-3 px-3">
+              <select onchange="updateLeadStatus('${l.id}', this.value)" 
+                class="px-2 py-1 rounded text-[11px] font-bold border focus:outline-none transition ${getStatusBadgeClass(l.status)}">
+                <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
+                <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="pitch_dispatched" ${l.status === 'pitch_dispatched' ? 'selected' : ''}>Pitch Sent</option>
+                <option value="demo_scheduled" ${l.status === 'demo_scheduled' ? 'selected' : ''}>Demo Scheduled</option>
+                <option value="in_discussion" ${l.status === 'in_discussion' ? 'selected' : ''}>In Discussion</option>
+                <option value="closed_won" ${l.status === 'closed_won' ? 'selected' : ''}>Closed Won 🎉</option>
+                <option value="not_interested" ${l.status === 'not_interested' ? 'selected' : ''}>Cold / Dropped</option>
+              </select>
+            </td>
+
+            <!-- Digify Outreach Action -->
+            <td class="py-3 px-4 text-center">
+              <div class="flex items-center justify-center gap-1.5">
+                <!-- WhatsApp 1-Click -->
+                <button onclick="openWhatsAppPitchPreview('${l.id}')" 
+                  class="px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 transition flex items-center gap-1 text-[11px] font-semibold">
+                  <i class="fa-brands fa-whatsapp text-xs"></i>
+                  <span>Pitch</span>
+                </button>
+
+                <!-- Email Proposal -->
+                <button onclick="openEmailProposal('${l.id}')" 
+                  title="Generate Digify B2B Email Proposal"
+                  class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition text-[11px]">
+                  <i class="fa-regular fa-envelope"></i>
+                </button>
+              </div>
+            </td>
+
+            <!-- Quick Inline Edit / Notes / Delete -->
+            <td class="py-3 px-3 text-right">
+              <div class="flex items-center justify-end gap-1.5">
+                <button onclick="editNotesPrompt('${l.id}')" title="Edit Remarks & Follow-up" class="p-1 text-slate-400 hover:text-amber-400">
+                  <i class="fa-solid fa-pen-to-square text-xs"></i>
+                </button>
+                <button onclick="deleteLead('${l.id}')" title="Remove Lead" class="p-1 text-slate-500 hover:text-rose-400">
+                  <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      if (currentView === "cards") {
+        renderCardsView(filtered);
+      }
+    }
+
+    function renderCardsView(filtered) {
+      const container = document.getElementById("cardsViewWrapper");
+      container.innerHTML = filtered.map(l => {
+        const cleanPh = (l.phone || "").replace(/\D/g, '').slice(-10);
+        const hasWeb = !!(l.website && l.website.trim());
+
+        return `
+          <div class="glass-card rounded-xl p-4 border border-slate-800 hover:border-digify-500/50 transition space-y-3 relative overflow-hidden">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h4 class="font-bold text-white text-sm hover:text-digify-400 transition">${l.name}</h4>
+                <p class="text-[11px] text-slate-400">${l.category} • <span class="text-slate-300">${l.city}</span></p>
+              </div>
+              ${l.rating ? `<span class="text-[11px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20"><i class="fa-solid fa-star text-[9px] mr-1"></i>${l.rating}</span>` : ''}
+            </div>
+
+            <div class="space-y-1.5 text-xs">
+              <div class="flex items-center justify-between text-slate-300">
+                <span class="text-slate-500 text-[11px]">Phone:</span>
+                <a href="tel:+91${cleanPh}" class="font-mono font-medium hover:text-emerald-400">+91 ${cleanPh}</a>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 text-[11px]">Website:</span>
+                ${hasWeb ? `
+                  <a href="${l.website.startsWith('http') ? l.website : 'https://' + l.website}" target="_blank" class="text-cyan-400 truncate max-w-[160px] text-[11px]">
+                    ${l.website.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]}
+                  </a>
+                ` : `
+                  <span class="text-amber-400 text-[10px] font-bold bg-amber-500/10 px-1.5 py-0.5 rounded">No Website (High Priority)</span>
+                `}
+              </div>
+              ${l.notes ? `<div class="p-2 rounded bg-slate-900/80 border border-slate-800 text-[11px] text-amber-200/90">${l.notes}</div>` : ''}
+            </div>
+
+            <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <select onchange="updateLeadStatus('${l.id}', this.value)" class="px-2 py-1 rounded text-[11px] font-bold border focus:outline-none ${getStatusBadgeClass(l.status)}">
+                <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
+                <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="pitch_dispatched" ${l.status === 'pitch_dispatched' ? 'selected' : ''}>Pitch Sent</option>
+                <option value="demo_scheduled" ${l.status === 'demo_scheduled' ? 'selected' : ''}>Demo Scheduled</option>
+                <option value="in_discussion" ${l.status === 'in_discussion' ? 'selected' : ''}>In Discussion</option>
+                <option value="closed_won" ${l.status === 'closed_won' ? 'selected' : ''}>Closed Won</option>
+                <option value="not_interested" ${l.status === 'not_interested' ? 'selected' : ''}>Cold</option>
+              </select>
+
+              <div class="flex items-center gap-1.5">
+                <button onclick="openWhatsAppPitchPreview('${l.id}')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </button>
+                <button onclick="deleteLead('${l.id}')" class="p-1.5 text-slate-500 hover:text-rose-400 rounded">
+                  <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function switchView(view) {
+      currentView = view;
+      const btnTable = document.getElementById("btnViewTable");
+      const btnCards = document.getElementById("btnViewCards");
+      const tableWrapper = document.getElementById("tableViewWrapper");
+      const cardsWrapper = document.getElementById("cardsViewWrapper");
+
+      if (view === "table") {
+        btnTable.className = "px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white";
+        btnCards.className = "px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white";
+        tableWrapper.classList.remove("hidden");
+        cardsWrapper.classList.add("hidden");
+      } else {
+        btnCards.className = "px-2.5 py-1 text-xs rounded font-medium bg-digify-600 text-white";
+        btnTable.className = "px-2.5 py-1 text-xs rounded font-medium text-slate-400 hover:text-white";
+        tableWrapper.classList.add("hidden");
+        cardsWrapper.classList.remove("hidden");
+        renderCardsView(getFilteredLeads());
+      }
+    }
+
+    function getStatusBadgeClass(status) {
+      switch (status) {
+        case "new": return "bg-blue-500/10 text-blue-400 border-blue-500/30";
+        case "contacted": return "bg-cyan-500/10 text-cyan-400 border-cyan-500/30";
+        case "pitch_dispatched": return "bg-indigo-500/10 text-indigo-300 border-indigo-500/30";
+        case "demo_scheduled": return "bg-amber-500/10 text-amber-400 border-amber-500/30";
+        case "in_discussion": return "bg-purple-500/10 text-purple-300 border-purple-500/30";
+        case "closed_won": return "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
+        case "not_interested": return "bg-rose-500/10 text-rose-400 border-rose-500/20";
+        default: return "bg-slate-800 text-slate-300 border-slate-700";
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       10. LEAD STATUS & CRUD
+    ───────────────────────────────────────────────────────────── */
+    function updateLeadStatus(id, newStatus) {
+      const lead = leads.find(l => l.id === id);
+      if (lead) {
+        lead.status = newStatus;
+        saveLeads();
+        renderLeadsTable();
+        showToast("Updated status to " + newStatus.replace('_', ' '));
+      }
+    }
+
+    function editNotesPrompt(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+      const current = lead.notes || "";
+      const updated = prompt("Enter notes / follow-up details for " + lead.name + ":", current);
+      if (updated !== null) {
+        lead.notes = updated.trim();
+        saveLeads();
+        renderLeadsTable();
+        showToast("Remarks saved!");
+      }
+    }
+
+    function deleteLead(id) {
+      if (confirm("Are you sure you want to delete this lead?")) {
+        leads = leads.filter(l => l.id !== id);
+        saveLeads();
+        populateFilterDropdowns();
+        renderLeadsTable();
+        showToast("Lead removed", "info");
+      }
+    }
+
+    function clearAllLeadsPrompt() {
+      if (confirm("⚠️ Clear all " + leads.length + " leads from local database? This cannot be undone.")) {
+        leads = [];
+        saveLeads();
+        populateFilterDropdowns();
+        renderLeadsTable();
+        showToast("All leads cleared", "info");
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       11. DIGIFY PITCH GENERATORS (WHATSAPP & EMAIL)
+    ───────────────────────────────────────────────────────────── */
+    function detectLeadNiche(lead) {
+      const txt = (lead.name + " " + lead.category + " " + (lead.notes || "")).toLowerCase();
+      if (txt.includes("supermarket") || txt.includes("kirana") || txt.includes("grocery") || txt.includes("mart") || txt.includes("hypermarket")) return "supermarket";
+      if (txt.includes("garment") || txt.includes("boutique") || txt.includes("textile") || txt.includes("cloth") || txt.includes("saree") || txt.includes("suit") || txt.includes("apparel") || txt.includes("footwear")) return "garment";
+      if (txt.includes("manufactur") || txt.includes("factory") || txt.includes("industry") || txt.includes("industrial") || txt.includes("mill") || txt.includes("packag")) return "manufacturing";
+      if (txt.includes("restaurant") || txt.includes("cafe") || txt.includes("sweet") || txt.includes("bakery") || txt.includes("food") || txt.includes("hotel")) return "restaurant";
+      if (txt.includes("pharma") || txt.includes("medical") || txt.includes("chemist") || txt.includes("hospital") || txt.includes("drug")) return "pharmacy";
+      if (txt.includes("hardware") || txt.includes("decor") || txt.includes("furniture") || txt.includes("sanitary") || txt.includes("plywood")) return "hardware";
+      return "it_general";
+    }
+
+    function generateDigifyWhatsAppPitch(lead) {
+      const name = (lead?.name || "Sir / Madam").trim();
+      const city = lead?.city || "Aapke Shahar";
+      const hasWeb = !!(lead?.website && lead.website.trim());
+      const niche = detectLeadNiche(lead);
+
+      if (niche === "supermarket") {
+        return `*नमस्ते ${name}* 🙏
+
+मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
+
+${city} में आपके सुपरमार्केट/स्टोर के बिलिंग और स्टॉक ऑपरेशन्स को और अधिक तेज़ व त्रुटिरहित बनाने हेतु यह छोटा सा संदेश भेज रहा हूँ:
+
+✨ *Digify Smart Supermarket POS & Cloud ERP:*
+⚡ *सुपरफास्ट बारकोड बिलिंग* — रश आवर्स में काउंटर पर लंबी लाइनें खत्म, 3 सेकंड में इनवॉइस तैयार।
+⚖️ *वेइंग स्केल व थर्मल प्रिंटर सिंक* — दालें, ड्राई फ्रूट्स, सब्जियां सीधे तौलकर ऑटोमैटिक बारकोड व बिल।
+📦 *रियल-टाइम स्टॉक व एक्सपायरी अलर्ट्स* — कौन सा सामान खत्म होने वाला है और किसकी एक्सपायरी नज़दीक है, मोबाइल पर अलर्ट।
+📊 *GST रिपोर्ट व डेली सेल्स लेजर* — दिनभर की बिक्री, कैश, UPI और GST रिपोर्ट्स 1-क्लिक में डाउनलोड।
+${hasWeb ? '🌐 *वेबसाइट अपग्रेड:* हम आपकी मौजूदा वेबसाइट को सीधे इन-स्टोर इन्वेंटरी और ऑनलाइन डिलीवरी से जोड़ सकते हैं।' : '🚀 *ऑनलाइन ग्रॉसरी ऑर्डरिंग:* काउंटर बिलिंग के साथ-साथ आपके ग्राहकों के लिए ऑनलाइन ऑर्डरिंग मोबाइल ऐप।'}
+
+क्या हम इस हफ्ते प्रबंधन समिति के साथ 2-मिनट का निःशुल्क लाइव डेमो या फोन पर चर्चा कर सकते हैं?
+
+सादर,
+*Digify Soft Solutions Team*
+🌐 https://www.digifysoft.in
+📞 +91 91191 19999`;
+      }
+
+      if (niche === "garment") {
+        return `*नमस्ते ${name}* 🙏
+
+मैं *Digify Soft Solutions* से संपर्क कर रहा हूँ।
+
+${city} में आपके रेडीमेड गारमेंट्स/बुटीक के स्टॉक, बारकोड और कस्टमर रिटेंशन को आधुनिक बनाने के लिए हमारा विशेष गारमेंट ईआरपी सॉल्यूशन उपलब्ध है:
+
+✨ *Digify Garments & Boutique Retail Suite:*
+🏷️ *साइज़-कलर-डिज़ाइन मैट्रिक्स* — S, M, L, XL और शेड्स के अनुसार सटीक स्टॉक कंट्रोल।
+👕 *कस्टम बारकोड प्रिंटिंग* — अपनी दुकान के नाम व MRP का बारकोड लेबल खुद प्रिंट करें।
+📱 *WhatsApp डिजिटल कैटलॉग* — नए अराइवल्स की फोटो और रेट्स ग्राहकों को सीधे WhatsApp पर भेजें।
+🎁 *कस्टमर लॉयल्टी पॉइंट्स* — हर खरीद पर रिवॉर्ड पॉइंट्स से ग्राहकों का बार-बार आना सुनिश्चित।
+${hasWeb ? '🌐 *ई-कॉमर्स सिंक:* आपकी वेबसाइट और दुकान का स्टॉक रीयल-टाइम में एक साथ मैनेज होगा।' : '🚀 *कस्टम गारमेंट ऐप:* आपके आउटलेट का मोबाइल ऐप जिससे ऑल-इंडिया ग्राहक सीधे ऑर्डर करें।'}
+
+क्या हम इस हफ्ते 2 मिनट का ऑनलाइन लाइव डेमो शेयर कर सकते हैं?
+
+शुभकामनाएँ,
+*Digify Soft Solutions Team*
+🌐 https://www.digifysoft.in`;
+      }
+
+      if (niche === "manufacturing") {
+        return `*नमस्ते ${name}* 🙏
+
+मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
+
+${city} में आपकी मैन्युफैक्चरिंग यूनिट और फैक्ट्री ऑपरेशन्स को ऑटोमेट करने हेतु हमारा इंडस्ट्रियल ERP सिस्टम:
+
+✨ *Digify Industrial & Manufacturing ERP:*
+⚙️ *Bill of Materials (BOM) प्लानिंग* — कच्चे माल (Raw Materials) की सटीक खपत और वेस्टेज कंट्रोल।
+🏭 *वर्क-इन-प्रोग्रेस (WIP) ट्रैकिंग* — जॉब वर्क, मशीन शेड्यूलिंग और डेली प्रोडक्शन रिपोर्ट।
+🚚 *डिस्पैच चालान व GST e-Way Bill* — इनवॉइस बनते ही ऑटोमैटिक ई-वे बिल और ई-इनवॉइस जनरेशन।
+💼 *वेंडर व लेबर पेरोल* — सप्लायर पेमेंट लेजर्स और वर्कर अटेंडेंस।
+
+क्या हम इस सप्ताह 5-मिनट की क्विक कॉल या लाइव ऑनलाइन प्रीव्यू शेड्यूल कर सकते हैं?
+
+सादर,
+*Digify Soft Solutions*
+🌐 https://www.digifysoft.in`;
+      }
+
+      if (niche === "restaurant") {
+        return `*Hello Team ${name}* 🙏
+
+Greetings from *Digify Soft Solutions*.
+
+Hum ${city} ke restaurants, cafes aur bakeries ke daily operations aur profits boost karne ke liye complete Smart Restaurant POS provide karte hain:
+
+✨ *Digify Hospitality & F&B Suite:*
+💰 *Save 25-30% Swiggy/Zomato Commissions* — Direct table QR code ordering & direct takeaway portal.
+🍳 *Kitchen Order Ticket (KOT)* — Order seedha kitchen display / thermal printer par dispatch.
+🧾 *Split Billing & Multi-Payment* — Cash, Card, UPI, aur Split-bill counter par instant settle.
+📊 *Recipe Costing & Raw Material Stock* — Paneer, dairy, vegetables ka real-time consumption tracking.
+
+Would you be open to a 2-minute live demo this week?
+
+Warm regards,
+*Digify Soft Solutions*
+🌐 https://www.digifysoft.in`;
+      }
+
+      // Default Retail / IT Services
+      return `*नमस्ते ${name}* 🙏
+
+मैं *Digify Soft Solutions* से कनेक्ट कर रहा हूँ।
+
+${city} में आपके व्यवसाय को डिजिटाइज़ करके आपकी सेल्स और दैनिक संचालन को आसान बनाने के लिए हम संपूर्ण Cloud ERP, Smart POS और IT सर्विसेज प्रदान करते हैं:
+
+✨ *Digify Core Solutions:*
+💻 *स्मार्ट क्लाउड ERP व GST बिलिंग* — बारकोड स्कैनिंग, इन्वेंटरी, इनवॉइसिंग और अकाउंट्स।
+${hasWeb ? '🌐 *वेबसाइट व SEO अपग्रेड:* आपकी मौजूदा वेबसाइट को सुपरफास्ट स्पीड, मॉडर्न लुक व टॉप गूगल सर्च रैंकिंग।' : '🌐 *हाई-कनवर्टिंग कॉर्पोरेट वेबसाइट:* पैन-इंडिया नए ग्राहकों को आकर्षित करने के लिए प्रीमियम वेबसाइट।'}
+📱 *कस्टम मोबाइल ऐप्लिकेशन* — एंड्रॉइड व iOS ऐप आपके बिज़नेस के नाम से।
+🔒 *सुरक्षित क्लाउड बैकअप* — आपका डेटा हमेशा 100% सेफ और किसी भी मोबाइल/लैपटॉप से एक्सेसिबल।
+
+क्या हम इस हफ्ते 2 मिनट का ऑनलाइन प्रीव्यू या चर्चा कर सकते हैं?
+
+सादर,
+*Digify Soft Solutions Team*
+🌐 https://www.digifysoft.in`;
+    }
+
+    function generateDigifyEmailProposal(lead) {
+      const name = (lead?.name || "Business Management").trim();
+      const niche = detectLeadNiche(lead);
+
+      return {
+        subject: `Cloud ERP, Smart POS & Digital Growth Proposal for ${name} | Digify Soft Solutions`,
+        body: `Dear Management of ${name},
+
+Greetings from Digify Soft Solutions (www.digifysoft.in).
+
+We empower growing retail businesses, manufacturing units, and enterprises across India with modern Cloud-based ERP, Smart POS, and custom software solutions designed to simplify operations ("Digital + Simplify").
+
+Key Solutions Tailored for ${name}:
+1. Fast Barcode POS Billing & Inventory Lot Tracking
+2. GST e-Invoicing & Automated Financial Ledgers
+3. Multi-Store Stock Synchronization & Branch Reporting
+4. Custom Mobile Apps & Modern Web Portals
+
+Could we schedule a brief 5-minute call or online walkthrough this week to demonstrate how Digify can enhance operational efficiency for ${name}?
+
+Warm regards,
+
+Digify Soft Solutions
+Website: https://www.digifysoft.in
+Email: business@digifysoft.in
+Contact: +91 91191 19999`
+      };
+    }
+
+    function openWhatsAppPitchPreview(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+      activePitchLead = lead;
+
+      document.getElementById("pitchModalSub").innerText = "Target: " + lead.name + " (" + lead.city + ")";
+      document.getElementById("pitchModalNicheBadge").innerText = lead.category || "General";
+      document.getElementById("pitchModalBody").value = generateDigifyWhatsAppPitch(lead);
+      document.getElementById("pitchModal").classList.remove("hidden");
+    }
+
+    function closePitchModal() {
+      document.getElementById("pitchModal").classList.add("hidden");
+      activePitchLead = null;
+    }
+
+    function copyPitchText() {
+      const txt = document.getElementById("pitchModalBody").value;
+      navigator.clipboard.writeText(txt);
+      showToast("Pitch copied to clipboard!");
+    }
+
+    function dispatchWhatsAppDirect() {
+      if (!activePitchLead) return;
+      const cleanPh = (activePitchLead.phone || "").replace(/\D/g, '').slice(-10);
+      const text = document.getElementById("pitchModalBody").value;
+      const url = "https://wa.me/91" + cleanPh + "?text=" + encodeURIComponent(text);
+
+      window.open(url, "_blank");
+
+      // Auto update status to pitch_dispatched
+      activePitchLead.status = "pitch_dispatched";
+      saveLeads();
+      renderLeadsTable();
+      closePitchModal();
+      showToast("WhatsApp dispatched & marked as Pitch Sent!", "success");
+    }
+
+    function openEmailProposal(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+      const proposal = generateDigifyEmailProposal(lead);
+      const mailtoUrl = "mailto:?subject=" + encodeURIComponent(proposal.subject) + "&body=" + encodeURIComponent(proposal.body);
+      window.location.href = mailtoUrl;
+      showToast("Opened default email client with Digify proposal!");
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       12. EXPORT & BACKUP
+    ───────────────────────────────────────────────────────────── */
+    function exportCurrentLeadsCSV() {
+      const filtered = getFilteredLeads();
+      if (!filtered.length) {
+        alert("No leads to export under current filters.");
+        return;
+      }
+
+      const header = "Business Name,Phone,Website,Rating,City,Category,Status,Notes";
+      const rows = filtered.map(l => {
+        return '"' + (l.name||"").replace(/"/g, '""') + '","' +
+               (l.phone||"") + '","' +
+               (l.website||"") + '","' +
+               (l.rating||"") + '","' +
+               (l.city||"") + '","' +
+               (l.category||"") + '","' +
+               (l.status||"new") + '","' +
+               (l.notes||"").replace(/"/g, '""') + '"';
+      });
+
+      const csvContent = "\uFEFF" + [header, ...rows].join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Digify_Leads_Export_" + new Date().toISOString().slice(0, 10) + ".csv";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Exported " + filtered.length + " leads to CSV!", "success");
+    }
+
+    function exportBackupJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(leads, null, 2));
+      const link = document.createElement("a");
+      link.href = dataStr;
+      link.download = "Digify_Leads_Database_Backup_" + new Date().toISOString().slice(0, 10) + ".json";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("JSON database backup saved!");
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       13. HELPERS & TOAST
+    ───────────────────────────────────────────────────────────── */
+    function copyToClipboard(text, msg) {
+      navigator.clipboard.writeText(text);
+      showToast(msg || "Copied to clipboard!");
+    }
+
+    function showToast(msg, type = "success") {
+      const toast = document.getElementById("toastNotification");
+      const icon = document.getElementById("toastIcon");
+      const text = document.getElementById("toastMsg");
+
+      text.innerText = msg;
+      if (type === "info") {
+        icon.className = "fa-solid fa-circle-info text-cyan-400";
+      } else {
+        icon.className = "fa-solid fa-circle-check text-emerald-400";
+      }
+
+      toast.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => {
+        toast.classList.add("translate-y-20", "opacity-0");
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

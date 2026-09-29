@@ -1,0 +1,19 @@
+{
+  "name": "digify-lead-generator-system",
+  "version": "1.0.0",
+  "description": "Digify Soft Solutions B2B Outbound Lead Harvester & Pipeline Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {},
+  "keywords": [
+    "digify",
+    "leads",
+    "erp",
+    "pos",
+    "b2b",
+    "outbound"
+  ]
+}
