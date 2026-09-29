@@ -183,10 +183,10 @@
         <div style="display: flex; align-items: center; gap: 14px;">
           <img src="assets/images/logo.png" alt="Digify Soft Solutions" style="height: 40px; width: auto; object-fit: contain;" onerror="this.src='assets/images/logo_icon.png'">
 
-          <!-- Direct Engine Status Pill -->
-          <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(22, 163, 74, 0.10); color: #166534; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(22, 163, 74, 0.25);" title="100% Direct Browser Engine - Zero Supabase or Backend Setup Required">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e;"></span>
-            Direct Engine Ready
+          <!-- Render Cloud Status Pill -->
+          <div id="cloudStatusBadge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(22, 163, 74, 0.10); color: #166534; font-size: 0.75rem; font-weight: 700; padding: 4px 11px; border-radius: 20px; border: 1px solid rgba(22, 163, 74, 0.25); transition: all 0.2s ease;" title="Backend: Render.com Cloud Storage">
+            <span id="cloudStatusDot" style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+            <span id="cloudStatusText">Render Cloud Connected</span>
           </div>
         </div>
 
@@ -942,7 +942,7 @@ Kya hum is hafte 2-minute quick call ya live WhatsApp video demo schedule kar sa
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057
+📞 +91 74250 16636
 📍 Surat • Ahmedabad • Jaipur • Pan-India`;
       }
 
@@ -965,7 +965,7 @@ Kya hum is hafte 2-minute quick call ya demo preview share kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057`;
+📞 +91 74250 16636`;
       }
 
       if (niche === "manufacturing") {
@@ -986,7 +986,7 @@ Kya hum is hafte 2-minute call par live industrial demo discuss kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057`;
+📞 +91 74250 16636`;
       }
 
       if (niche === "restaurant") {
@@ -1007,7 +1007,7 @@ Kya hum is hafte 2-minute quick demo preview share kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057`;
+📞 +91 74250 16636`;
       }
 
       if (niche === "pharmacy") {
@@ -1028,7 +1028,7 @@ Kya hum is hafte 2-minute live demo par connect kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057`;
+📞 +91 74250 16636`;
       }
 
       if (niche === "hardware") {
@@ -1049,7 +1049,7 @@ Kya hum is hafte ek brief 2-minute demo call schedule kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057`;
+📞 +91 74250 16636`;
       }
 
       // Default: IT Services & Web
@@ -1070,7 +1070,7 @@ Kya hum is hafte 2-minute quick call ya WhatsApp demo discuss kar sakte hain?
 Warm regards,
 *Digify Soft Solutions*
 🌐 https://www.digifysoft.in
-📞 +91 93585 71057
+📞 +91 74250 16636
 📍 Surat • Ahmedabad • Jaipur • Mumbai • Pan-India`;
     }
 
@@ -1112,24 +1112,117 @@ Warm regards,
       renderApp();
     }
 
-    function loadLeadsFromStorage() {
+    const RENDER_API_ENDPOINT = "https://digify-company-website.onrender.com/b2b_leads_api.php";
+    let isCloudSyncing = false;
+    let syncDebounceTimer = null;
+
+    function updateCloudStatusBadge(state, count) {
+      const badge = document.getElementById("cloudStatusBadge");
+      const dot = document.getElementById("cloudStatusDot");
+      const text = document.getElementById("cloudStatusText");
+      if (!badge || !dot || !text) return;
+
+      if (state === "online") {
+        badge.style.background = "rgba(22, 163, 74, 0.10)";
+        badge.style.borderColor = "rgba(22, 163, 74, 0.25)";
+        badge.style.color = "#166534";
+        dot.style.background = "#22c55e";
+        text.textContent = count !== undefined ? `Render Cloud Synced (${count})` : "Render Cloud Synced";
+      } else if (state === "syncing") {
+        badge.style.background = "rgba(37, 99, 235, 0.10)";
+        badge.style.borderColor = "rgba(37, 99, 235, 0.25)";
+        badge.style.color = "#1d4ed8";
+        dot.style.background = "#3b82f6";
+        text.textContent = "Syncing with Cloud...";
+      } else {
+        badge.style.background = "rgba(22, 163, 74, 0.08)";
+        badge.style.borderColor = "rgba(22, 163, 74, 0.2)";
+        badge.style.color = "#15803d";
+        dot.style.background = "#16a34a";
+        text.textContent = "Render Cloud Active";
+      }
+    }
+
+    function saveLocalCacheOnly() {
+      try {
+        localStorage.setItem("digify_b2b_leads_v2", JSON.stringify(leads));
+      } catch (e) {}
+    }
+
+    async function loadLeadsFromStorage() {
+      // 1. Instant local read so UI displays in 0ms without waiting for network
       try {
         const stored = localStorage.getItem("digify_b2b_leads_v2");
         if (stored) {
           leads = JSON.parse(stored);
         } else {
-          // Zero dummy data! Starts clean as requested by user
           leads = [];
         }
       } catch (e) {
         leads = [];
       }
+
+      // 2. Fetch latest live leads from Render Cloud backend
+      syncFromRenderCloud();
+    }
+
+    async function syncFromRenderCloud() {
+      try {
+        updateCloudStatusBadge("syncing");
+        const res = await fetch(RENDER_API_ENDPOINT, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        
+        if (data && data.status === "success" && Array.isArray(data.leads)) {
+          if (data.leads.length > 0) {
+            leads = data.leads;
+            saveLocalCacheOnly();
+            renderApp();
+            updateCloudStatusBadge("online", leads.length);
+          } else if (leads.length > 0) {
+            // Local leads exist, push them to Render Cloud
+            syncToRenderCloud();
+          } else {
+            updateCloudStatusBadge("online", 0);
+          }
+        } else {
+          updateCloudStatusBadge("online", leads.length);
+        }
+      } catch (err) {
+        console.warn("Render Cloud sync note:", err);
+        updateCloudStatusBadge("offline");
+      }
     }
 
     function saveLeadsToStorage() {
-      try {
-        localStorage.setItem("digify_b2b_leads_v2", JSON.stringify(leads));
-      } catch (e) {}
+      // 1. Immediate local save
+      saveLocalCacheOnly();
+
+      // 2. Debounced push to Render Cloud backend
+      syncToRenderCloud();
+    }
+
+    function syncToRenderCloud() {
+      if (syncDebounceTimer) clearTimeout(syncDebounceTimer);
+      syncDebounceTimer = setTimeout(async () => {
+        try {
+          updateCloudStatusBadge("syncing");
+          const res = await fetch(RENDER_API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "save_all", leads: leads })
+          });
+          const result = await res.json();
+          if (result && result.status === "success") {
+            updateCloudStatusBadge("online", leads.length);
+          } else {
+            updateCloudStatusBadge("offline");
+          }
+        } catch (e) {
+          console.warn("Render Cloud push error:", e);
+          updateCloudStatusBadge("offline");
+        }
+      }, 350);
     }
 
 
